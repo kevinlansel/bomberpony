@@ -21,7 +21,7 @@ Difficutlté :							|x|_|_|_|x|
 	- Medium -> essaye de ne pas se tuer.			|_|_|o|_|_|		x -> mur
 	- Hard -> Focus sur un joueur.				|_|x|_|x|_|		o -> Bonhomme
 								|x|_|_|_|x|
-	Taille Minimal = nbr joueur x 5				
+	Taille Minimal = nbr joueur x 5
 
 Memoire:
 	Obstacle :
