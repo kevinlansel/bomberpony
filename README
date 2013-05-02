@@ -61,3 +61,6 @@ if ()
 else if()
 else()
 MAXIMUM !
+
+A Ne pas Supprimer !
+http://www.yuml.me/diagram/scruffy;/class/edit///%20Cool%20Class%20Diagram,%20[Obj]++-%3E[Bonus],%20[Obj]++-%3E[Obstacle],%20[OBJ]++-%3E[Bombe],%20[Joueur],%20[Display],%20[Map],%20[Controller],%20[Menu],%20[Thread]
