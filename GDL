@@ -1,0 +1,32 @@
+Classe contenue dans la GDL :
+
+Clock
+Color
+Game
+GameClock
+Image
+Input
+Model
+Window
+
+Les includes à faire sont donc :
+
+#include	<Clock.hpp>
+#include	<Color.hpp>
+#include	<Game.hpp>
+#include	<GameClock.hpp>
+#include	<Image.hpp>
+#include	<Input.hpp>
+#include	<Model.hpp>
+#include	<Window.hpp>
+
+Et comme la GDL est une surcouche de l'OpenGL, voilà comment include OpenGL :
+#include	<GL/gl.h>
+#include	<GL/glu.h>
+
+__________________________
+
+flag de compil :
+-I Dossier_include_de_la_gdl -L Dossier_lib_de_la_gdl -Wl,--rpath=Dossier_lib_de_la_gdl -lgdl_gl -lGL -lGLU
+
+
