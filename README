@@ -14,3 +14,45 @@ Idée de bonus :
 -> Modification de théme
 
 OBLIGATOIRE : Affichage du score
+
+Algo:								 _ _ _ _ _
+Difficutlté :							|x|_|_|_|x|
+	- Easy -> Full Random					|_|x|_|x|_|
+	- Medium -> essaye de ne pas se tuer.			|_|_|o|_|_|		x -> mur
+	- Hard -> Focus sur un joueur.				|_|x|_|x|_|		o -> Bonhomme
+								|x|_|_|_|x|
+	Taille Minimal = nbr joueur x 5				
+
+Memoire:
+	Obstacle :
+	- list  -> x
+		-> y
+		-> enum Type
+
+	Bonus = Interface ou Abstract
+	Liste des Bonus présent:
+		-> x
+		-> y
+		-> type
+
+	Liste des Joueurs:
+		-> x
+		-> y
+		-> boold Dead
+		-> ? Bonus -> ? Struct
+
+Timer:
+	0 -> Match Nul !
+
+Autre:
+	-> Son
+	-> Bombe
+	-> Mort
+	-> Victoire
+	-> item
+
+Repartition:
+	1-2 IA
+	1-2 Gestion Bombe / Obstacle / Bonus (item)
+	1   Gestion Map
+	1   Gestion Joueur (input prise de bonus)
