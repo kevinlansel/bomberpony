@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:52:14 2013 florian dewulf
-// Last update Mon May  6 10:53:00 2013 florian dewulf
+// Last update Mon May  6 19:16:50 2013 florian dewulf
 //
 
 #include	"Forme.hpp"
@@ -61,6 +61,10 @@ void Rectangle::draw(void)
   glEnd();
 }*/
 
+/*
+** Draw a rectangle of the color given
+** ori = first point, end = point at the opposite, the three float are the RGB
+*/
 void		Rectangle::draw_rect(const Vector3f &ori, const Vector3f &end, float Rcolor, float Vcolor, float Bcolor)
 {
   glBegin(GL_QUADS);
@@ -72,6 +76,10 @@ void		Rectangle::draw_rect(const Vector3f &ori, const Vector3f &end, float Rcolo
   glEnd();
 }
 
+/*
+** Draw a rectangle of the color given [=> Rectangle à plat]
+** ori = first point, end = point at the opposite, the three float are the RGB
+*/
 void		Rectangle::draw_plan(const Vector3f &ori, const Vector3f &end, float Rcolor, float Vcolor, float Bcolor)
 {
   glBegin(GL_QUADS);
@@ -83,23 +91,10 @@ void		Rectangle::draw_plan(const Vector3f &ori, const Vector3f &end, float Rcolo
   glEnd();
 }
 
-void		Rectangle::draw_plan(const Vector3f &ori, const Vector3f &end, gdl::Image &img)
-{
-  img.bind();
-  glEnable(GL_TEXTURE_2D);
-  glBegin(GL_QUADS);
-  glTexCoord2f(0.0, 0.0);
-  glVertex3f(ori.x, ori.y, ori.z);
-  glTexCoord2f(1.0, 0.0);
-  glVertex3f(end.x, ori.y, ori.z);
-  glTexCoord2f(1.0, 1.0);
-  glVertex3f(end.x, ori.y, end.z);
-  glTexCoord2f(0.0, 1.0);
-  glVertex3f(ori.x, ori.y, end.z);
-  glEnd();
-  glDisable(GL_TEXTURE_2D);
-}
-
+/*
+** Draw a rectangle with the texture given
+** ori = first point, end = point at the opposite, img = the texture
+*/
 void		Rectangle::draw_rect(const Vector3f &ori, const Vector3f &end, gdl::Image &img)
 {
   img.bind();
@@ -113,6 +108,27 @@ void		Rectangle::draw_rect(const Vector3f &ori, const Vector3f &end, gdl::Image 
   glVertex3f(end.x, end.y, end.z);
   glTexCoord2f(0.0, 1.0);
   glVertex3f(ori.x, end.y, end.z);
+  glEnd();
+  glDisable(GL_TEXTURE_2D);
+}
+
+/*
+** Draw a rectangle with the texture given [=> Rectangle à plat]
+** ori = first point, end = point at the opposite, img = the texture
+*/
+void		Rectangle::draw_plan(const Vector3f &ori, const Vector3f &end, gdl::Image &img)
+{
+  img.bind();
+  glEnable(GL_TEXTURE_2D);
+  glBegin(GL_QUADS);
+  glTexCoord2f(0.0, 0.0);
+  glVertex3f(ori.x, ori.y, ori.z);
+  glTexCoord2f(1.0, 0.0);
+  glVertex3f(end.x, ori.y, ori.z);
+  glTexCoord2f(1.0, 1.0);
+  glVertex3f(end.x, ori.y, end.z);
+  glTexCoord2f(0.0, 1.0);
+  glVertex3f(ori.x, ori.y, end.z);
   glEnd();
   glDisable(GL_TEXTURE_2D);
 }
@@ -157,155 +173,72 @@ void Cube::draw(void)
     glRotatef(this->rotation_.z, 0.0f, 0.0f, 1.0f);
   */
 
+  // Les 4 faces non horizontales
   Rectangle::draw_rect(Vector3f(this->_origin.x, this->_origin.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_origin.z), this->_texture);
   Rectangle::draw_rect(Vector3f(this->_origin.x, this->_origin.y, this->_opposite.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), this->_texture);
   Rectangle::draw_rect(Vector3f(this->_origin.x, this->_origin.y, this->_origin.z), Vector3f(this->_origin.x, this->_opposite.y, this->_opposite.z), this->_texture);
   Rectangle::draw_rect(Vector3f(this->_opposite.x, this->_origin.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), this->_texture);
 
+  // La face du dessus
   Rectangle::draw_plan(Vector3f(this->_origin.x, this->_origin.y, this->_origin.z), Vector3f(this->_opposite.x, this->_origin.y, this->_opposite.z), this->_texture);
+  // La face du dessous. Qui est blanche car sinon il y a un bug de couleur du cube. Et comme on voit pas le dessous...
   Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), 1.0, 1.0, 1.0);
-  /*if (this->_stateTexture)
-    this->_texture.bind();
-
-  if (this->_stateTexture)
-    glEnable(GL_TEXTURE_2D);
-  glBegin(GL_QUADS);
-  if (this->_stateTexture)
-    {
-      glTexCoord2f(0.0, 0.0);
-      glVertex3f(this->_origin.x, this->_origin.y, this->_origin.z);
-      glTexCoord2f(1.0, 0.0);
-      glVertex3f(this->_opposite.x, this->_origin.y, this->_origin.z);
-      glTexCoord2f(1.0, 1.0);
-      glVertex3f(this->_opposite.x, this->_opposite.y, this->_origin.z);
-      glTexCoord2f(0.0, 1.0);
-      glVertex3f(this->_origin.x, this->_opposite.y, this->_origin.z);
-    }
-  else
-    {
-      glColor3f(0.0f, 0.0f, 0.0f);
-      glVertex3f(this->_origin.x, this->_origin.y, this->_origin.z);
-      glVertex3f(this->_opposite.x, this->_origin.y, this->_origin.z);
-      glVertex3f(this->_opposite.x, this->_opposite.y, this->_origin.z);
-      glVertex3f(this->_origin.x, this->_opposite.y, this->_origin.z);
-    }
-  glEnd();
-  if (this->_stateTexture)
-    glDisable(GL_TEXTURE_2D);
-
-  if (this->_stateTexture)
-    glEnable(GL_TEXTURE_2D);
-  glBegin(GL_QUADS);
-  if (this->_stateTexture)
-    {
-      glTexCoord2f(0.0, 0.0);
-      glVertex3f(this->_origin.x, this->_origin.y, this->_origin.z);
-      glTexCoord2f(1.0, 0.0);
-      glVertex3f(this->_opposite.x, this->_origin.y, this->_origin.z);
-      glTexCoord2f(1.0, 1.0);
-      glVertex3f(this->_opposite.x, this->_origin.y, this->_opposite.z);
-      glTexCoord2f(0.0, 1.0);
-      glVertex3f(this->_origin.x, this->_origin.y, this->_opposite.z);
-    }
-  else
-    {
-      glColor3f(0.0f, 1.0f, 1.0f);
-      glVertex3f(this->_origin.x, this->_origin.y, this->_origin.z);
-      glVertex3f(this->_opposite.x, this->_origin.y, this->_origin.z);
-      glVertex3f(this->_opposite.x, this->_origin.y, this->_opposite.z);
-      glVertex3f(this->_origin.x, this->_origin.y, this->_opposite.z);
-    }
-  glEnd();
-  if (this->_stateTexture)
-    glDisable(GL_TEXTURE_2D);
-
-  glBegin(GL_QUADS);
-  glColor3f(1.0f, 0.0f, 1.0f);
-  glVertex3f(this->_origin.x, this->_origin.y, this->_opposite.z);
-  glVertex3f(this->_opposite.x, this->_origin.y, this->_opposite.z);
-  glVertex3f(this->_opposite.x, this->_opposite.y, this->_opposite.z);
-  glVertex3f(this->_origin.x, this->_opposite.y, this->_opposite.z);
-  glEnd();
-
-  glBegin(GL_QUADS);
-  glColor3f(1.0f, 1.0f, 0.0f);
-  glVertex3f(this->_origin.x, this->_opposite.y, this->_origin.z);
-  glVertex3f(this->_opposite.x, this->_opposite.y, this->_origin.z);
-  glVertex3f(this->_opposite.x, this->_opposite.y, this->_opposite.z);
-  glVertex3f(this->_origin.x, this->_opposite.y, this->_opposite.z);
-  glEnd();
-
-  glBegin(GL_QUADS);
-  glColor3f(1.0f, 1.0f, 1.0f);
-  glVertex3f(this->_origin.x, this->_origin.y, this->_origin.z);
-  glVertex3f(this->_origin.x, this->_origin.y, this->_opposite.z);
-  glVertex3f(this->_origin.x, this->_opposite.y, this->_opposite.z);
-  glVertex3f(this->_origin.x, this->_opposite.y, this->_origin.z);
-  glEnd();
-
-  glBegin(GL_QUADS);
-  glColor3f(1.0f, 1.0f, 0.0f);
-  glVertex3f(this->_opposite.x, this->_origin.y, this->_origin.z);
-  glVertex3f(this->_opposite.x, this->_origin.y, this->_opposite.z);
-  glVertex3f(this->_opposite.x, this->_opposite.y, this->_opposite.z);
-  glVertex3f(this->_opposite.x, this->_opposite.y, this->_origin.z);
-  glEnd();*/
 
   glPopMatrix();
 }
 
-  /* Pyramide */
+/* Pyramide */
 
-  Pyramide::Pyramide(const Vector3f &v1, const Vector3f &v2, const Vector3f &v3, const Vector3f &sommet) : _v1(v1), _v2(v2), _v3(v3), _sommet(sommet)
-  {
-  }
+Pyramide::Pyramide(const Vector3f &v1, const Vector3f &v2, const Vector3f &v3, const Vector3f &sommet) : _v1(v1), _v2(v2), _v3(v3), _sommet(sommet)
+{
+}
 
-  Pyramide::~Pyramide()
-    {
-    }
+Pyramide::~Pyramide()
+{
+}
 
-  void Pyramide::initialize(void)
-  {
-  }
+void Pyramide::initialize(void)
+{
+}
 
-  void Pyramide::update(gdl::GameClock const & gameClock, gdl::Input & input)
-  {
-    this->rotation_.x = ((int)rotation_.x + 1) % 360;
-    this->rotation_.y = ((int)rotation_.y + 1) % 360;
-    this->rotation_.z = ((int)rotation_.z + 1) % 360;
-  }
+void Pyramide::update(gdl::GameClock const & gameClock, gdl::Input & input)
+{
+  this->rotation_.x = ((int)rotation_.x + 1) % 360;
+  this->rotation_.y = ((int)rotation_.y + 1) % 360;
+  this->rotation_.z = ((int)rotation_.z + 1) % 360;
+}
 
-  void Pyramide::draw(void)
-  {
-    glPushMatrix();
-    glLoadIdentity();
-    glTranslatef(0.0f, 200.0f, 0.0f);
-    glRotatef(this->rotation_.x, 1.0f, 0.0f, 0.0f);
-    glRotatef(this->rotation_.y, 0.0f, 1.0f, 0.0f);
-    glRotatef(this->rotation_.z, 0.0f, 0.0f, 1.0f);
-    glBegin(GL_TRIANGLES);
+void Pyramide::draw(void)
+{
+  glPushMatrix();
+  glLoadIdentity();
+  glTranslatef(0.0f, 200.0f, 0.0f);
+  glRotatef(this->rotation_.x, 1.0f, 0.0f, 0.0f);
+  glRotatef(this->rotation_.y, 0.0f, 1.0f, 0.0f);
+  glRotatef(this->rotation_.z, 0.0f, 0.0f, 1.0f);
+  glBegin(GL_TRIANGLES);
 
-    /*base*/
-    glColor3f(1.0f, 1.0f, 1.0f);
-    glVertex3f(this->_v1.x, this->_v1.y, this->_v1.z);
-    glVertex3f(this->_v2.x, this->_v2.y, this->_v2.z);
-    glVertex3f(this->_v3.x, this->_v3.y, this->_v3.z);
+  /*base*/
+  glColor3f(1.0f, 1.0f, 1.0f);
+  glVertex3f(this->_v1.x, this->_v1.y, this->_v1.z);
+  glVertex3f(this->_v2.x, this->_v2.y, this->_v2.z);
+  glVertex3f(this->_v3.x, this->_v3.y, this->_v3.z);
 
-    glColor3f(1.0f, 1.0f, 0.0f);
-    glVertex3f(this->_sommet.x, this->_sommet.y, this->_sommet.z);
-    glVertex3f(this->_v1.x, this->_v1.y, this->_v1.z);
-    glVertex3f(this->_v2.x, this->_v2.y, this->_v2.z);
+  glColor3f(1.0f, 1.0f, 0.0f);
+  glVertex3f(this->_sommet.x, this->_sommet.y, this->_sommet.z);
+  glVertex3f(this->_v1.x, this->_v1.y, this->_v1.z);
+  glVertex3f(this->_v2.x, this->_v2.y, this->_v2.z);
 
-    glColor3f(1.0f, 0.0f, 1.0f);
-    glVertex3f(this->_sommet.x, this->_sommet.y, this->_sommet.z);
-    glVertex3f(this->_v1.x, this->_v1.y, this->_v1.z);
-    glVertex3f(this->_v3.x, this->_v3.y, this->_v3.z);
+  glColor3f(1.0f, 0.0f, 1.0f);
+  glVertex3f(this->_sommet.x, this->_sommet.y, this->_sommet.z);
+  glVertex3f(this->_v1.x, this->_v1.y, this->_v1.z);
+  glVertex3f(this->_v3.x, this->_v3.y, this->_v3.z);
 
-    glColor3f(0.0f, 1.0f, 1.0f);
-    glVertex3f(this->_sommet.x, this->_sommet.y, this->_sommet.z);
-    glVertex3f(this->_v2.x, this->_v2.y, this->_v2.z);
-    glVertex3f(this->_v3.x, this->_v3.y, this->_v3.z);
+  glColor3f(0.0f, 1.0f, 1.0f);
+  glVertex3f(this->_sommet.x, this->_sommet.y, this->_sommet.z);
+  glVertex3f(this->_v2.x, this->_v2.y, this->_v2.z);
+  glVertex3f(this->_v3.x, this->_v3.y, this->_v3.z);
 
-    glEnd();
-    glPopMatrix();
-  }
+  glEnd();
+  glPopMatrix();
+}
