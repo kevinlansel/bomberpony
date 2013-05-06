@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:50:30 2013 florian dewulf
-// Last update Sun May  5 17:21:06 2013 florian dewulf
+// Last update Mon May  6 10:43:37 2013 florian dewulf
 //
 
 #ifndef		FORME_HPP__
@@ -33,14 +33,23 @@ class		Triangle : public AObject
 
 /* ------------ */
 
- /*
 class		Rectangle : public AObject
 {
+public:
+  Rectangle();
+  virtual	~Rectangle();
+
+  /*public:
   void		initialize();
   void		update(gdl::GameClock const &, gdl::Input &);
-  void		draw(void);
+  void		draw(void);*/
+public:
+  static void	draw_rect(const Vector3f &, const Vector3f &, float, float, float);
+  static void	draw_rect(const Vector3f &, const Vector3f &, gdl::Image &);
+  static void	draw_plan(const Vector3f &, const Vector3f &, float, float, float);
+  static void	draw_plan(const Vector3f &, const Vector3f &, gdl::Image &);
+
 };
- */
 
 /* ------------ */
 

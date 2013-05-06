@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:11:14 2013 florian dewulf
-// Last update Sun May  5 15:23:31 2013 florian dewulf
+// Last update Mon May  6 10:52:20 2013 florian dewulf
 //
 
 #include	"Camera.hpp"
