@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:52:14 2013 florian dewulf
-// Last update Mon May  6 19:16:50 2013 florian dewulf
+// Last update Tue May  7 21:50:24 2013 florian dewulf
 //
 
 #include	"Forme.hpp"
@@ -182,7 +182,8 @@ void Cube::draw(void)
   // La face du dessus
   Rectangle::draw_plan(Vector3f(this->_origin.x, this->_origin.y, this->_origin.z), Vector3f(this->_opposite.x, this->_origin.y, this->_opposite.z), this->_texture);
   // La face du dessous. Qui est blanche car sinon il y a un bug de couleur du cube. Et comme on voit pas le dessous...
-  Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), 1.0, 1.0, 1.0);
+  Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), this->_texture);
+  //Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), 1.0, 1.0, 1.0);
 
   glPopMatrix();
 }
@@ -197,18 +198,18 @@ Pyramide::~Pyramide()
 {
 }
 
-void Pyramide::initialize(void)
+void	Pyramide::initialize(void)
 {
 }
 
-void Pyramide::update(gdl::GameClock const & gameClock, gdl::Input & input)
+void	Pyramide::update(gdl::GameClock const & gameClock, gdl::Input & input)
 {
   this->rotation_.x = ((int)rotation_.x + 1) % 360;
   this->rotation_.y = ((int)rotation_.y + 1) % 360;
   this->rotation_.z = ((int)rotation_.z + 1) % 360;
 }
 
-void Pyramide::draw(void)
+void	Pyramide::draw(void)
 {
   glPushMatrix();
   glLoadIdentity();
