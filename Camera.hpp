@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:09:38 2013 florian dewulf
-// Last update Thu May  9 15:19:14 2013 florian dewulf
+// Last update Sun May 12 19:04:41 2013 florian dewulf
 //
 
 #ifndef		CAMERA_HPP__
@@ -27,6 +27,13 @@ public:
   void		initialize(int, int, const Vector3f &, const Vector3f &, float);
   void		update(gdl::GameClock const &, gdl::Input &);
   void		draw();
+  void		move(const Vector3f &, const Vector3f &, float, float);
+
+public:
+  Vector3f	getPosition() const;
+  Vector3f	getTarget() const;
+  float		getAngle() const;
+  float		getRotation() const;
 
 private:
   Vector3f	calc_rot() const;

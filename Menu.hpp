@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Thu May  9 15:12:54 2013 florian dewulf
+// Last update Sun May 12 19:06:12 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -17,6 +17,9 @@
 #include	<iostream>
 #include	<string>
 
+#include	"Camera.hpp"
+#include	"Forme.hpp"
+#include	"Input.hpp"
 #include	"Vector3f.hpp"
 #include	"GameClock.hpp"
 #include	"Scene.hpp"
@@ -32,10 +35,12 @@ public:
 public:
   virtual void	initialize(const std::string &);
   virtual void	draw();
-  virtual void	update(gdl::GameClock &);
+  virtual void	update(gdl::GameClock &, gdl::Input &);
 
 private:
-  gdl::Model	_background;
+  AObject	*_background;
+  Camera	_camera;
+  Triangle	_cursor;
 };
 
 #endif

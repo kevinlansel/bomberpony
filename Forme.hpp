@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:50:30 2013 florian dewulf
-// Last update Mon May  6 10:43:37 2013 florian dewulf
+// Last update Sun May 12 19:01:29 2013 florian dewulf
 //
 
 #ifndef		FORME_HPP__
@@ -22,14 +22,20 @@
 
 /* ------------ */
 
-/*
 class		Triangle : public AObject
 {
+public:
+  Triangle(const Vector3f &, const Vector3f &, const Vector3f &, const Vector3f &);
   void		initialize();
   void		update(gdl::GameClock const &, gdl::Input &);
-  void		draw(void);
+  void		draw();
+
+private:
+  Vector3f	_pt1;
+  Vector3f	_pt2;
+  Vector3f	_pt3;
+  Vector3f	_color;
 };
-*/
 
 /* ------------ */
 
