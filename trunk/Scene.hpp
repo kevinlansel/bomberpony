@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 19:59:03 2013 florian dewulf
-// Last update Thu May  9 15:15:02 2013 florian dewulf
+// Last update Sun May 12 18:28:36 2013 florian dewulf
 //
 
 #ifndef		SCENE_HPP__
@@ -15,6 +15,7 @@
 
 #include	"Vector3f.hpp"
 
+#include	"Input.hpp"
 #include	"GameClock.hpp"
 #include	"Color.hpp"
 #include	"Text.hpp"
@@ -28,7 +29,7 @@ public:
 public:
   virtual void	initialize(const std::string &) = 0;
   virtual void	draw() = 0;
-  virtual void	update(gdl::GameClock &) = 0;
+  virtual void	update(gdl::GameClock &, gdl::Input &) = 0;
 
 public:
   void		setTxt(const std::string &, unsigned int, unsigned int);

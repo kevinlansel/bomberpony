@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 18:07:32 2013 florian dewulf
-// Last update Thu May  9 15:22:43 2013 florian dewulf
+// Last update Sun May 12 18:21:53 2013 florian dewulf
 //
 
 #ifndef		BOMBERMAN_HPP__
@@ -15,6 +15,7 @@
 #include	<GL/glut.h>
 
 #include	<list>
+#include	"Controller.hpp"
 #include	"Menu.hpp"
 #include	"AObject.hpp"
 #include	"Game.hpp"
@@ -35,9 +36,12 @@ public:
   void		unload();
 
 public:
+  Controller	_ctrl;
+  /*
   Scene			*_scene;
   Camera		camera_;
   std::list<AObject *>	objects_;
+  */
 };
 
 #endif		// BOMBERMAN_HPP__

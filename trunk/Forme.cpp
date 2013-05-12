@@ -5,15 +5,18 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:52:14 2013 florian dewulf
-// Last update Tue May  7 21:50:24 2013 florian dewulf
+// Last update Sun May 12 19:08:28 2013 florian dewulf
 //
 
 #include	"Forme.hpp"
 
 /* Triangle */
 
-/*
-void Triangle::initialize(void)
+Triangle::Triangle(const Vector3f &pt1, const Vector3f &pt2, const Vector3f &pt3, const Vector3f &color) : _pt1(pt1), _pt2(pt2), _pt3(pt3), _color(color)
+{
+}
+
+void Triangle::initialize()
 {
 }
 
@@ -21,16 +24,18 @@ void Triangle::update(gdl::GameClock const & gameClock, gdl::Input & input)
 {
 }
 
-void Triangle::draw(void)
+void Triangle::draw()
 {
+  Vector3f	translation(this->pt1);//à finir
+
   glBegin(GL_TRIANGLES);
-  glColor3f(1.0f, 0.50f, 0.75f);
-  glVertex3f(0.0f, 150.0f, 0.0f);
-  glVertex3f(-150.0f, 0.0f, 0.0f);
-  glVertex3f(150.0f, 00.0f, 0.0f);
+  glColor3f(this->_color.x, this->_color.y, this->_color.z);
+  glVertex3f(this->_pt1.x, this->_pt1.y, this->_pt1.z);
+  glVertex3f(this->_pt2.x, this->_pt2.y, this->_pt2.z);
+  glVertex3f(this->_pt3.x, this->_pt3.y, this->_pt3.z);
   glEnd();
 }
-*/
+
 
 /* Rectangle */
 
@@ -42,15 +47,16 @@ Rectangle::~Rectangle()
 {
 }
 
-/*void Rectangle::initialize(void)
+/*
+void		Rectangle::initialize(void)
 {
 }
 
-void Rectangle::update(gdl::GameClock const & gameClock, gdl::Input & input)
+void		Rectangle::update(gdl::GameClock const & gameClock, gdl::Input & input)
 {
 }
 
-void Rectangle::draw(void)
+void		Rectangle::draw(void)
 {
   glBegin(GL_QUADS);
   glColor3f(1.0f, 0.50f, 0.75f);

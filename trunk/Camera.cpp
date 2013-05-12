@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:11:14 2013 florian dewulf
-// Last update Thu May  9 15:21:00 2013 florian dewulf
+// Last update Sun May 12 18:53:09 2013 florian dewulf
 //
 
 #include	"Camera.hpp"
@@ -67,4 +67,36 @@ Vector3f	Camera::calc_rot() const
   vec.y = this->_position.y;
   vec.z = rayon * cos(_angle);
   return (vec);
+}
+
+void		Camera::move(const Vector3f &pos, const Vector3f &target, float angle, float rotation)
+{
+  this->_angle = angle;
+  this->_rotation = rotation;
+  this->_position.x = pos.x;
+  this->_position.y = pos.y;
+  this->_position.z = pos.z;
+  this->_target.x = target.x;
+  this->_target.y = target.y;
+  this->_target.z = target.z;
+}
+
+Vector3f	Camera::getPosition() const
+{
+  return this->_position;
+}
+
+Vector3f	Camera::getTarget() const
+{
+  return this->_target;
+}
+
+float		Camera::getAngle() const
+{
+  return this->_angle;
+}
+
+float		Camera::getRotation() const
+{
+  return this->_rotation;
 }
