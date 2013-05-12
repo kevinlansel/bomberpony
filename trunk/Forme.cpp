@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:52:14 2013 florian dewulf
-// Last update Sun May 12 19:08:28 2013 florian dewulf
+// Last update Sun May 12 20:52:04 2013 kevin lansel
 //
 
 #include	"Forme.hpp"
@@ -26,7 +26,7 @@ void Triangle::update(gdl::GameClock const & gameClock, gdl::Input & input)
 
 void Triangle::draw()
 {
-  Vector3f	translation(this->pt1);//à finir
+  //Vector3f	translation(this->pt1);//à finir
 
   glBegin(GL_TRIANGLES);
   glColor3f(this->_color.x, this->_color.y, this->_color.z);
