@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sun May  5 14:03:36 2013 florian dewulf
-// Last update Sun May 12 18:37:29 2013 florian dewulf
+// Last update Mon May 13 14:01:22 2013 gery baudry
 //
 
 #include	"Bomberman.hpp"
@@ -49,6 +49,8 @@ void		Bomberman::update()
   camera_.update(gameClock_, input_);
   */
   this->_ctrl.update(this->gameClock_, this->input_);
+  if (this->input_.isKeyDown(gdl::Keys::Escape) == true)
+    this->window_.close();
 }
 
 void		Bomberman::draw()
