@@ -17,7 +17,7 @@ class		Collision
 {
 public:
   Collision();
-  ~Collision();
+  virtual ~Collision();
   bool	checkCollisionWall();
   bool	checkCollisionPlayer();
 
