@@ -19,6 +19,8 @@ SRC=		AObject.cpp		\
 		main.cpp		\
 		Menu.cpp		\
 		Scene.cpp		\
+		Collision.cpp		\
+		Obstacle.cpp		\
 		Vector3f.cpp
 
 OBJ=		$(SRC:.cpp=.o)
