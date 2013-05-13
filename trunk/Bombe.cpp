@@ -5,20 +5,16 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:07 2013 Maxime Wojciak
-// Last update Mon May 13 17:03:45 2013 gery baudry
+// Last update Mon May 13 17:15:34 2013 Maxime Wojciak
 //
 
 #include	<ctime>
+#include	<unistd.h>
 #include	"Bombe.hpp"
 
 Bombe::Bombe() {
 
 }
-
-/*
-** Class Input
-** On pose la bombe.
-*/
 
 void		Bombe::DropBombe(int x, int y, const gdl::GameClock &gameClock)
 {

@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Sun May  5 14:07:28 2013 florian dewulf
-## Last update Sat May 11 19:52:33 2013 florian dewulf
+## Last update Mon May 13 15:58:32 2013 Maxime Wojciak
 ##
 
 NAME=		Bomberman
@@ -19,6 +19,7 @@ SRC=		AObject.cpp		\
 		main.cpp		\
 		Menu.cpp		\
 		Scene.cpp		\
+		Bombe.cpp		\
 		Collision.cpp		\
 		Obstacle.cpp		\
 		Vector3f.cpp
