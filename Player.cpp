@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:21:55 2013 gery baudry
-// Last update Mon May 13 14:05:08 2013 gery baudry
+// Last update Mon May 13 14:20:00 2013 gery baudry
 //
 
 Player::Player(bool player) : _winx(10), _winy(10), _joueur(player), _bomb(1)
@@ -16,12 +16,16 @@ Player::~Player()
 {
 }
 
-void		Player::move(gdl::Input &input)
+void		Player::update(gdl::Input &input)
 {
   if (this->_joueur)
     move_player_one(input);
   else
     move_player_two(input);
+  if (input.isKeyDown(gdl::Keys::F1) == true)
+    //save les infos
+  if (input.isKeyDown(gdl::Keys::P) == true)
+    //image pose +menu
 }
 
 void		Player::move_player_one(gdl::Input &input)
@@ -34,8 +38,6 @@ void		Player::move_player_one(gdl::Input &input)
     this->_winy -= 1;
   if (input.isKeyDown(gdl::Keys::Down) == true)
     this->_winy += 1;
-  if (input.isKeyDown(gdl::Keys::P) == true)
-    //image pose +menu
   if (input.isKeyDown(gdl::Keys::RControl) == true && this->_bomb != 0)
     //pose la bombinette && décrémente le nbr de bombe
     //appel a la fonction affichage
@@ -52,8 +54,6 @@ void		Player::move_player_two(gdl::Input &input)
     this->_winy -= 1;
   if (input.isKeyDown(gdl::Keys::S) == true)
     this->_winy += 1;
-  if (input.isKeyDown(gdl::Keys::P) == true)
-    //image pose +menu
   if (input.isKeyDown(gdl::Keys::LControl) == true && this->_bomb != 0)
     //pose la bombinette && décrémente le nombre de bombe
     //appel a la fonction affichage

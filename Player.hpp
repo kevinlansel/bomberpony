@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:20:52 2013 gery baudry
-// Last update Mon May 13 10:43:59 2013 florian dewulf
+// Last update Mon May 13 14:18:45 2013 gery baudry
 //
 
 #ifndef		PLAYER_HPP__
@@ -28,7 +28,7 @@ public:
   void		setWinx(int);
   void		setWiny(int);
   void		setBomb(int);
-  void		move(gdl::Input &);
+  void		update(gdl::Input &);
 
 private:
   void		move_player_one(gdl::Input &input);
