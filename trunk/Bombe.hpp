@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:02 2013 Maxime Wojciak
-// Last update Mon May 13 13:39:45 2013 Maxime Wojciak
+// Last update Mon May 13 22:47:17 2013 florian dewulf
 //
 
 #ifndef		_BOMBE__
@@ -14,19 +14,20 @@
 #include	<list>
 #include	<iostream>
 #include	<string>
+#include	"GameClock.hpp"
 
 class		Bombe {
-  public:
-    Bombe();
-    virtual ~Bombe();
+public:
+  Bombe();
+  virtual ~Bombe();
 
-  public:
-    /* getter & setter */
+public:
+  /* getter & setter */
 
-  public:
-    void	DropBombe();
+public:
+  void	DropBombe(int, int, const gdl::GameClock &);
 
-  private:
+private:
 
 };
 
