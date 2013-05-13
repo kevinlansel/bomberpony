@@ -5,15 +5,23 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:21:55 2013 gery baudry
-// Last update Fri May 10 15:29:32 2013 gery baudry
+// Last update Mon May 13 10:44:56 2013 florian dewulf
 //
 
-Player::Player() : _winx(10), _winy(10)
+Player::Player(bool player) : _winx(10), _winy(10), _joueur(player), _bomb(1)
 {
 }
 
 Player::~Player()
 {
+}
+
+void		Player::move(gdl::Input &input)
+{
+  if (this->_joueur)
+    move_player_one(input);
+  else
+    move_player_two(input);
 }
 
 void		Player::move_player_one(gdl::Input &input)
