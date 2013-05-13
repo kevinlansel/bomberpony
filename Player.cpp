@@ -5,8 +5,10 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:21:55 2013 gery baudry
-// Last update Mon May 13 14:20:00 2013 gery baudry
+// Last update Mon May 13 16:05:35 2013 gery baudry
 //
+
+#include	"Player.hpp"
 
 Player::Player(bool player) : _winx(10), _winy(10), _joueur(player), _bomb(1)
 {
@@ -64,6 +66,10 @@ void		Player::check_item(Item &item)
 {
   //Verification des item pris par le joueur
 }
+
+//
+//Getter && Setter
+//
 
 int		Player::getWinx() const
 {
