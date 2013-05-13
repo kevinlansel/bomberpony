@@ -12,9 +12,15 @@ public:
   Obstacle();
   virtual ~Obstacle();
   typeObs	getType() const;
-  
+  int		getX() const;
+  int		getY() const;
+  void		setX(int);
+  void		setY(int);
+
 private:
   typeObs	_type;
+  int		_x;
+  int		_y;
 }
 
 #endif
