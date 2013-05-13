@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Sun May 12 18:27:57 2013 florian dewulf
+// Last update Mon May 13 17:18:13 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -14,22 +14,13 @@
 #include	<list>
 #include	<string>
 
+#include	"Bomberman.h"
 #include	"Menu.hpp"
 #include	"Scene.hpp"
 #include	"Scene.hpp"
 #include	"GameClock.hpp"
 #include	"Input.hpp"
 #include	"File.hpp"
-
-enum MenuType {
-  MENU,
-  BATTLE,
-  GAME,
-  SCORE,
-  OPTION,
-  VICTORY,
-  GAMEOVER
-};
 
 class		Controller
 {
