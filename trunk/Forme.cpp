@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:52:14 2013 florian dewulf
-// Last update Mon May 13 14:37:29 2013 florian dewulf
+// Last update Mon May 13 15:49:40 2013 florian dewulf
 //
 
 #include	"Forme.hpp"
@@ -35,9 +35,9 @@ void Triangle::draw()
   glRotatef(this->_rotation, 1.0, 0.0, 0.0);
   glBegin(GL_TRIANGLES);
   glColor3f(this->_color.x, this->_color.y, this->_color.z);
-  glVertex3f(/*translation.x - */this->_pt1.x, /*translation.y - */this->_pt1.y, /*translation.z - */this->_pt1.z);
-  glVertex3f(/*translation.x - */this->_pt2.x, /*translation.y - */this->_pt2.y, /*translation.z - */this->_pt2.z);
-  glVertex3f(/*translation.x - */this->_pt3.x, /*translation.y - */this->_pt3.y, /*translation.z - */this->_pt3.z);
+  glVertex3f(this->_pt1.x, this->_pt1.y, this->_pt1.z);
+  glVertex3f(this->_pt2.x, this->_pt2.y, this->_pt2.z);
+  glVertex3f(this->_pt3.x, this->_pt3.y, this->_pt3.z);
   glEnd();
   glPopMatrix();
 }

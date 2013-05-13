@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Mon May 13 13:13:42 2013 florian dewulf
+// Last update Mon May 13 17:22:45 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -17,6 +17,7 @@
 #include	<iostream>
 #include	<string>
 
+#include	"Bomberman.h"
 #include	"Camera.hpp"
 #include	"Forme.hpp"
 #include	"Input.hpp"
@@ -29,18 +30,23 @@
 class		Menu : public Scene
 {
 public:
-  Menu(const Vector3f &, const Vector3f &);
+  Menu(const Vector3f &, const Vector3f &, MenuType);
   virtual	~Menu();
 
 public:
   virtual void	initialize(const std::string &);
   virtual void	draw();
   virtual void	update(gdl::GameClock &, gdl::Input &);
+  MenuType	getChoice() const;
+
+private:
+  float		move(float, gdl::GameClock &, gdl::Input &);
 
 private:
   AObject	*_background;
   Camera	_camera;
   Triangle	_cursor;
+  MenuType	_choice;
 };
 
 #endif

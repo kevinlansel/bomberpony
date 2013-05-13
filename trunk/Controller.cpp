@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Sun May 12 18:47:49 2013 florian dewulf
+// Last update Mon May 13 17:00:50 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
 
-Controller::Controller() : _scene(new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0))), _sound(true), _map_choice(true), _map_option(""), _screen(MENU)
+Controller::Controller() : _scene(new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), MENU)), _sound(true), _map_choice(true), _map_option(""), _screen(MENU)
 {
 }
 
@@ -40,6 +40,8 @@ void		Controller::Majscore()
 void		Controller::update(gdl::GameClock &clock, gdl::Input &input)
 {
   this->_scene->update(clock, input);
+  if (dynamic_cast<Menu *>(this->_scene))
+    this->_screen = reinterpret_cast<Menu *>(this->_scene)->getChoice();
 }
 
 void		Controller::draw()
@@ -52,7 +54,7 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
   if (this->_scene)
     delete this->_scene;
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
-    this->_scene = new Menu(Vector3f(0, 0, 2000), Vector3f(0, 0, 0));
+    this->_scene = new Menu(Vector3f(0, 0, 2000), Vector3f(0, 0, 0), type);
   else if (type == BATTLE)
     ;//game
   else
