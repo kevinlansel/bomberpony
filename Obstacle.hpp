@@ -4,13 +4,15 @@
 class		Obstacle
 {
 public:
-  typedef enum		typeObs
-    {
-      WALL		1,
-      BREAKABLE_WALL	2
-    };
   Obstacle();
   virtual ~Obstacle();
+
+  enum		typeObs
+    {
+      WALL,
+      BREAKABLE_WALL
+    };
+
   typeObs	getType() const;
   int		getX() const;
   int		getY() const;
@@ -21,6 +23,6 @@ private:
   typeObs	_type;
   int		_x;
   int		_y;
-}
+};
 
 #endif

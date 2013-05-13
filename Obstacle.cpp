@@ -9,7 +9,7 @@ Obstacle::~Obstacle()
 {
 }
 
-typeObs		Obstacle::getType() const
+Obstacle::typeObs		Obstacle::getType() const
 {
   return (this->_type);
 }

@@ -12,6 +12,7 @@
 # define	__COLLISION_HPP__
 
 #include	"Player.hpp"
+#include	"Obstacle.hpp"
 
 class		Collision
 {
@@ -20,12 +21,13 @@ public:
   virtual ~Collision();
   bool	checkCollisionWall();
   bool	checkCollisionPlayer();
+  bool	getCollision() const;
 
 private:
   Player	*p1;
   Player	*p2;
   Obstacle	*obs;
   bool		collision;
-}
+};
 
 #endif

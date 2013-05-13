@@ -22,16 +22,25 @@ Collision::~Collision()
 
 bool		Collision::checkCollisionWall()
 {
+  this->collision = false;
   // si la position du player == a la position d'un obstacle
-  if (this->p1->getWinX() == obs->getX())
-    if (this->p1->getWinY() == obs->getY())
-      this->collision = 1;
+  /*if (this->p1->getWinx() == obs->getX())
+    if (this->p1->getWiny() == obs->getY())
+    this->collision = true;*/
+  return (this->collision);
 }
 
 bool		Collision::checkCollisionPlayer()
 {
   // si la position du player == a la position d'un autre player
-  if (this->p1->getWinX() == this->p2->getX())
-    if (this->p1->getWinY() == this->p2->getY())
-      this->collision = 1;
+  this->collision = false;
+  /*if (this->p1->getWinx() == this->p2->getWinx())
+    if (this->p1->getWiny() == this->p2->getWiny())
+      this->collision = true;*/
+  return (this->collision);
+}
+
+bool		Collision::getCollision() const
+{
+  return (this->collision);
 }
