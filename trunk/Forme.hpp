@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:50:30 2013 florian dewulf
-// Last update Sun May 12 19:01:29 2013 florian dewulf
+// Last update Mon May 13 13:34:48 2013 florian dewulf
 //
 
 #ifndef		FORME_HPP__
@@ -29,12 +29,16 @@ public:
   void		initialize();
   void		update(gdl::GameClock const &, gdl::Input &);
   void		draw();
+  void		setTranslation(const Vector3f &);
+  Vector3f	getTranslation() const;
 
 private:
   Vector3f	_pt1;
   Vector3f	_pt2;
   Vector3f	_pt3;
   Vector3f	_color;
+  float		_rotation;
+  Vector3f	_translation;
 };
 
 /* ------------ */
@@ -95,6 +99,7 @@ private:
   Vector3f	_v2;
   Vector3f	_v3;
   Vector3f	_sommet;
+  Vector3f	_rotation;
 };
 
 #endif
