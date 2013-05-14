@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:21:55 2013 gery baudry
-// Last update Tue May 14 11:15:24 2013 gery baudry
+// Last update Tue May 14 11:16:31 2013 gery baudry
 //
 
 #include	"APlayer.hpp"
@@ -16,38 +16,6 @@ APlayer::APlayer(int joueur, const std::string &name) : _pos(0, 0, 0), _joueur(j
 
 APlayer::~APlayer()
 {
-}
-
-void		APlayer::move_player_one(gdl::Input &input)
-{
-  if (input.isKeyDown(gdl::Keys::Right) == true)
-    this->_winx += 1;
-  if (input.isKeyDown(gdl::Keys::Left) == true)
-    this->_winx -= 1;
-  if (input.isKeyDown(gdl::Keys::Up) == true)
-    this->_winy -= 1;
-  if (input.isKeyDown(gdl::Keys::Down) == true)
-    this->_winy += 1;
-  if (input.isKeyDown(gdl::Keys::RControl) == true && this->_bomb != 0)
-    //pose la bombinette && décrémente le nbr de bombe
-    //appel a la fonction affichage
-    //fonction timer pour explosion + accrémentation une fois la bombe explosé
-}
-
-void		APlayer::move_player_two(gdl::Input &input)
-{
-  if (input.isKeyDown(gdl::Keys::D) == true)
-    this->_winx += 1;
-  if (input.isKeyDown(gdl::Keys::Q) == true)
-    this->_winx -= 1;
-  if (input.isKeyDown(gdl::Keys::Z) == true)
-    this->_winy -= 1;
-  if (input.isKeyDown(gdl::Keys::S) == true)
-    this->_winy += 1;
-  if (input.isKeyDown(gdl::Keys::LControl) == true && this->_bomb != 0)
-    //pose la bombinette && décrémente le nombre de bombe
-    //appel a la fonction affichage
-    //fonction timer pour explosion + accrémentation une fois la bombe explosé
 }
 
 //
