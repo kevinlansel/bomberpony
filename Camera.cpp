@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:11:14 2013 florian dewulf
-// Last update Sun May 12 18:53:09 2013 florian dewulf
+// Last update Tue May 14 10:27:13 2013 florian dewulf
 //
 
 #include	"Camera.hpp"
@@ -33,7 +33,7 @@ void		Camera::initialize(int sizex, int sizey, const Vector3f &vect, const Vecto
   glDepthFunc(GL_LEQUAL);
 }
 
-void		Camera::update(gdl::GameClock const &gameClock, gdl::Input &input)
+void		Camera::update()
 {
   this->_angle = (this->_angle + this->_rotation);
   if (this->_angle > 360.0)

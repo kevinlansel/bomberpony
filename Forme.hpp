@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:50:30 2013 florian dewulf
-// Last update Mon May 13 13:34:48 2013 florian dewulf
+// Last update Tue May 14 10:36:05 2013 florian dewulf
 //
 
 #ifndef		FORME_HPP__
@@ -27,7 +27,7 @@ class		Triangle : public AObject
 public:
   Triangle(const Vector3f &, const Vector3f &, const Vector3f &, const Vector3f &);
   void		initialize();
-  void		update(gdl::GameClock const &, gdl::Input &);
+  void		update();
   void		draw();
   void		setTranslation(const Vector3f &);
   Vector3f	getTranslation() const;
@@ -71,7 +71,7 @@ public:
 
 public:
   void		initialize();
-  void		update(gdl::GameClock const &, gdl::Input &);
+  void		update();
   void		draw(void);
 
 private:
@@ -91,7 +91,7 @@ public:
 
 public:
   void		initialize();
-  void		update(gdl::GameClock const &, gdl::Input &);
+  void		update();
   void		draw(void);
 
 private:

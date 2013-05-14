@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Tue May 14 09:20:45 2013 florian dewulf
+// Last update Tue May 14 10:39:04 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
@@ -37,10 +37,10 @@ void		Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
 
   if (tempo == -1)
     tempo = gameClock_.getTotalGameTime();
-  this->_camera.update(gameClock_, input);
-  this->_background->update(gameClock_, input);
-  this->_cursor.update(gameClock_, input);
-  tempo = this->move(tempo, gameClock_, input);
+  this->_camera.update();
+  this->_background->update();
+  this->_cursor.update();
+  this->move(tempo, gameClock_, input);
 }
 
 void		Menu::draw()
@@ -51,7 +51,7 @@ void		Menu::draw()
   this->_txt.draw();
 }
 
-float		Menu::move(float tempo, gdl::GameClock &gameClock_, gdl::Input &input)
+void		Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
 {
   Vector3f	tmp(this->_cursor.getTranslation());
 
@@ -70,7 +70,6 @@ float		Menu::move(float tempo, gdl::GameClock &gameClock_, gdl::Input &input)
 	  this->dec_choice();
 	}
     }
-  return (tempo);
 }
 
 MenuType	Menu::getChoice() const

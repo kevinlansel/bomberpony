@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Tue May 14 09:14:52 2013 florian dewulf
+// Last update Tue May 14 10:38:50 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -40,12 +40,12 @@ public:
   MenuType	getChoice() const;
 
 private:
-  float		move(float, gdl::GameClock &, gdl::Input &);
+  void		move(float &, gdl::GameClock &, gdl::Input &);
   void		inc_choice();
   void		dec_choice();
 
 private:
-  AObject	*_background;
+  Cube		*_background;
   Camera	_camera;
   Triangle	_cursor;
   MenuType	_choice;
