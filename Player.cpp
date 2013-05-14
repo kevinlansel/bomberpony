@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:21:55 2013 gery baudry
-// Last update Tue May 14 11:40:02 2013 gery baudry
+// Last update Tue May 14 15:56:03 2013 gery baudry
 //
 
 #include	"Player.hpp"
@@ -26,8 +26,8 @@ void		Player::update(gdl::Input &input)
     move_player_two(input);
   if (input.isKeyDown(gdl::Keys::F1) == true)
     //save les infos
-  if (input.isKeyDown(gdl::Keys::P) == true)
-    //image pose +menu
+    if (input.isKeyDown(gdl::Keys::P) == true)
+      //image pose +menu
 }
 
 void		Player::move_player_one(gdl::Input &input)
