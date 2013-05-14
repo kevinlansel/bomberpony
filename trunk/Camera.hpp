@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:09:38 2013 florian dewulf
-// Last update Sun May 12 19:04:41 2013 florian dewulf
+// Last update Tue May 14 10:27:38 2013 florian dewulf
 //
 
 #ifndef		CAMERA_HPP__
@@ -25,7 +25,7 @@ class		Camera
 public:
   Camera(void);
   void		initialize(int, int, const Vector3f &, const Vector3f &, float);
-  void		update(gdl::GameClock const &, gdl::Input &);
+  void		update();
   void		draw();
   void		move(const Vector3f &, const Vector3f &, float, float);
 

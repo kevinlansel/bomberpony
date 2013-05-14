@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:52:14 2013 florian dewulf
-// Last update Mon May 13 15:49:40 2013 florian dewulf
+// Last update Tue May 14 10:51:05 2013 florian dewulf
 //
 
 #include	"Forme.hpp"
@@ -20,10 +20,8 @@ void Triangle::initialize()
 {
 }
 
-void Triangle::update(gdl::GameClock const & gameClock, gdl::Input & input)
+void Triangle::update()
 {
-  (void)gameClock;
-  (void)input;
   this->_rotation = ((int)this->_rotation - 1) % 360;
 }
 
@@ -63,26 +61,6 @@ Rectangle::Rectangle()
 Rectangle::~Rectangle()
 {
 }
-
-/*
-void		Rectangle::initialize(void)
-{
-}
-
-void		Rectangle::update(gdl::GameClock const & gameClock, gdl::Input & input)
-{
-}
-
-void		Rectangle::draw(void)
-{
-  glBegin(GL_QUADS);
-  glColor3f(1.0f, 0.50f, 0.75f);
-  glVertex3f(-150.0f, 100.0f, 0.0f);
-  glVertex3f(-150.0f, -100.0f, 0.0f);
-  glVertex3f(150.0f, -100.0f, 0.0f);
-  glVertex3f(150.0f, 100.0f, 0.0f);
-  glEnd();
-}*/
 
 /*
 ** Draw a rectangle of the color given
@@ -177,24 +155,14 @@ void Cube::initialize(void)
 {
 }
 
-void Cube::update(gdl::GameClock const & gameClock, gdl::Input & input)
+void Cube::update()
 {
-  /*
-  this->_rotation.x = ((int)_rotation.x - 1) % 360;
-  this->_rotation.y = ((int)_rotation.y - 1) % 360;
-  this->_rotation.z = ((int)_rotation.z - 1) % 360;
-  */
 }
 
 void Cube::draw(void)
 {
   glPushMatrix();
   glLoadIdentity();
-  /*
-    glRotatef(this->_rotation.x, 1.0f, 0.0f, 0.0f);
-    glRotatef(this->_rotation.y, 0.0f, 1.0f, 0.0f);
-    glRotatef(this->_rotation.z, 0.0f, 0.0f, 1.0f);
-  */
 
   // Les 4 faces non horizontales
   Rectangle::draw_rect(Vector3f(this->_origin.x, this->_origin.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_origin.z), this->_texture);
@@ -225,7 +193,7 @@ void	Pyramide::initialize(void)
 {
 }
 
-void	Pyramide::update(gdl::GameClock const & gameClock, gdl::Input & input)
+void	Pyramide::update()
 {
   this->_rotation.x = ((int)_rotation.x + 1) % 360;
   this->_rotation.y = ((int)_rotation.y + 1) % 360;

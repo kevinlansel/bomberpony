@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:02:44 2013 florian dewulf
-// Last update Sat May  4 19:05:26 2013 florian dewulf
+// Last update Tue May 14 10:35:46 2013 florian dewulf
 //
 
 #ifndef		AOBJECT_HPP__
@@ -24,7 +24,7 @@ public:
 
 public:
   virtual void	initialize() = 0;
-  virtual void	update(gdl::GameClock const &, gdl::Input &) = 0;
+  virtual void	update() = 0;
   virtual void	draw() = 0;
 
 protected:

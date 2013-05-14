@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:07:59 2013 florian dewulf
-// Last update Tue May 14 09:11:31 2013 florian dewulf
+// Last update Tue May 14 10:31:24 2013 florian dewulf
 //
 
 #include	"Vector3f.hpp"
@@ -27,4 +27,5 @@ Vector3f	&Vector3f::operator=(const Vector3f &vec)
   this->x = vec.x;
   this->y = vec.y;
   this->z = vec.z;
+  return (*this);
 }
