@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:20:52 2013 gery baudry
-// Last update Tue May 14 11:19:34 2013 gery baudry
+// Last update Tue May 14 11:36:29 2013 gery baudry
 //
 
 #ifndef		PLAYER_HPP__
@@ -26,13 +26,9 @@ public:
   void		update(gdl::Input &);
 
 private:
-  void		move(int);
   void		move_player_one(gdl::Input &input);
   void		move_player_two(gdl::Input &input);
 
-private:
-  bool		_joueur;	// true = j1, false = j2
-  int		_bomb;
 };
 
 #endif
