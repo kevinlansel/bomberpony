@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 19:59:03 2013 florian dewulf
-// Last update Tue May 14 09:16:25 2013 florian dewulf
+// Last update Tue May 14 14:28:33 2013 florian dewulf
 //
 
 #ifndef		SCENE_HPP__
@@ -15,6 +15,7 @@
 
 #include	"Vector3f.hpp"
 
+#include	"Bomberman.h"
 #include	"Input.hpp"
 #include	"GameClock.hpp"
 #include	"Color.hpp"
@@ -29,7 +30,7 @@ public:
 public:
   virtual void	initialize(const std::string &, const Vector3f &, const Vector3f &) = 0;
   virtual void	draw() = 0;
-  virtual void	update(gdl::GameClock &, gdl::Input &) = 0;
+  virtual MenuType	update(gdl::GameClock &, gdl::Input &) = 0;
 
 public:
   void		setTxt(const std::string &, unsigned int, unsigned int);
