@@ -5,13 +5,17 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:20:52 2013 gery baudry
-// Last update Tue May 14 11:15:26 2013 gery baudry
+// Last update Tue May 14 11:24:58 2013 gery baudry
 //
 
 #ifndef		APLAYER_HPP__
 # define	APLAYER_HPP__
 
+#include	<iostream>
+#include	<list>
 #include	"Input.hpp"
+#include	"Obstacle.hpp"
+#include	"Vector3f.hpp"
 
 class		APlayer
 {
@@ -27,15 +31,15 @@ public:
   bool			getAlive() const;
 
 public:
-  void			setPos(int);
+  void			setPos(Vector3f);
   void			setJoueur(int);
   void			setBomb(int);
-  void			setName(std::string);
+  void			setName(std::string &);
   void			setAlive(bool);
 
 public:
-  void			update(gdl::Input &) = 0;
-  void			initialize(const std::list<Obstacle> &) = 0;
+  virtual void		update(gdl::Input &) = 0;
+  virtual void		initialize(const std::list<Obstacle> &) = 0;
 
 private:
   void			move_player_one(gdl::Input &input);
