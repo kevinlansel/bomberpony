@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:20:52 2013 gery baudry
-// Last update Mon May 13 14:28:19 2013 gery baudry
+// Last update Tue May 14 11:19:34 2013 gery baudry
 //
 
 #ifndef		PLAYER_HPP__
@@ -14,29 +14,21 @@
 //#define		SPEED		1
 
 #include	"Input.hpp"
+#include	"APlayer.hpp"
 
-class		Player
+class		Player : public APlayer
 {
 public:
   Player(bool);
   virtual	~Player();
 
 public:
-  int		getWinx() const;
-  int		getWiny() const;
-  int		getBomb() const;
-  void		setWinx(int);
-  void		setWiny(int);
-  void		setBomb(int);
   void		update(gdl::Input &);
 
 private:
+  void		move(int);
   void		move_player_one(gdl::Input &input);
   void		move_player_two(gdl::Input &input);
-
-private:
-  int		_winx;
-  int		_winy;
 
 private:
   bool		_joueur;	// true = j1, false = j2
