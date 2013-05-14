@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 19:59:03 2013 florian dewulf
-// Last update Sun May 12 18:28:36 2013 florian dewulf
+// Last update Tue May 14 09:16:25 2013 florian dewulf
 //
 
 #ifndef		SCENE_HPP__
@@ -27,7 +27,7 @@ public:
   virtual	~Scene();
 
 public:
-  virtual void	initialize(const std::string &) = 0;
+  virtual void	initialize(const std::string &, const Vector3f &, const Vector3f &) = 0;
   virtual void	draw() = 0;
   virtual void	update(gdl::GameClock &, gdl::Input &) = 0;
 

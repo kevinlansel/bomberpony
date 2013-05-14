@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Mon May 13 17:22:45 2013 florian dewulf
+// Last update Tue May 14 09:14:52 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -30,23 +30,28 @@
 class		Menu : public Scene
 {
 public:
-  Menu(const Vector3f &, const Vector3f &, MenuType);
+  Menu(const Vector3f &, const Vector3f &, MenuType, MenuType);
   virtual	~Menu();
 
 public:
-  virtual void	initialize(const std::string &);
+  virtual void	initialize(const std::string &, const Vector3f &, const Vector3f &);
   virtual void	draw();
   virtual void	update(gdl::GameClock &, gdl::Input &);
   MenuType	getChoice() const;
 
 private:
   float		move(float, gdl::GameClock &, gdl::Input &);
+  void		inc_choice();
+  void		dec_choice();
 
 private:
   AObject	*_background;
   Camera	_camera;
   Triangle	_cursor;
   MenuType	_choice;
+  MenuType	_limit_choice;
+  Vector3f	_limit_down;
+  Vector3f	_limit_up;
 };
 
 #endif

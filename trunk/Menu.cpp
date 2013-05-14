@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Mon May 13 22:45:30 2013 florian dewulf
+// Last update Tue May 14 09:20:45 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
 
-Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(choice)
+Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice, MenuType limit) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(choice), _limit_choice(limit)
 {
 }
 
@@ -19,7 +19,7 @@ Menu::~Menu()
   delete this->_background;
 }
 
-void		Menu::initialize(const std::string &texture)
+void		Menu::initialize(const std::string &texture, const Vector3f &limit_up, const Vector3f &limit_down)
 {
   this->_background = new Cube(Vector3f(-400, 300, -10), Vector3f(400, -300, -11), texture);
   this->_camera.initialize(1024, 768, this->getPoscam(), this->getTarget(), 0);
@@ -27,6 +27,8 @@ void		Menu::initialize(const std::string &texture)
   this->_txt.setSize(70);
   this->_cursor.setTranslation(Vector3f(40, 52, 0));
   this->_txt.setFont("./ressource/Bender-Inline.otf");
+  this->_limit_up = limit_up;
+  this->_limit_down = limit_down;
 }
 
 void		Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
@@ -59,20 +61,13 @@ float		Menu::move(float tempo, gdl::GameClock &gameClock_, gdl::Input &input)
 	{
 	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y - 70, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
-	  this->_choice++;
-	  if (this->_choice == 4)
-	    {
-	      this->_choice = 0;
-	      this->_cursor.setTranslation(Vector3f(40, 52, 0));
-	    }
+	  this->inc_choice();
 	}
       else if (input.isKeyDown(gdl::Keys::Up))
 	{
-	  this->_cursor.setTranslation(Vector3f(40, 262, 0));
+	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y + 70, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
-	  this->_choice--;
-	  if (this->_choice == -1)
-	    this->_choice = 3;
+	  this->dec_choice();
 	}
     }
   return (tempo);
@@ -81,4 +76,24 @@ float		Menu::move(float tempo, gdl::GameClock &gameClock_, gdl::Input &input)
 MenuType	Menu::getChoice() const
 {
   return this->_choice;
+}
+
+void		Menu::inc_choice()
+{
+  this->_choice++;
+  if (this->_choice == this->_limit_choice)
+    {
+      this->_choice = 0;
+      this->_cursor.setTranslation(this->_limit_up);
+    }
+}
+
+void		Menu::dec_choice()
+{
+  this->_choice--;
+  if (this->_choice == -1)
+    {
+      this->_choice = this->_limit_choice - 1;
+      this->_cursor.setTranslation(this->_limit_down);
+    }
 }
