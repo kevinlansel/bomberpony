@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sun May  5 14:03:36 2013 florian dewulf
-// Last update Mon May 13 16:04:58 2013 florian dewulf
+// Last update Tue May 14 14:38:26 2013 florian dewulf
 //
 
 #include	"Bomberman.hpp"
@@ -41,6 +41,7 @@ void		Bomberman::initialize()
 
 void		Bomberman::update()
 {
+  bool		tmp = false;
   /*
   std::list<AObject*>::iterator itb = this->objects_.begin();
   for (; itb != this->objects_.end(); ++itb)
@@ -49,8 +50,8 @@ void		Bomberman::update()
   camera_.update(gameClock_, input_);
   */
   this->gameClock_.update();
-  this->_ctrl.update(this->gameClock_, this->input_);
-  if (this->input_.isKeyDown(gdl::Keys::Escape) == true)
+  tmp = this->_ctrl.update(this->gameClock_, this->input_);
+  if (tmp || this->input_.isKeyDown(gdl::Keys::Escape) == true)
     this->window_.close();
 }
 

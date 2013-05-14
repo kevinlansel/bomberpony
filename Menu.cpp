@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Tue May 14 10:39:04 2013 florian dewulf
+// Last update Tue May 14 14:40:55 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
@@ -31,7 +31,7 @@ void		Menu::initialize(const std::string &texture, const Vector3f &limit_up, con
   this->_limit_down = limit_down;
 }
 
-void		Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
+MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
 {
   static float	tempo = -1;
 
@@ -41,6 +41,12 @@ void		Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
   this->_background->update();
   this->_cursor.update();
   this->move(tempo, gameClock_, input);
+  if (tempo + 0.2 < gameClock_.getTotalGameTime() && input.isKeyDown(gdl::Keys::Return))
+    {
+      tempo = gameClock_.getTotalGameTime();
+      return (QUIT);//modif avec cette histoire d'enum
+    }
+  return NOTHING;
 }
 
 void		Menu::draw()

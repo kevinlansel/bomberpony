@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Tue May 14 09:13:58 2013 florian dewulf
+// Last update Tue May 14 14:14:08 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -39,7 +39,7 @@ public:
   void		initialize();
   void		Majmap();		// modif _map
   void		Majscore();		// modif the _score_list
-  void		update(gdl::GameClock &, gdl::Input &);
+  bool		update(gdl::GameClock &, gdl::Input &);
   void		draw();
   void		changeScene(const Vector3f &, const Vector3f &, MenuType, MenuType);
 
