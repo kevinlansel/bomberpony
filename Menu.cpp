@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Tue May 14 14:40:55 2013 florian dewulf
+// Last update Wed May 15 00:29:43 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
 
-Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice, MenuType limit) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(choice), _limit_choice(limit)
+Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice, const std::vector<int> &limit) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(1), _list(limit)
 {
 }
 
@@ -44,7 +44,9 @@ MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
   if (tempo + 0.2 < gameClock_.getTotalGameTime() && input.isKeyDown(gdl::Keys::Return))
     {
       tempo = gameClock_.getTotalGameTime();
-      return (QUIT);//modif avec cette histoire d'enum
+      std::cout << this->_list[this->_choice] << std::endl;
+      return this->_list[this->_choice];
+      //return (QUIT);//modif avec cette histoire d'enum
     }
   return NOTHING;
 }
@@ -80,15 +82,16 @@ void		Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
 
 MenuType	Menu::getChoice() const
 {
-  return this->_choice;
+  std::cout << "Choice : " << this->_choice << std::endl;
+  return this->_list[this->_choice];
 }
 
 void		Menu::inc_choice()
 {
   this->_choice++;
-  if (this->_choice == this->_limit_choice)
+  if (this->_choice == this->_list[0])
     {
-      this->_choice = 0;
+      this->_choice = 1;
       this->_cursor.setTranslation(this->_limit_up);
     }
 }
@@ -96,9 +99,9 @@ void		Menu::inc_choice()
 void		Menu::dec_choice()
 {
   this->_choice--;
-  if (this->_choice == -1)
+  if (this->_choice == 0)
     {
-      this->_choice = this->_limit_choice - 1;
+      this->_choice = this->_list[0] - 1;
       this->_cursor.setTranslation(this->_limit_down);
     }
 }

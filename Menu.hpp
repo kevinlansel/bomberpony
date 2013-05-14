@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Tue May 14 14:28:11 2013 florian dewulf
+// Last update Tue May 14 19:23:27 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -14,8 +14,10 @@
 #include	<GL/glu.h>
 #include	<GL/glut.h>
 
+#include	<map>
 #include	<iostream>
 #include	<string>
+#include	<vector>
 
 #include	"Bomberman.h"
 #include	"Camera.hpp"
@@ -30,7 +32,7 @@
 class		Menu : public Scene
 {
 public:
-  Menu(const Vector3f &, const Vector3f &, MenuType, MenuType);
+  Menu(const Vector3f &, const Vector3f &, MenuType, const std::vector<int> &);
   virtual	~Menu();
 
 public:
@@ -48,10 +50,10 @@ private:
   Cube		*_background;
   Camera	_camera;
   Triangle	_cursor;
-  MenuType	_choice;
-  MenuType	_limit_choice;
+  int		_choice;
   Vector3f	_limit_down;
   Vector3f	_limit_up;
+  std::vector<int>	_list;
 };
 
 #endif
