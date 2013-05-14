@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Mon May 13 17:01:39 2013 florian dewulf
-** Last update Mon May 13 22:46:14 2013 florian dewulf
+** Last update Tue May 14 10:58:57 2013 kevin lansel
 */
 
 #ifndef		BOMBERMAN_H__
@@ -22,5 +22,11 @@ enum {
 };
 
 typedef int	MenuType;
+
+enum eMode {
+  EASY,
+  MEDIUM,
+  HARD
+};
 
 #endif
