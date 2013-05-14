@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:21:55 2013 gery baudry
-// Last update Tue May 14 11:37:25 2013 florian dewulf
+// Last update Tue May 14 11:40:02 2013 gery baudry
 //
 
 #include	"Player.hpp"
@@ -60,4 +60,9 @@ void		Player::move_player_two(gdl::Input &input)
     //pose la bombinette && décrémente le nombre de bombe
     //appel a la fonction affichage
     //fonction timer pour explosion + accrémentation une fois la bombe explosé
+}
+
+void		Player::initialize(const std::list<Obstacle> &obs)
+{
+  //A definir !
 }
