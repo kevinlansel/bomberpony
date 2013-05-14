@@ -5,19 +5,24 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Mon May 13 17:01:39 2013 florian dewulf
-** Last update Tue May 14 15:18:13 2013 florian dewulf
+** Last update Wed May 15 00:25:53 2013 florian dewulf
 */
 
 #ifndef		BOMBERMAN_H__
 # define	BOMBERMAN_H__
 
 enum {
-  NOTHING,
+  NOTHING = 0,
   MENU,
   BATTLE,
   GAME,
   SCORE,
   OPTION,
+  SOUND,
+  MAP_TYPE,
+  MAP_OPTION,
+  ONE,
+  TWO,
   VICTORY,
   GAMEOVER,
   QUIT
