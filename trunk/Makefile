@@ -5,12 +5,13 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Sun May  5 14:07:28 2013 florian dewulf
-## Last update Mon May 13 15:58:32 2013 Maxime Wojciak
+## Last update Tue May 14 11:20:33 2013 florian dewulf
 ##
 
 NAME=		Bomberman
 
-SRC=		AObject.cpp		\
+SRC=		APlayer.cpp		\
+		AObject.cpp		\
 		Bomberman.cpp		\
 		Camera.cpp		\
 		Controller.cpp		\
