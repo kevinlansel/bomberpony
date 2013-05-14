@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:06:39 2013 florian dewulf
-// Last update Sun May 12 19:03:22 2013 florian dewulf
+// Last update Tue May 14 09:12:43 2013 florian dewulf
 //
 
 #ifndef		VECTOR3F_HPP__
@@ -20,6 +20,7 @@ struct		Vector3f
   Vector3f();
   Vector3f(float, float, float);
   Vector3f(const Vector3f &);
+  Vector3f	&operator=(const Vector3f &);
 };
 
 #endif	//VECTOR3F_HPP__

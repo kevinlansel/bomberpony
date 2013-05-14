@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Mon May 13 17:18:13 2013 florian dewulf
+// Last update Tue May 14 09:13:58 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -41,7 +41,7 @@ public:
   void		Majscore();		// modif the _score_list
   void		update(gdl::GameClock &, gdl::Input &);
   void		draw();
-  void		changeScene(const Vector3f &, const Vector3f &, MenuType);
+  void		changeScene(const Vector3f &, const Vector3f &, MenuType, MenuType);
 
 private:
   Scene				*_scene;	// Menu or game

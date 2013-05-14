@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Mon May 13 17:00:50 2013 florian dewulf
+// Last update Tue May 14 09:17:25 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
 
-Controller::Controller() : _scene(new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), MENU)), _sound(true), _map_choice(true), _map_option(""), _screen(MENU)
+Controller::Controller() : _scene(new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), MENU, 4)), _sound(true), _map_choice(true), _map_option(""), _screen(MENU)
 {
 }
 
@@ -20,7 +20,7 @@ Controller::~Controller()
 
 void		Controller::initialize()
 {
-  this->_scene->initialize("./ressource/background.png");
+  this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, -158, 0));
   this->_scene->setColor(255, 255, 255);
   this->_scene->setTxt("  Play\nOption\nLadder\n  Exit\n", 500, 200);
 }
@@ -49,12 +49,12 @@ void		Controller::draw()
   this->_scene->draw();
 }
 
-void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuType type)
+void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuType type, MenuType limit)
 {
   if (this->_scene)
     delete this->_scene;
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
-    this->_scene = new Menu(Vector3f(0, 0, 2000), Vector3f(0, 0, 0), type);
+    this->_scene = new Menu(Vector3f(0, 0, 2000), Vector3f(0, 0, 0), type, limit);
   else if (type == BATTLE)
     ;//game
   else
