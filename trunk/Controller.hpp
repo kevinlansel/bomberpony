@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Tue May 14 19:23:40 2013 florian dewulf
+// Last update Wed May 15 16:10:51 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -53,7 +53,7 @@ private:
   MenuType				_screen;	// type of scene
   std::list<Score>			_score_list;	// list of the score
   std::list<std::string>		_map;		// list of the map in the folder map
-  std::map<MenuType, std::vector<int>>	_map_menu;	// arg to pass to the menu
+  std::map<MenuType, std::vector<int> >	_map_menu;	// arg to pass to the menu
 };
 
 #endif

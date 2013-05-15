@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Sun May  5 14:07:28 2013 florian dewulf
-## Last update Tue May 14 17:57:47 2013 florian dewulf
+## Last update Wed May 15 16:10:27 2013 florian dewulf
 ##
 
 NAME=		Bomberman
@@ -31,7 +31,7 @@ CC=		g++
 
 GDL=		-I libgdl_gl-2012.4/include/ -L libgdl_gl-2012.4/lib/ -Wl,--rpath=./libgdl_gl-2012.4/lib/ -lgdl_gl -lGL -lGLU
 
-CXXFLAGS=	-std=c++11 -W -Wall -Wextra $(GDL)
+CXXFLAGS=	-W -Wall -Wextra $(GDL)
 
 all:		$(OBJ)
 		$(CC) -o $(NAME) $(OBJ) $(GDL) -ggdb3
