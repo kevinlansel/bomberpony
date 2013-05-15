@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Wed May 15 17:25:57 2013 florian dewulf
+// Last update Thu May 16 00:52:03 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -54,10 +54,10 @@ bool		Controller::update(gdl::GameClock &clock, gdl::Input &input)
 
   tmp = this->_scene->update(clock, input);
   if (dynamic_cast<Menu *>(this->_scene))
-    this->_screen = reinterpret_cast<Menu *>(this->_scene)->getChoice();
+    this->_screen = reinterpret_cast<Menu *>(this->_scene)->getChoice();//Dans le constructeur faire une map de ptr sur func
   if (tmp == QUIT)
     return (true);
-  else if (tmp != NOTHING)
+  else if (tmp != NOTHING)// != sound, etc
     this->changeScene(this->_scene->getPoscam(), this->_scene->getTarget(), this->_screen, this->_map_menu[this->_screen]);
   return false;
 }
@@ -69,10 +69,8 @@ void		Controller::draw()
 
 void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuType type, std::vector<int> &limit)
 {
-  std::cout << type << std::endl;
-  if (this->_scene)
+  if (this->_scene)//pas pour tout
     delete this->_scene;
-  std::cout << type << std::endl;
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
     {
       this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), type, limit);
@@ -80,8 +78,10 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
       this->_scene->setColor(255, 255, 255);
       this->setText();
     }
-  else if (type == BATTLE)
+  else if (type == BATTLE)//plutot == J1 ou J2 ou loadgame
     ;//game
+  //else if ()//si map_type => passe le booléen à != valeur | si map_option => get
+  //;//modif value
   else
     ;//load écran de victoire ou fail
   this->_screen = type;
