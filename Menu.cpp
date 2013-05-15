@@ -5,60 +5,13 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Wed May 15 12:56:54 2013 florian dewulf
+// Last update Wed May 15 16:06:21 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
 
 Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice, const std::vector<int> &limit) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(1), _list(limit)
 {
-  std::string		str = "";
-
-  for (std::vector<int>::iterator it = this->_list.begin() ; it != this->_list.end() ; ++it)
-    {
-      if (it == this->_list.begin())
-	continue;
-      else
-	{
-	  switch (*it)
-	    {
-	    case GAME:
-	      str += "Play\n";
-	      break;
-	    case OPTION:
-	      str += "Option\n";
-	      break;
-	    case SCORE:
-	      str += "Ladder\n";
-	      break;
-	    case QUIT:
-	      str += "Exit\n";
-	      break;
-	    case MENU:
-	      str += "Return\n";
-	      break;
-	    case SOUND_ON:
-	      str += "Sound : ON\n";
-	      break;
-	    case MAP_TYPE_RAND:
-	      str += "Map : Random\n";
-	      break;
-	    case MAP_OPTION:
-	      str += "Size : 20\n";
-	      break;
-	    case ONE:
-	      str += "One Player\n";
-	      break;
-	    case TWO:
-	      str += "Two Player\n";
-	      break;
-	    default:
-	      break;
-	    }
-	}
-    }
-  std::cout << str << std::endl;
-  this->setTxt(str, 500, 200);
 }
 
 Menu::~Menu()
