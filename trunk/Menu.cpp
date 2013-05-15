@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Wed May 15 16:06:21 2013 florian dewulf
+// Last update Wed May 15 16:59:39 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
@@ -46,7 +46,6 @@ MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
       tempo = gameClock_.getTotalGameTime();
       std::cout << this->_list[this->_choice] << std::endl;
       return this->_list[this->_choice];
-      //return (QUIT);//modif avec cette histoire d'enum
     }
   return NOTHING;
 }

@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Wed May 15 16:57:13 2013 florian dewulf
+// Last update Wed May 15 17:25:57 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
 
-Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_option("15"), _screen(MENU)  //le 5 envoyé en param du menu à modif
+Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_option("15"), _screen(MENU)
 {
   int		menu[] = {5, GAME, OPTION, SCORE, QUIT};
   int		score[] = {2, MENU};
@@ -18,9 +18,9 @@ Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_o
   int		game[] = {4, ONE, TWO, MENU};
 
   this->_map_menu[MENU] = std::vector<int>(menu, menu + sizeof(menu) / sizeof(int));
-  this->_map_menu[GAME] = std::vector<int>(game, game + sizeof(game) / sizeof(int));//{1, QUIT};
-  this->_map_menu[SCORE] = std::vector<int>(score, score + sizeof(score) / sizeof(int));//{1, QUIT};
-  this->_map_menu[OPTION] = std::vector<int>(option, option + sizeof(option) / sizeof(int));//{1, QUIT};
+  this->_map_menu[GAME] = std::vector<int>(game, game + sizeof(game) / sizeof(int));
+  this->_map_menu[SCORE] = std::vector<int>(score, score + sizeof(score) / sizeof(int));
+  this->_map_menu[OPTION] = std::vector<int>(option, option + sizeof(option) / sizeof(int));
 }
 
 Controller::~Controller()
@@ -31,11 +31,9 @@ Controller::~Controller()
 void		Controller::initialize()
 {
   this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), MENU, this->_map_menu[MENU]);
-  this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, -158, 0));
+  this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, 52 - ((this->_map_menu[MENU][0] - 2) * 65), 0));
   this->_scene->setColor(255, 255, 255);
   this->setText();
-  //  this->_scene->setTxt("  Play\nOption\nLadder\n  Exit\n", 500, 200);
-  // envoyer la liste des enums correspondants aux menus.
 }
 
 void		Controller::Majmap()
@@ -60,7 +58,7 @@ bool		Controller::update(gdl::GameClock &clock, gdl::Input &input)
   if (tmp == QUIT)
     return (true);
   else if (tmp != NOTHING)
-    this->changeScene(this->_scene->getPoscam(), this->_scene->getTarget(), this->_screen, this->_map_menu[this->_screen]);//à corriger pour la limite
+    this->changeScene(this->_scene->getPoscam(), this->_scene->getTarget(), this->_screen, this->_map_menu[this->_screen]);
   return false;
 }
 
@@ -77,12 +75,10 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
   std::cout << type << std::endl;
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
     {
-      std::cout << type << std::endl;
       this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), type, limit);
-      this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, -158, 0));
+      this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, 52 - ((limit[0] - 2) * 65), 0));
       this->_scene->setColor(255, 255, 255);
       this->setText();
-      //this->_scene->setTxt("  Play\nOption\nLadder\n  Exit\n", 500, 200);
     }
   else if (type == BATTLE)
     ;//game
