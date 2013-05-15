@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Wed May 15 00:30:55 2013 florian dewulf
+// Last update Wed May 15 12:55:42 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -14,7 +14,7 @@ Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_o
 {
   int		menu[] = {5, GAME, OPTION, SCORE, QUIT};
   int		score[] = {2, MENU};
-  int		option[] = {5, SOUND, MAP_TYPE, MAP_OPTION, MENU};
+  int		option[] = {5, SOUND_ON, MAP_TYPE_RAND, MAP_OPTION, MENU};
   int		game[] = {4, ONE, TWO, MENU};
 
   //std::cout << (int)(score + sizeof(score) / sizeof(int)) << std::endl;
@@ -34,7 +34,7 @@ void		Controller::initialize()
   this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), MENU, this->_map_menu[MENU]);
   this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, -158, 0));
   this->_scene->setColor(255, 255, 255);
-  this->_scene->setTxt("  Play\nOption\nLadder\n  Exit\n", 500, 200);
+  //  this->_scene->setTxt("  Play\nOption\nLadder\n  Exit\n", 500, 200);
   // envoyer la liste des enums correspondants aux menus.
 }
 
@@ -81,7 +81,7 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
       this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), type, limit);
       this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, -158, 0));
       this->_scene->setColor(255, 255, 255);
-      this->_scene->setTxt("  Play\nOption\nLadder\n  Exit\n", 500, 200);
+      //this->_scene->setTxt("  Play\nOption\nLadder\n  Exit\n", 500, 200);
     }
   else if (type == BATTLE)
     ;//game

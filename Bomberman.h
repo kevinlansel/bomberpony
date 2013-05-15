@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Mon May 13 17:01:39 2013 florian dewulf
-** Last update Wed May 15 00:25:53 2013 florian dewulf
+** Last update Wed May 15 12:47:40 2013 florian dewulf
 */
 
 #ifndef		BOMBERMAN_H__
@@ -18,8 +18,8 @@ enum {
   GAME,
   SCORE,
   OPTION,
-  SOUND,
-  MAP_TYPE,
+  SOUND_ON,
+  MAP_TYPE_RAND,
   MAP_OPTION,
   ONE,
   TWO,

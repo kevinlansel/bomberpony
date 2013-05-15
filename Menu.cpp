@@ -5,13 +5,60 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Wed May 15 00:29:43 2013 florian dewulf
+// Last update Wed May 15 12:56:54 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
 
 Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice, const std::vector<int> &limit) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(1), _list(limit)
 {
+  std::string		str = "";
+
+  for (std::vector<int>::iterator it = this->_list.begin() ; it != this->_list.end() ; ++it)
+    {
+      if (it == this->_list.begin())
+	continue;
+      else
+	{
+	  switch (*it)
+	    {
+	    case GAME:
+	      str += "Play\n";
+	      break;
+	    case OPTION:
+	      str += "Option\n";
+	      break;
+	    case SCORE:
+	      str += "Ladder\n";
+	      break;
+	    case QUIT:
+	      str += "Exit\n";
+	      break;
+	    case MENU:
+	      str += "Return\n";
+	      break;
+	    case SOUND_ON:
+	      str += "Sound : ON\n";
+	      break;
+	    case MAP_TYPE_RAND:
+	      str += "Map : Random\n";
+	      break;
+	    case MAP_OPTION:
+	      str += "Size : 20\n";
+	      break;
+	    case ONE:
+	      str += "One Player\n";
+	      break;
+	    case TWO:
+	      str += "Two Player\n";
+	      break;
+	    default:
+	      break;
+	    }
+	}
+    }
+  std::cout << str << std::endl;
+  this->setTxt(str, 500, 200);
 }
 
 Menu::~Menu()
@@ -24,7 +71,7 @@ void		Menu::initialize(const std::string &texture, const Vector3f &limit_up, con
   this->_background = new Cube(Vector3f(-400, 300, -10), Vector3f(400, -300, -11), texture);
   this->_camera.initialize(1024, 768, this->getPoscam(), this->getTarget(), 0);
   this->_cursor.initialize();
-  this->_txt.setSize(70);
+  this->_txt.setSize(65);
   this->_cursor.setTranslation(Vector3f(40, 52, 0));
   this->_txt.setFont("./ressource/Bender-Inline.otf");
   this->_limit_up = limit_up;
@@ -67,13 +114,13 @@ void		Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
     {
       if (input.isKeyDown(gdl::Keys::Down))
 	{
-	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y - 70, tmp.z));
+	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y - 65, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
 	  this->inc_choice();
 	}
       else if (input.isKeyDown(gdl::Keys::Up))
 	{
-	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y + 70, tmp.z));
+	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y + 65, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
 	  this->dec_choice();
 	}
