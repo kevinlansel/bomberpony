@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Wed May 15 16:10:51 2013 florian dewulf
+// Last update Wed May 15 16:53:05 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -44,6 +44,9 @@ public:
   bool		update(gdl::GameClock &, gdl::Input &);
   void		draw();
   void		changeScene(const Vector3f &, const Vector3f &, MenuType, std::vector<int> &);
+
+private:
+  void		setText();
 
 private:
   Scene					*_scene;	// Menu or game
