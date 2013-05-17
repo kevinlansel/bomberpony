@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:05:47 2013 kevin lansel
-// Last update Tue May 14 11:19:19 2013 kevin lansel
+// Last update Tue May 14 18:46:57 2013 kevin lansel
 //
 
 #ifndef		BOT_HPP_
@@ -21,11 +21,14 @@ public:
   Bot(eMode);
   ~Bot();
 
+  void		setMode(eMode);
+  eMode		getMode(void);
+
   void		initialize(const std::list<Obstacle> &);
   void		update(gdl::Input &);
 
 private:
-  eMode		_m;
+  eMode		_mode;
 };
 
 #endif	/* BOT_HPP */
