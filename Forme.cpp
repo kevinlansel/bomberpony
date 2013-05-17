@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:52:14 2013 florian dewulf
-// Last update Tue May 14 10:51:05 2013 florian dewulf
+// Last update Fri May 17 15:37:25 2013 florian dewulf
 //
 
 #include	"Forme.hpp"
@@ -176,61 +176,5 @@ void Cube::draw(void)
   Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), this->_texture);
   //Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), 1.0, 1.0, 1.0);
 
-  glPopMatrix();
-}
-
-/* Pyramide */
-
-Pyramide::Pyramide(const Vector3f &v1, const Vector3f &v2, const Vector3f &v3, const Vector3f &sommet) : _v1(v1), _v2(v2), _v3(v3), _sommet(sommet)
-{
-}
-
-Pyramide::~Pyramide()
-{
-}
-
-void	Pyramide::initialize(void)
-{
-}
-
-void	Pyramide::update()
-{
-  this->_rotation.x = ((int)_rotation.x + 1) % 360;
-  this->_rotation.y = ((int)_rotation.y + 1) % 360;
-  this->_rotation.z = ((int)_rotation.z + 1) % 360;
-}
-
-void	Pyramide::draw(void)
-{
-  glPushMatrix();
-  glLoadIdentity();
-  glTranslatef(0.0f, 200.0f, 0.0f);
-  glRotatef(this->_rotation.x, 1.0f, 0.0f, 0.0f);
-  glRotatef(this->_rotation.y, 0.0f, 1.0f, 0.0f);
-  glRotatef(this->_rotation.z, 0.0f, 0.0f, 1.0f);
-  glBegin(GL_TRIANGLES);
-
-  /*base*/
-  glColor3f(1.0f, 1.0f, 1.0f);
-  glVertex3f(this->_v1.x, this->_v1.y, this->_v1.z);
-  glVertex3f(this->_v2.x, this->_v2.y, this->_v2.z);
-  glVertex3f(this->_v3.x, this->_v3.y, this->_v3.z);
-
-  glColor3f(1.0f, 1.0f, 0.0f);
-  glVertex3f(this->_sommet.x, this->_sommet.y, this->_sommet.z);
-  glVertex3f(this->_v1.x, this->_v1.y, this->_v1.z);
-  glVertex3f(this->_v2.x, this->_v2.y, this->_v2.z);
-
-  glColor3f(1.0f, 0.0f, 1.0f);
-  glVertex3f(this->_sommet.x, this->_sommet.y, this->_sommet.z);
-  glVertex3f(this->_v1.x, this->_v1.y, this->_v1.z);
-  glVertex3f(this->_v3.x, this->_v3.y, this->_v3.z);
-
-  glColor3f(0.0f, 1.0f, 1.0f);
-  glVertex3f(this->_sommet.x, this->_sommet.y, this->_sommet.z);
-  glVertex3f(this->_v2.x, this->_v2.y, this->_v2.z);
-  glVertex3f(this->_v3.x, this->_v3.y, this->_v3.z);
-
-  glEnd();
   glPopMatrix();
 }

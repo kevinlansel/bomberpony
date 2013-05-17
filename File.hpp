@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May 11 17:49:29 2013 florian dewulf
-// Last update Sat May 11 20:02:02 2013 florian dewulf
+// Last update Fri May 17 15:38:20 2013 florian dewulf
 //
 
 #ifndef		FILE_HPP__
@@ -29,7 +29,7 @@ public:
 public:
   std::list<std::string>	ls();
   bool				getStatemap() const;
-  std::list<std::string>	getFileContent() const;
+  std::list<std::string>	getFileContent(const std::string &) const;
   void				putFile(const std::string &, const std::list<std::string> &);
 
 private:
