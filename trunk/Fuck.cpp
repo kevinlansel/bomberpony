@@ -1,60 +1,31 @@
-void			Controller::save_game_player(std::list<APlayer> aplayer)
+void			save_game(std::list<APlayer *> aplayer, std::list<Obstacle *> obs)
 {
   std::list<string>		list;
-  std::stringstream		ss;
   Vector3f			pos;
-  int				joueur;
-  int				bomb;
-  std::string			name;
-  bool				alive;
 
-  for (std::list<APlayer>::iterator it = aplayer.begin(); it != aplayer.end(); ++it)
+  for (std::list<APlayer *>::iterator it = aplayer.begin(); it != aplayer.end(); ++it)
     {
-      pos = it->getPos();
-      joueur = it->getJoueur();
-      bomb = it->getBomb();
-      name = it->getName();
-      alive = it->getAlive();
+      std::list<Bombe *>	list_tmp;
+
+      list_tmp = (*it)->getBomb();
+
+      list.push_front("TYPE:APLAYER");
+      list.push_back("pos:" + Utils::expandString("x", (*it)->getPos().x) + Utils::expandString("y", (*it)->getPos().y) + Utils::expandString("z", (*it)->getPos().z));
+      list.push_back("joueur:", (*it)->getJoueur());
+
+      for (std::list<Bombe *>::iterator it2 = list_tmp.begin(); it2 != list_tmp.end() ; ++it2)
+	{
+	  list.push_back("bomb:" + /*it->getJoueur()*/);//mettre en param les coordonnées de la bombe comme pour le joueur
+	}
+
+      list.push_back("name:" + (*it)->getName());
+      list.push_back(Utils::expandString("alive:", (*it)->getAlive()));
     }
-  list.push_front("TYPE:APLAYER");
-  ss.str("pos:");
-  ss << "x" << pos.x << "y" << pos.y << "z" << pos.z;
-  list.push_back(ss.str());
-  ss.clear();
-  ss.str("joueur:");
-  ss << joueur;
-  list.push_back(ss.str());
-  ss.clear();
-  ss.str("bomb:");
-  ss << bomb;
-  list.push_back(ss.str());
-  ss.clear();
-  list.push_back("name:" + name);
-  ss.str("alive:");
-  ss << alive;
-  list.push_back(ss.str());
-  ss.clear();
-}
-
-void			Controller::save_game_obstacle(std::list<Obstacle> obs)
-{
-  typeObs			type;
-  Vector3f			vec;
-  std::stringstream		ss;
-  std::list<string>		list;
-
-  for (std::list<Obstacle>::iterator it = obs.begin(); it != obs.end(); ++it)
+  for (std::list<Obstacle *>::iterator it = obs.begin() ; it != obs.end() ; ++it)
     {
-      type = it->getType();
-      vec = it->getVec();
+      list.push_front("TYPE:OBSTACLE");
+      list.push_front(Utils::expandString("type:", (*it)->type));
+      list.push_front("pos:" + Utils::expandString("x:", (*it)->getVec().x) + Utils::expandString("y:", (*it)->getVec().y) + Utils::expandString("z:", (*it)->getVec().z));
     }
-  list.push_front("TYPE:OBSTACLE");
-  ss.str("type:");
-  ss << type;
-  list.push_back(ss.str());
-  ss.clear();
-  ss.str("Pos:")
-  ss << "x" << pos.x << "y" << pos.y << "z" << pos.z;
-  list.push_back(ss.str());
-  ss.clear();
+  return (list);
 }

@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May 11 16:25:00 2013 florian dewulf
-// Last update Sat May 11 20:56:30 2013 florian dewulf
+// Last update Fri May 17 15:37:59 2013 florian dewulf
 //
 
 #include	"File.hpp"
@@ -47,9 +47,9 @@ bool		File::getStatemap() const
   return (this->_map);
 }
 
-std::list<std::string>	File::getFileContent() const
+std::list<std::string>	File::getFileContent(const std::string &filename) const
 {
-  std::ifstream		file(".score");
+  std::ifstream		file(filename.c_str());
   std::string		str;
   std::list<std::string>	list;
 

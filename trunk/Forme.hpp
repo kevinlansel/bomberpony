@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:50:30 2013 florian dewulf
-// Last update Tue May 14 10:36:05 2013 florian dewulf
+// Last update Fri May 17 15:37:16 2013 florian dewulf
 //
 
 #ifndef		FORME_HPP__
@@ -79,27 +79,6 @@ private:
   Vector3f	_opposite;
   gdl::Image	_texture;
   bool		_stateTexture;
-};
-
-/* ------------ */
-
-class		Pyramide : public AObject
-{
-public:
-  Pyramide(const Vector3f &, const Vector3f &, const Vector3f &, const Vector3f &);
-  virtual	~Pyramide();
-
-public:
-  void		initialize();
-  void		update();
-  void		draw(void);
-
-private:
-  Vector3f	_v1;
-  Vector3f	_v2;
-  Vector3f	_v3;
-  Vector3f	_sommet;
-  Vector3f	_rotation;
 };
 
 #endif
