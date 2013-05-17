@@ -64,3 +64,29 @@ MAXIMUM !
 
 A Ne pas Supprimer !
 http://www.yuml.me/diagram/scruffy;/class/edit///%20Cool%20Class%20Diagram,%20[Obj]++-%3E[Bonus],%20[Obj]++-%3E[Obstacle],%20[OBJ]++-%3E[Bombe],%20[Joueur],%20[Display],%20[Map],%20[Controller],%20[Menu],%20[Thread]
+
+___________________________________________________________________________________________
+
+Bot :
+
+3 mode de jeux
+- EASY
+- MEDIUM
+- HARD
+
+EASY :
+		Full random, il se déplace dans n'importe quel direction et pose des bombes aléatoirement
+
+MEDIUM :
+		Semi random, il a un mode ~DEFENSIF~ qui lui permet d'éviter les bombes mais pose des bombes aléatoirement sans se coincé
+
+HARD :
+		Tout est calculé, il a un mode ~DEFENSIF~ comme le MEDIUM et un mode ~OFFENSIF~ qui lui permet de target des cibles pour poser les bombes
+
+~DEFENSIF~ :
+		Check la map pour vérifier les zones dangereuse et s'en échaper
+		      - Vérification des 4 directions autour de lui et calcul du chemin le plus court à chaque refresh pour s'échapper jusqu'a ce qu'il soit safe et passer en mode ~OFFENSIF~
+
+~OFFENSIF~ :
+		Si il n'est pas en danger, target une cible et détruit les blocks qui le génes pour allez jusqu'à ce point
+		      - Une partie ~DEFENSIF~ est intégré pour ne pas se coincé, faire un TRY_PUT_BOMB et passé la vérification defensive

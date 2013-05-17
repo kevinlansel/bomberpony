@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:07:06 2013 kevin lansel
-// Last update Tue May 14 11:19:06 2013 kevin lansel
+// Last update Tue May 14 18:55:45 2013 kevin lansel
 //
 
 #include	<sstream>
@@ -22,8 +22,9 @@ static std::string	giveName()
   return (ss.str());
 }
 
-Bot::Bot(eMode m) : Player(-1, giveName())
+Bot::Bot(eMode m) : Player(-1, giveName()), _mode(m)
 {
+
 }
 
 Bot::~Bot()
@@ -31,9 +32,24 @@ Bot::~Bot()
 
 }
 
-void		Bot::initialize(const std::list<Obstacle> &)
+void		Bot::setMode(eMode mode)
 {
+  this->_mode = mode;
+}
 
+eMode		Bot::getMode()
+{
+  return (this->_mode);
+}
+
+void		Bot::initialize(const std::list<Obstacle> &obs)
+{
+  if (this->_mode == EASY)
+    ;
+  else if (this->_mode == MEDIUM)
+    ;
+  else
+    ;
 }
 
 void		Bot::update(gdl::Input &in)
