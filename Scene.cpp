@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 22:05:21 2013 florian dewulf
-// Last update Thu May  9 15:15:23 2013 florian dewulf
+// Last update Fri May 17 22:44:43 2013 florian dewulf
 //
 
 #include	"Scene.hpp"
@@ -52,4 +52,9 @@ Vector3f	Scene::getPoscam() const
 Vector3f	Scene::getTarget() const
 {
   return (this->_target);
+}
+
+void		Scene::setPoscam(const Vector3f &vec)
+{
+  this->_poscam = vec;
 }
