@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 19:59:03 2013 florian dewulf
-// Last update Tue May 14 14:28:33 2013 florian dewulf
+// Last update Fri May 17 22:45:03 2013 florian dewulf
 //
 
 #ifndef		SCENE_HPP__
@@ -42,6 +42,7 @@ public:
 public:
   Vector3f	getPoscam() const;
   Vector3f	getTarget() const;
+  void		setPoscam(const Vector3f &);
 
 protected:
   Vector3f	_poscam;
