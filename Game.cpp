@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 19:43:28 2013 florian dewulf
-// Last update Sat May 18 02:35:03 2013 florian dewulf
+// Last update Sat May 18 12:31:10 2013 florian dewulf
 //
 
 #include	"Game.hpp"
@@ -14,7 +14,29 @@ Game::Game(bool sound, bool map_choice, bool nb_j) : Scene(Vector3f(0, 0, 0), Ve
 {
 }
 
-//Game::Game(list string &) = load
+Game::Game(bool sound, const std::list<std::string> &toload) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false)
+{
+  std::list<std::string>::const_iterator	it = toload.begin();
+  unsigned int					size_map;
+
+  if (toload.size() < 14)
+    this->_error = true;
+  else
+    {
+      this->_size_map = Utils::StringToInt(*it);
+      ++it;
+      this->_nb_j = Utils::StringToInt(*it);
+      ++it;
+      this->_sound = Utils::StringToInt(*it);
+      ++it;
+      this->_map_choice = Utils::StringToInt(*it);
+      ++it;
+      for ( ; it != toload.end() ; ++it)
+	{
+	  
+	}
+    }
+}
 
 Game::~Game()
 {
