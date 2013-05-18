@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Sun May  5 14:07:28 2013 florian dewulf
-## Last update Wed May 15 16:10:27 2013 florian dewulf
+## Last update Sat May 18 15:00:05 2013 florian dewulf
 ##
 
 NAME=		Bomberman
