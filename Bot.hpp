@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:05:47 2013 kevin lansel
-// Last update Mon May 20 13:37:46 2013 kevin lansel
+// Last update Mon May 20 15:58:02 2013 kevin lansel
 //
 
 #ifndef		BOT_HPP_
@@ -24,9 +24,11 @@ public:
   void		setMode(eMode);
   void		setX(unsigned int);
   void		setY(unsigned int);
+  void		setSize(unsigned int);
   eMode		getMode(void) const;
   unsigned int	getX(void) const;
   unsigned int	getY(void) const;
+  unsigned int	getSize(void) const;
 
   void		update(gld::GameClock &, gdl::Input &, const std::list<Obstacle> &);
 
@@ -39,6 +41,14 @@ private:
   void		easy();
   void		medium();
   void		hard();
+
+  void		rdoff();
+  void		rddef();
+  void		offensif();
+  void		defensif();
+
+  bool		secure();
+  bool		trymove(const std::list<Obstacle> &, unsigned int, unsigned int);
 };
 
-#endif	/* BOT_HPP */
+#endif	/* BOT_HPP_ */

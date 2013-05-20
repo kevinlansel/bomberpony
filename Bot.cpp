@@ -5,9 +5,12 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:07:06 2013 kevin lansel
-// Last update Mon May 20 13:38:00 2013 kevin lansel
+// Last update Mon May 20 16:03:08 2013 kevin lansel
 //
 
+
+#include	<stdlib.h>
+#include	<time.h>
 #include	<sstream>
 #include	"Bot.hpp"
 
@@ -24,7 +27,7 @@ static std::string	giveName()
 
 Bot::Bot(unsigned int x, unsigned int y, unsigned int size, eMode m) : Player(-1, giveName()), _x(x), _y(y), _size(size), _mode(m)
 {
-
+  srand(time(NULL));
 }
 
 Bot::~Bot()
@@ -47,6 +50,11 @@ void		Bot::setY(unsigned int y)
   this->_y = y;
 }
 
+void		Bot::setSize(unisgned int size)
+{
+  this->_size = size;
+}
+
 eMode		Bot::getMode() const
 {
   return (this->_mode);
@@ -62,6 +70,11 @@ unsigned int	Bot::getY() const
   return (this->_y);
 }
 
+unsigned int	Bot::getSize() const
+{
+  return (this->_size);
+}
+
 void		Bot::update(gld::GameClock &clock, gdl::Input &in, const std::list<Obstacle> &obs)
 {
   (void)in;
@@ -75,15 +88,93 @@ void		Bot::update(gld::GameClock &clock, gdl::Input &in, const std::list<Obstacl
 
 void		Bot::easy()
 {
+  unsigned int		rd;
 
+  rd = rand() % 2;
+  if (rd == 1)
+    rdoff();
+  else
+    rddef();
 }
 
 void		Bot::medium()
 {
-
+  if (secure())
+    rdoff();
+  else
+    defensif();
 }
 
 void		Bot::hard()
 {
+  if (secure())
+    offensif();
+  else
+    deffensif();
+}
 
+void		Bot::rdoff()
+{
+
+}
+
+void		Bot::rddef()
+{
+  unsigned int		rd;
+
+  rd = rand() % 4;
+  switch (rd)
+    {
+    case 1: /* left */
+      if (trymove(obs, this->_x - 1, this->_y))
+	this->_x -= 1;
+      break;
+    case 2: /* right */
+      if (trymove(obs, this->_x + 1, this->_y))
+	this->_x += 1;
+      break;
+    case 3: /* up */
+      if (trymove(obs, this->_x, this->_y + 1))
+	this->_y += 1;
+      break;
+    case 4: /* down */
+      if (trymove(obs, this->_x, this->_y - 1))
+	this->_y -= 1;
+      break;
+    default:
+      break;
+    }
+}
+
+void		Bot::offensif()
+{
+
+}
+
+void		Bot::defensif()
+{
+
+}
+
+bool		Bot::secure()
+{
+  bool		safe;
+
+  safe = false;
+  return (safe);
+}
+
+bool		Bot::trymove(const std::list<Obstacle> &obs, unsigned int x, unsigned int y)
+{
+  bool		can;
+
+  can = false;
+  if (x == 0 || x == this->_size || y == 0 || y == this->_size)
+    return (can);
+  for (std::list<Obstacle>::iterator it = obs.begin() ; it != obs.end() ; ++it)
+    {
+      if (x == it.getX() && y == it.getY())
+	can = true;
+    }
+  return (can);
 }
