@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:07:06 2013 kevin lansel
-// Last update Mon May 20 16:54:54 2013 kevin lansel
+// Last update Mon May 20 16:58:43 2013 kevin lansel
 //
 
 
@@ -134,19 +134,19 @@ void		Bot::rddef()
   rd = rand() % 4;
   switch (rd)
     {
-    case 1: /* left */
+    case 0: /* left */
       if (trymove(obs, this->_x - 1, this->_y))
 	this->_x -= 1;
       break;
-    case 2: /* right */
+    case 1: /* right */
       if (trymove(obs, this->_x + 1, this->_y))
 	this->_x += 1;
       break;
-    case 3: /* up */
+    case 2: /* up */
       if (trymove(obs, this->_x, this->_y + 1))
 	this->_y += 1;
       break;
-    case 4: /* down */
+    case 3: /* down */
       if (trymove(obs, this->_x, this->_y - 1))
 	this->_y -= 1;
       break;
@@ -155,12 +155,12 @@ void		Bot::rddef()
     }
 }
 
-void		Bot::offensif()
+void		Bot::offensif(const std::list<Bombe> &bombe)
 {
 
 }
 
-void		Bot::defensif()
+void		Bot::defensif(const std::list<Bombe> &bombe)
 {
 
 }
@@ -175,14 +175,19 @@ bool		Bot::secure(const std::list<Bombe> &bombe)
   return (true);
 }
 
-bool		Bot::trymove(const std::list<Obstacle> &obs, unsigned int x, unsigned int y)
+bool		Bot::trymove(const std::list<Bombe> &bombe, const std::list<Obstacle> &obs, unsigned int x, unsigned int y)
 {
   if (x == 0 || x == this->_size || y == 0 || y == this->_size)
     return (false);
   for (std::list<Obstacle>::iterator it = obs.begin() ; it != obs.end() ; ++it)
     {
       if (x == it.getX() && y == it.getY())
-	return (true);
+	return (false);
     }
-  return (false);
+  for (std::list<Bombe>::iterator it = bombe.begin() ; it != bombe.end() ; ++it)
+    {
+      if (x == it.getX() && y == it.getY())
+	return (false);
+    }
+  return (true);
 }
