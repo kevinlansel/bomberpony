@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Mon May 20 15:48:22 2013 florian dewulf
+// Last update Mon May 20 17:18:10 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
@@ -33,11 +33,9 @@ void		Menu::initialize(const std::string &texture, const Vector3f &limit_up, con
   this->_limit_down = limit_down;
 }
 
-#include	"Sound.hpp"
 MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
 {
   static float	tempo = -1;
-  Sound		snd;
 
   if (tempo == -1)
     tempo = gameClock_.getTotalGameTime();
@@ -47,7 +45,7 @@ MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
   this->move(tempo, gameClock_, input);
   if (tempo + 0.2 < gameClock_.getTotalGameTime() && input.isKeyDown(gdl::Keys::Return))
     {
-      snd.PlaySound();
+      this->_snd.PlaySound();
       tempo = gameClock_.getTotalGameTime();
       return this->_list[this->_choice];
     }

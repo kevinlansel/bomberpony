@@ -5,8 +5,11 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:56 2013 gery baudry
-// Last update Mon May 20 16:51:50 2013 gery baudry
+// Last update Mon May 20 17:18:52 2013 florian dewulf
 //
+
+#ifndef		SOUND_HPP__
+# define	SOUND_HPP__
 
 #include	<SFML/Audio.hpp>
 #include	<iostream>
@@ -18,8 +21,7 @@ public:
   virtual ~Sound();
 
 public:
-  void			*PlaySound(void*);
-  void			create_thread();
+  void			PlaySound();
 
 public:
   sf::SoundBuffer	getSound();
@@ -27,4 +29,7 @@ public:
 
 private:
   sf::SoundBuffer	_menusound;
+  sf::Sound		_sound;
 };
+
+#endif

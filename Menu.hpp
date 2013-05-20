@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Mon May 20 13:34:45 2013 florian dewulf
+// Last update Mon May 20 17:16:05 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -19,6 +19,7 @@
 #include	<string>
 #include	<vector>
 
+#include	"Sound.hpp"
 #include	"Bomberman.h"
 #include	"Camera.hpp"
 #include	"Forme.hpp"
@@ -54,6 +55,7 @@ private:
   Vector3f	_limit_down;
   Vector3f	_limit_up;
   std::vector<int>	_list;
+  Sound		_snd;
 };
 
 #endif
