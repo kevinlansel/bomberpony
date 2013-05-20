@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:20:52 2013 gery baudry
-// Last update Mon May 20 11:28:03 2013 gery baudry
+// Last update Mon May 20 13:00:03 2013 gery baudry
 //
 
 #ifndef		APLAYER_HPP__
@@ -30,6 +30,7 @@ public:
   int			getBomb() const;
   std::string		getName() const;
   bool			getAlive() const;
+  Vector3f		getTranslation() const;
 
 public:
   void			setPos(Vector3f);
@@ -37,6 +38,7 @@ public:
   void			setBomb(int);
   void			setName(std::string &);
   void			setAlive(bool);
+  void			setTranslation(Vector3f);
 
 public:
   virtual void		update(gdl::Input &) = 0;
