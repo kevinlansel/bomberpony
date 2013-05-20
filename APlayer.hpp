@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:20:52 2013 gery baudry
-// Last update Tue May 14 11:24:58 2013 gery baudry
+// Last update Mon May 20 11:28:03 2013 gery baudry
 //
 
 #ifndef		APLAYER_HPP__
@@ -13,6 +13,7 @@
 
 #include	<iostream>
 #include	<list>
+#include	"Model.hpp"
 #include	"Input.hpp"
 #include	"Obstacle.hpp"
 #include	"Vector3f.hpp"
@@ -39,11 +40,8 @@ public:
 
 public:
   virtual void		update(gdl::Input &) = 0;
-  virtual void		initialize(const std::list<Obstacle> &) = 0;
-
-private:
-  void			move_player_one(gdl::Input &input);
-  void			move_player_two(gdl::Input &input);
+  virtual void		initialize() = 0;
+  virtual void		draw() = 0;
 
 protected:
   Vector3f		_pos;
@@ -53,6 +51,10 @@ private:
   int			_bomb;
   std::string		_name;
   bool			_alive;
+
+private:
+  gdl::Model		_model;
+  Vector3f		_translation;
 };
 
 #endif
