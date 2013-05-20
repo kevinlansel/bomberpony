@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Mon May 20 10:48:18 2013 florian dewulf
+// Last update Mon May 20 13:05:44 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -69,7 +69,7 @@ void		Controller::draw()
 
 void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuType type, std::vector<int> &limit)
 {
-  if (this->_scene && type == type == MENU || type == GAME || type == SCORE || type == OPTION)//pas pour tout
+  if (this->_scene && (type == MENU || type == GAME || type == SCORE || type == OPTION))//pas pour tout
     delete this->_scene;
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
     {
@@ -137,7 +137,7 @@ void		Controller::setText()
 	  str += "Exit\n";
 	  break;
 	case IA:
-	  str += "IA:" + ((this->_ia == 0) ? "Easy\n" : ((this->_ia == 1) ? "Medium" : "Hard"));
+	  str += "IA:" + ((this->_ia == 0) ? std::string("Easy\n") : ((this->_ia == 1) ? std::string("Medium") : std::string("Hard")));
 	default:
 	  break;
 	}
