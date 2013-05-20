@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Sun May  5 14:07:28 2013 florian dewulf
-## Last update Mon May 20 16:19:07 2013 florian dewulf
+## Last update Mon May 20 16:51:08 2013 gery baudry
 ##
 
 NAME=		Bomberman
@@ -32,7 +32,7 @@ CC=		g++
 
 GDL=		-I libgdl_gl-2012.4/include/ -L libgdl_gl-2012.4/lib/ -Wl,--rpath=./libgdl_gl-2012.4/lib/ -lgdl_gl -lGL -lGLU
 
-CXXFLAGS=	-W -Wall -Wextra $(GDL) -lsfml-audio -lsfml-system
+CXXFLAGS=	-W -Wall -Wextra $(GDL) -lsfml-audio -lsfml-system -lpthread
 
 all:		$(OBJ)
 		$(CC) -o $(NAME) $(OBJ) $(GDL) -ggdb3 -lsfml-audio -lsfml-system

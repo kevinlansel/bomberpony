@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:56 2013 gery baudry
-// Last update Mon May 20 15:55:19 2013 florian dewulf
+// Last update Mon May 20 16:51:50 2013 gery baudry
 //
 
 #include	<SFML/Audio.hpp>
@@ -18,7 +18,8 @@ public:
   virtual ~Sound();
 
 public:
-  void			PlaySound();
+  void			*PlaySound(void*);
+  void			create_thread();
 
 public:
   sf::SoundBuffer	getSound();
