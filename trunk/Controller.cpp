@@ -5,16 +5,16 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Thu May 16 00:52:03 2013 florian dewulf
+// Last update Mon May 20 10:48:18 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
 
-Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_option("15"), _screen(MENU)
+Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_option("15"), _screen(MENU), _ia(0)
 {
   int		menu[] = {5, GAME, OPTION, SCORE, QUIT};
   int		score[] = {2, MENU};
-  int		option[] = {5, SOUND, MAP_TYPE, MAP_OPTION, MENU};
+  int		option[] = {6, SOUND, MAP_TYPE, MAP_OPTION, IA, MENU};
   int		game[] = {4, ONE, TWO, MENU};
 
   this->_map_menu[MENU] = std::vector<int>(menu, menu + sizeof(menu) / sizeof(int));
@@ -69,7 +69,7 @@ void		Controller::draw()
 
 void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuType type, std::vector<int> &limit)
 {
-  if (this->_scene)//pas pour tout
+  if (this->_scene && type == type == MENU || type == GAME || type == SCORE || type == OPTION)//pas pour tout
     delete this->_scene;
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
     {
@@ -136,6 +136,8 @@ void		Controller::setText()
 	case QUIT:
 	  str += "Exit\n";
 	  break;
+	case IA:
+	  str += "IA:" + ((this->_ia == 0) ? "Easy\n" : ((this->_ia == 1) ? "Medium" : "Hard"));
 	default:
 	  break;
 	}
