@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:07:06 2013 kevin lansel
-// Last update Tue May 14 18:55:45 2013 kevin lansel
+// Last update Mon May 20 13:38:00 2013 kevin lansel
 //
 
 #include	<sstream>
@@ -22,7 +22,7 @@ static std::string	giveName()
   return (ss.str());
 }
 
-Bot::Bot(eMode m) : Player(-1, giveName()), _mode(m)
+Bot::Bot(unsigned int x, unsigned int y, unsigned int size, eMode m) : Player(-1, giveName()), _x(x), _y(y), _size(size), _mode(m)
 {
 
 }
@@ -37,22 +37,53 @@ void		Bot::setMode(eMode mode)
   this->_mode = mode;
 }
 
-eMode		Bot::getMode()
+void		Bot::setX(unsigned int x)
+{
+  this->_x = x;
+}
+
+void		Bot::setY(unsigned int y)
+{
+  this->_y = y;
+}
+
+eMode		Bot::getMode() const
 {
   return (this->_mode);
 }
 
-void		Bot::initialize(const std::list<Obstacle> &obs)
+unsigned int	Bot::getX() const
 {
-  if (this->_mode == EASY)
-    ;
-  else if (this->_mode == MEDIUM)
-    ;
-  else
-    ;
+  return (this->_x);
 }
 
-void		Bot::update(gdl::Input &in)
+unsigned int	Bot::getY() const
+{
+  return (this->_y);
+}
+
+void		Bot::update(gld::GameClock &clock, gdl::Input &in, const std::list<Obstacle> &obs)
 {
   (void)in;
+  if (this->_mode == EASY)
+    easy();
+  else if (this->_mode == MEDIUM)
+    medium();
+  else
+    hard();
+}
+
+void		Bot::easy()
+{
+
+}
+
+void		Bot::medium()
+{
+
+}
+
+void		Bot::hard()
+{
+
 }
