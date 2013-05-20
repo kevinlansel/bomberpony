@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:05:47 2013 kevin lansel
-// Last update Mon May 20 15:58:02 2013 kevin lansel
+// Last update Mon May 20 17:16:12 2013 kevin lansel
 //
 
 #ifndef		BOT_HPP_
@@ -19,7 +19,7 @@ class Bot : public APlayer
 {
 public:
   Bot(unsigned int, unsigned int, unsigned int, eMode);
-  ~Bot();
+  virtual ~Bot();
 
   void		setMode(eMode);
   void		setX(unsigned int);
@@ -42,13 +42,13 @@ private:
   void		medium();
   void		hard();
 
-  void		rdoff();
+  void		rdoff(const std::list<Bombe> &);
   void		rddef();
-  void		offensif();
-  void		defensif();
+  void		offensif(const std::list<Bombe> &bombe);
+  void		defensif(const std::list<Bombe> &bombe);
 
   bool		secure();
-  bool		trymove(const std::list<Obstacle> &, unsigned int, unsigned int);
+  bool		trymove(const std::list<Bombe> &, const std::list<Obstacle> &, unsigned int, unsigned int);
 };
 
 #endif	/* BOT_HPP_ */
