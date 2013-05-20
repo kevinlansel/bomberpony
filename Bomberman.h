@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Mon May 13 17:01:39 2013 florian dewulf
-** Last update Mon May 20 10:41:36 2013 florian dewulf
+** Last update Mon May 20 13:57:36 2013 florian dewulf
 */
 
 #ifndef		BOMBERMAN_H__
@@ -26,6 +26,7 @@ enum {
   VICTORY,
   GAMEOVER,
   IA,
+  LOAD,
   QUIT
 };
 

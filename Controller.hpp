@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Mon May 20 10:43:07 2013 florian dewulf
+// Last update Mon May 20 14:57:08 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -49,6 +49,12 @@ private:
   void		setText();
 
 private:
+  MenuType	changeSound(const MenuType &);
+  MenuType	changeTypeMap(const MenuType &);
+  MenuType	changeIA(const MenuType &);
+  MenuType	loadGame(const MenuType &);
+
+private:
   Scene					*_scene;	// Menu or game
   bool					_sound;		// true = on, false = off
   bool					_map_choice;	// true = random, false = predef
@@ -58,6 +64,7 @@ private:
   std::list<Score>			_score_list;	// list of the score
   std::list<std::string>		_map;		// list of the map in the folder map
   std::map<MenuType, std::vector<int> >	_map_menu;	// arg to pass to the menu
+  std::map<MenuType, MenuType (Controller::*)(const MenuType &)>	_ptr_func;	// ptr on a func to modify information
 };
 
 #endif

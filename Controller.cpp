@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Mon May 20 13:35:19 2013 florian dewulf
+// Last update Mon May 20 15:05:19 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -15,16 +15,30 @@ Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_o
   int		menu[] = {5, GAME, OPTION, SCORE, QUIT};
   int		score[] = {2, MENU};
   int		option[] = {6, SOUND, MAP_TYPE, MAP_OPTION, IA, MENU};
-  int		game[] = {4, ONE, TWO, MENU};
+  int		game[] = {4, ONE, TWO, LOAD, MENU};
 
   this->_map_menu[MENU] = std::vector<int>(menu, menu + sizeof(menu) / sizeof(int));
   this->_map_menu[GAME] = std::vector<int>(game, game + sizeof(game) / sizeof(int));
   this->_map_menu[SCORE] = std::vector<int>(score, score + sizeof(score) / sizeof(int));
   this->_map_menu[OPTION] = std::vector<int>(option, option + sizeof(option) / sizeof(int));
+
+  /*
+  this->_ptr_func[SOUND] = &Controller::changeSound;
+  this->_ptr_func[MAP_TYPE] = &Controller::changeTypeMap;
+  this->_ptr_func[IA] = &Controller::changeIA;
+  this->_ptr_func[LOAD] = &Controller::loadGame;
+  */
 }
 
 Controller::~Controller()
 {
+  //this->_ptr_func.clear();
+  /*
+    this->_ptr_func.erase(SOUND);
+    this->_ptr_func.erase(MAP_TYPE);
+    this->_ptr_func.erase(IA);
+    this->_ptr_func.erase(LOAD);
+  */
   delete this->_scene;
 }
 
@@ -71,22 +85,27 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
 {
   if (this->_scene && (type == MENU || type == GAME || type == SCORE || type == OPTION))//pas pour tout
     delete this->_scene;
-  else
-    
+  //  else
+  // ;
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
     {
       this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), type, limit);
       this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, 52 - ((limit[0] - 2) * 65), 0));
       this->_scene->setColor(255, 255, 255);
-      this->setText();
+      this->_screen = type;
     }
   else if (type == BATTLE)//plutot == J1 ou J2 ou loadgame
     ;//game
   //else if ()//si map_type => passe le booléen à != valeur | si map_option => get
   //;//modif value
   else
-    ;//load écran de victoire ou fail
-  this->_screen = type;
+    {
+      std::cout << "Change scene avec " << type << std::endl;
+      if (type == SOUND || type == MAP_TYPE || type == IA || type == LOAD)
+	;//this->_screen = (this->*(this->_ptr_func[type]))(type);//load écran de victoire ou fail
+    }
+  std::cout << this->_screen << std::endl;
+  this->setText();
 }
 
 void		Controller::setText()
@@ -138,11 +157,40 @@ void		Controller::setText()
 	case QUIT:
 	  str += "Exit\n";
 	  break;
+	case LOAD:
+	  str += "Load\n";
+	  break;
 	case IA:
-	  str += "IA:" + ((this->_ia == 0) ? std::string("Easy\n") : ((this->_ia == 1) ? std::string("Medium") : std::string("Hard")));
+	  str += "IA:" + ((this->_ia == 0) ? std::string("Easy\n") : ((this->_ia == 1) ? std::string("Medium\n") : std::string("Hard\n")));
+	  break;
 	default:
 	  break;
 	}
     }
   this->_scene->setTxt(str, 500, 200);
+}
+
+MenuType	Controller::changeSound(const MenuType &type)
+{
+  this->_sound = !this->_sound;
+  return OPTION;
+}
+
+MenuType	Controller::changeTypeMap(const MenuType &type)
+{
+  this->_map_choice = !this->_map_choice;
+  return OPTION;
+}
+
+MenuType	Controller::changeIA(const MenuType &type)
+{
+  this->_ia++;
+  if (this->_ia == HARD + 1)
+    this->_ia = EASY;
+  return OPTION;
+}
+
+MenuType	Controller::loadGame(const MenuType &type)
+{
+  return GAME;
 }
