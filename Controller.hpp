@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Wed May 15 16:53:05 2013 florian dewulf
+// Last update Mon May 20 10:43:07 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -54,6 +54,7 @@ private:
   bool					_map_choice;	// true = random, false = predef
   std::string				_map_option;	// if it's random = the size, else the name of the file
   MenuType				_screen;	// type of scene
+  int					_ia;
   std::list<Score>			_score_list;	// list of the score
   std::list<std::string>		_map;		// list of the map in the folder map
   std::map<MenuType, std::vector<int> >	_map_menu;	// arg to pass to the menu
