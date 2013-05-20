@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:07:06 2013 kevin lansel
-// Last update Mon May 20 16:03:08 2013 kevin lansel
+// Last update Mon May 20 16:54:54 2013 kevin lansel
 //
 
 
@@ -113,9 +113,18 @@ void		Bot::hard()
     deffensif();
 }
 
-void		Bot::rdoff()
+void		Bot::rdoff(const std::list<Bombe> &bombe)
 {
+  unsigned int		rd;
+  Bombe			bim;
 
+  rd = rand() % 7;
+  if (rd == 0)
+    {
+      bim.setX(this->_x);
+      bim.setY(this->_y);
+      bombe.push_back();
+    }
 }
 
 void		Bot::rddef()
@@ -156,25 +165,24 @@ void		Bot::defensif()
 
 }
 
-bool		Bot::secure()
+bool		Bot::secure(const std::list<Bombe> &bombe)
 {
-  bool		safe;
-
-  safe = false;
-  return (safe);
+  for (std::list<Bombe>::iterator it = obs.begin() ; it != obs.end() ; ++it)
+    {
+      if (x == it.getX() && y == it.getY())
+	return (false);
+    }
+  return (true);
 }
 
 bool		Bot::trymove(const std::list<Obstacle> &obs, unsigned int x, unsigned int y)
 {
-  bool		can;
-
-  can = false;
   if (x == 0 || x == this->_size || y == 0 || y == this->_size)
-    return (can);
+    return (false);
   for (std::list<Obstacle>::iterator it = obs.begin() ; it != obs.end() ; ++it)
     {
       if (x == it.getX() && y == it.getY())
-	can = true;
+	return (true);
     }
-  return (can);
+  return (false);
 }
