@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:21:55 2013 gery baudry
-// Last update Mon May 20 11:23:49 2013 gery baudry
+// Last update Mon May 20 12:59:23 2013 gery baudry
 //
 
 #include	"APlayer.hpp"
@@ -25,9 +25,6 @@ void			APlayer::initialize()
 
 void			APlayer::draw()
 {
-  gdlClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glClearColor(0.74f, 0.84f, 98.0f, 1.0f);
-  glClearDepth(1.0f);
   this->_model.draw();
 }
 
