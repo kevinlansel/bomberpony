@@ -5,11 +5,10 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:40 2013 gery baudry
-// Last update Mon May 20 16:52:34 2013 gery baudry
+// Last update Mon May 20 17:19:04 2013 florian dewulf
 //
 
 #include	"Sound.hpp"
-#include	<pthread.h>
 
 Sound::Sound()
 {
@@ -21,26 +20,10 @@ Sound::~Sound()
 {
 }
 
-void			*Sound::PlaySound(void *)
+void			Sound::PlaySound()
 {
-  sf::Sound		sound;
-
-  sound.SetBuffer(this->_menusound);
-  sound.Play();
-  while (sound.GetStatus() == sf::Sound::Playing)
-    sf::Sleep(0.1f);
-  return (NULL);
-}
-
-void			Sound::create_thread()
-{
-  pthread_t		thread;
-  pthread_mutex_t	mutex;
-
-  pthread_mutex_init(mutex, NULL);
-  pthread_join(thread, NULL);
-  pthread_mutex_lock(mutex);
-  pthread_create(thread, NULL, PlaySound, thread);
+  this->_sound.SetBuffer(this->_menusound);
+  this->_sound.Play();
 }
 
 sf::SoundBuffer		Sound::getSound()
