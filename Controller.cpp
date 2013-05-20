@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Mon May 20 15:18:33 2013 florian dewulf
+// Last update Mon May 20 15:45:38 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -15,7 +15,7 @@ Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_o
   int		menu[] = {5, GAME, OPTION, SCORE, QUIT};
   int		score[] = {2, MENU};
   int		option[] = {6, SOUND, MAP_TYPE, MAP_OPTION, IA, MENU};
-  int		game[] = {4, ONE, TWO, LOAD, MENU};
+  int		game[] = {5, ONE, TWO, LOAD, MENU};
 
   this->_map_menu[MENU] = std::vector<int>(menu, menu + sizeof(menu) / sizeof(int));
   this->_map_menu[GAME] = std::vector<int>(game, game + sizeof(game) / sizeof(int));
@@ -26,6 +26,8 @@ Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_o
   this->_ptr_func[MAP_TYPE] = &Controller::changeTypeMap;
   this->_ptr_func[IA] = &Controller::changeIA;
   this->_ptr_func[LOAD] = &Controller::loadGame;
+  this->_ptr_func[ONE] = &Controller::launchGame;
+  this->_ptr_func[TWO] = &Controller::launchGame;
 }
 
 Controller::~Controller()
@@ -76,8 +78,7 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
 {
   if (this->_scene && (type == MENU || type == GAME || type == SCORE || type == OPTION))//pas pour tout
     delete this->_scene;
-  //  else
-  // ;
+
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
     {
       this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), type, limit);
@@ -85,17 +86,14 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
       this->_scene->setColor(255, 255, 255);
       this->_screen = type;
     }
-  else if (type == BATTLE)//plutot == J1 ou J2 ou loadgame
-    ;//game
-  //else if ()//si map_type => passe le booléen à != valeur | si map_option => get
-  //;//modif value
+  else if (type == ONE || type == TWO || type == LOAD)
+    this->_screen = (this->*(this->_ptr_func[type]))(type);
   else
     {
-      std::cout << "Change scene avec " << type << std::endl;
       if (type == SOUND || type == MAP_TYPE || type == IA || type == LOAD)
-	this->_screen = (this->*(this->_ptr_func[type]))(type);//load écran de victoire ou fail
+	this->_screen = (this->*(this->_ptr_func[type]))(type);
     }
-  std::cout << this->_screen << std::endl;
+
   this->setText();
 }
 
@@ -182,6 +180,11 @@ MenuType	Controller::changeIA(const MenuType &type)
 }
 
 MenuType	Controller::loadGame(const MenuType &type)
+{
+  return GAME;
+}
+
+MenuType	Controller::launchGame(const MenuType &type)
 {
   return GAME;
 }

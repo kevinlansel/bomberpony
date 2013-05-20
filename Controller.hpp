@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Mon May 20 14:57:08 2013 florian dewulf
+// Last update Mon May 20 15:41:14 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -53,6 +53,7 @@ private:
   MenuType	changeTypeMap(const MenuType &);
   MenuType	changeIA(const MenuType &);
   MenuType	loadGame(const MenuType &);
+  MenuType	launchGame(const MenuType &);
 
 private:
   Scene					*_scene;	// Menu or game

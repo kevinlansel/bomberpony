@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:56 2013 gery baudry
-// Last update Mon May 20 15:45:04 2013 gery baudry
+// Last update Mon May 20 15:55:19 2013 florian dewulf
 //
 
 #include	<SFML/Audio.hpp>
@@ -18,12 +18,12 @@ public:
   virtual ~Sound();
 
 public:
-  void			Playsound();
+  void			PlaySound();
 
 public:
-  SoundBuffer		getSound();
+  sf::SoundBuffer	getSound();
   void			setSound(std::string &sound);
 
 private:
-  SoundBuffer		_menusound;
+  sf::SoundBuffer	_menusound;
 };
