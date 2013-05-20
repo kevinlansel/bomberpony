@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Mon May 20 13:05:44 2013 florian dewulf
+// Last update Mon May 20 13:35:19 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -71,6 +71,8 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
 {
   if (this->_scene && (type == MENU || type == GAME || type == SCORE || type == OPTION))//pas pour tout
     delete this->_scene;
+  else
+    
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
     {
       this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), type, limit);
