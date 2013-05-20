@@ -5,16 +5,16 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 19:43:28 2013 florian dewulf
-// Last update Sat May 18 12:31:10 2013 florian dewulf
+// Last update Mon May 20 13:03:49 2013 florian dewulf
 //
 
-#include	"Game.hpp"
+#include	"Gameplay.hpp"
 
-Game::Game(bool sound, bool map_choice, bool nb_j) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false), _nb_j(nb_j), _sound(sound), _map_choice(map_choice)
+Gameplay::Gameplay(bool sound, bool map_choice, bool nb_j) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false), _nb_j(nb_j), _sound(sound), _map_choice(map_choice)
 {
 }
 
-Game::Game(bool sound, const std::list<std::string> &toload) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false)
+Gameplay::Gameplay(bool sound, const std::list<std::string> &toload) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false)
 {
   std::list<std::string>::const_iterator	it = toload.begin();
   unsigned int					size_map;
@@ -38,11 +38,11 @@ Game::Game(bool sound, const std::list<std::string> &toload) : Scene(Vector3f(0,
     }
 }
 
-Game::~Game()
+Gameplay::~Gameplay()
 {
 }
 
-void		Game::initialize(const std::string &map_type)
+void		Gameplay::initialize(const std::string &map_type)
 {
   Map				map;
   std::list<std::string>	list_str;
@@ -66,7 +66,7 @@ void		Game::initialize(const std::string &map_type)
       }
 }
 
-MenuType	Game::update(gdl::GameClock &clock, gdl::Input &input)
+MenuType	Gameplay::update(gdl::GameClock &clock, gdl::Input &input)
 {
   for (std::list<Obstacle *>::iterator it = this->_obs.begin() ; it != this->_obs.end() ; ++it)
     (*it)->update(clock, input, this->_players, this->_bonus);
@@ -74,7 +74,7 @@ MenuType	Game::update(gdl::GameClock &clock, gdl::Input &input)
     (*it)->update(clock, input, this->_obs);
 }
 
-void		Game::draw()
+void		Gameplay::draw()
 {
   for (std::list<Obstacle *>::iterator it = this->_obs.begin() ; it != this->_obs.end() ; ++it)
     (*it)->draw();
@@ -82,7 +82,7 @@ void		Game::draw()
     (*it)->draw();
 }
 
-void		Game::newPlayer(unsigned int size_list, unsigned int x, unsigned int y)
+void		Gameplay::newPlayer(unsigned int size_list, unsigned int x, unsigned int y)
 {
   if (this->_players.size() == 0)
     this->_players.push_back(new Player(/*param j1*/));//Vector3f(y * 300 - (size_list * 300) / 2, 0, x * 300 - (size_list * 300) / 2, 0)

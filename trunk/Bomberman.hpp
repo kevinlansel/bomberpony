@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 18:07:32 2013 florian dewulf
-// Last update Mon May 13 13:58:44 2013 gery baudry
+// Last update Mon May 20 13:02:07 2013 florian dewulf
 //
 
 #ifndef		BOMBERMAN_HPP__
