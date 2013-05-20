@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:40 2013 gery baudry
-// Last update Mon May 20 16:11:05 2013 florian dewulf
+// Last update Mon May 20 16:18:50 2013 florian dewulf
 //
 
 #include	"Sound.hpp"
@@ -26,6 +26,8 @@ void			Sound::PlaySound()
 
   sound.SetBuffer(this->_menusound);
   sound.Play();
+  while (sound.GetStatus() == sf::Sound::Playing)
+    sf::Sleep(0.1f);
 }
 
 sf::SoundBuffer		Sound::getSound()
