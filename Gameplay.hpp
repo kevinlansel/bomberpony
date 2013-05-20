@@ -5,11 +5,11 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 17:03:33 2013 florian dewulf
-// Last update Mon May 20 13:01:47 2013 gery baudry
+// Last update Mon May 20 13:02:49 2013 florian dewulf
 //
 
-#ifndef		GAME_HPP__
-# define	GAME_HPP__
+#ifndef		GAMEPLAY_HPP__
+# define	GAMEPLAY_HPP__
 
 #include	<string>
 #include	<list>
@@ -22,12 +22,12 @@
 #include	"Input.hpp"
 #include	"GameClock.hpp"
 
-class		Game : public Scene
+class		Gameplay : public Scene
 {
 public:
-  Game(bool, bool);
-  Game(bool, const std::list<std::string> &);
-  virtual	~Game();
+  Gameplay(bool, bool);
+  Gameplay(bool, const std::list<std::string> &);
+  virtual	~Gameplay();
 
 public:
   virtual void		initialize(const std::string &, const Vector3f &, const Vector3f &);
