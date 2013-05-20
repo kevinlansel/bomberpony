@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 17:03:33 2013 florian dewulf
-// Last update Sat May 18 12:20:27 2013 florian dewulf
+// Last update Mon May 20 13:01:47 2013 gery baudry
 //
 
 #ifndef		GAME_HPP__
