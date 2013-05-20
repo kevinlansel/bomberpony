@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Mon May 20 15:05:19 2013 florian dewulf
+// Last update Mon May 20 15:18:33 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -22,23 +22,14 @@ Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_o
   this->_map_menu[SCORE] = std::vector<int>(score, score + sizeof(score) / sizeof(int));
   this->_map_menu[OPTION] = std::vector<int>(option, option + sizeof(option) / sizeof(int));
 
-  /*
   this->_ptr_func[SOUND] = &Controller::changeSound;
   this->_ptr_func[MAP_TYPE] = &Controller::changeTypeMap;
   this->_ptr_func[IA] = &Controller::changeIA;
   this->_ptr_func[LOAD] = &Controller::loadGame;
-  */
 }
 
 Controller::~Controller()
 {
-  //this->_ptr_func.clear();
-  /*
-    this->_ptr_func.erase(SOUND);
-    this->_ptr_func.erase(MAP_TYPE);
-    this->_ptr_func.erase(IA);
-    this->_ptr_func.erase(LOAD);
-  */
   delete this->_scene;
 }
 
@@ -102,7 +93,7 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
     {
       std::cout << "Change scene avec " << type << std::endl;
       if (type == SOUND || type == MAP_TYPE || type == IA || type == LOAD)
-	;//this->_screen = (this->*(this->_ptr_func[type]))(type);//load écran de victoire ou fail
+	this->_screen = (this->*(this->_ptr_func[type]))(type);//load écran de victoire ou fail
     }
   std::cout << this->_screen << std::endl;
   this->setText();
