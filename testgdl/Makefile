@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Sun May  5 14:07:28 2013 florian dewulf
-## Last update Fri May 17 23:25:20 2013 florian dewulf
+## Last update Tue May 21 17:26:16 2013 Maxime Wojciak
 ##
 
 NAME=		Bomberman
@@ -15,7 +15,8 @@ SRC=		AObject.cpp		\
 		Camera.cpp		\
 		Forme.cpp		\
 		main.cpp		\
-		Vector3f.cpp
+		Vector3f.cpp		\
+		Bombe.cpp
 
 OBJ=		$(SRC:.cpp=.o)
 
