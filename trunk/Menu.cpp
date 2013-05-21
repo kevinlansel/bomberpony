@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Tue May 21 13:16:39 2013 florian dewulf
+// Last update Tue May 21 14:47:10 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
@@ -33,7 +33,7 @@ void		Menu::initialize(const std::string &texture, const Vector3f &limit_up, con
   this->_limit_down = limit_down;
 }
 
-MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
+MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input, bool sound)
 {
   static float	tempo = -1;
   MenuType	tmp;
@@ -43,12 +43,13 @@ MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
   this->_camera.update();
   this->_background->update();
   this->_cursor.update();
-  tmp = this->move(tempo, gameClock_, input);
+  tmp = this->move(tempo, gameClock_, input, sound);
   if (tmp == DEC_OPTION || tmp == INC_OPTION)
     return (tmp);
   else if (tempo + 0.2 < gameClock_.getTotalGameTime() && input.isKeyDown(gdl::Keys::Return))
     {
-      this->_snd_enter.PlaySound();
+      if (sound)
+	this->_snd_enter.PlaySound();
       tempo = gameClock_.getTotalGameTime();
       return this->_list[this->_choice];
     }
@@ -63,7 +64,7 @@ void		Menu::draw()
   this->_txt.draw();
 }
 
-MenuType	Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
+MenuType	Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input, bool sound)
 {
   Vector3f	tmp(this->_cursor.getTranslation());
 
@@ -71,14 +72,16 @@ MenuType	Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
     {
       if (input.isKeyDown(gdl::Keys::Down))
 	{
-	  this->_snd_move.PlaySound();
+	  if (sound)
+	    this->_snd_move.PlaySound();
 	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y - 65, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
 	  this->inc_choice();
 	}
       else if (input.isKeyDown(gdl::Keys::Up))
 	{
-	  this->_snd_move.PlaySound();
+	  if (sound)
+	    this->_snd_move.PlaySound();
 	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y + 65, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
 	  this->dec_choice();

@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 19:59:03 2013 florian dewulf
-// Last update Fri May 17 22:45:03 2013 florian dewulf
+// Last update Tue May 21 14:48:09 2013 florian dewulf
 //
 
 #ifndef		SCENE_HPP__
@@ -30,7 +30,7 @@ public:
 public:
   virtual void	initialize(const std::string &, const Vector3f &, const Vector3f &) = 0;
   virtual void	draw() = 0;
-  virtual MenuType	update(gdl::GameClock &, gdl::Input &) = 0;
+  virtual MenuType	update(gdl::GameClock &, gdl::Input &, bool) = 0;
 
 public:
   void		setTxt(const std::string &, unsigned int, unsigned int);

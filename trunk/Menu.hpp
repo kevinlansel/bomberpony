@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Tue May 21 13:16:59 2013 florian dewulf
+// Last update Tue May 21 14:47:52 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -39,11 +39,11 @@ public:
 public:
   virtual void	initialize(const std::string &, const Vector3f &, const Vector3f &);
   virtual void	draw();
-  virtual MenuType	update(gdl::GameClock &, gdl::Input &);
+  virtual MenuType	update(gdl::GameClock &, gdl::Input &, bool);
   MenuType	getChoice() const;
 
 private:
-  MenuType	move(float &, gdl::GameClock &, gdl::Input &);
+  MenuType	move(float &, gdl::GameClock &, gdl::Input &, bool);
   void		inc_choice();
   void		dec_choice();
   MenuType	change_option(gdl::Input &, float &, gdl::GameClock &);
