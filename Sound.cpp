@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:40 2013 gery baudry
-// Last update Tue May 21 10:35:09 2013 gery baudry
+// Last update Tue May 21 10:42:29 2013 gery baudry
 //
 
 #include	"Sound.hpp"
