@@ -4,7 +4,7 @@
 /// Definition de la classe Camera
 ////////////////////////////////////////////////////////////////////////////////
 Camera::Camera(void)
-  : position_(0.0f, 3200.0, 1000), rotation_(0.0f, 0.0f, 0.0f)
+  : position_(0.0f, 3360.0, 1575), rotation_(0.0f, 0.0f, 0.0f)
 {
 }
 void Camera::initialize(void)
