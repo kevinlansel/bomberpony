@@ -95,7 +95,27 @@ HARD :
 
 Defensif :
 
--Créer une map (vector) de bombes et explosions
--Pondère les directions où aller
--check si c'est possible suivant les obstacles et bombes
--move
+-Créer une map (vector) de bombes et explosions => prend la liste de bombe et retourn la map de bombe
+-Pondère les directions où aller => prend la map de bombe et retourne la map de pondération de direction
+-check si c'est possible suivant les obstacles et bombes => prend la liste d'obstacle et la map de pondération de direction et retourne la direction où aller (enum)
+-move prend la direction où aller (enum)
+
+avec la map :
+
+_|_|_|_|_|_|_|_|_|_    _|_|_|1|_|_|_|_|_|_
+_|_|_|o|_|_|_|_|_|_    _|1|1|2|1|1|_|_|_|_
+_|_|_|_|_|_|_|_|_|_    _|_|_|1|_|_|_|1|_|_
+_|_|_|X|_|_|_|_|_|_    _|_|_|1|_|_|_|1|_|_
+_|_|_|_|_|_|_|o|_|_ => _|_|_|1|_|1|1|2|1|1
+_|_|_|o|_|_|_|_|_|_    _|1|1|2|1|1|_|1|_|_
+_|_|_|_|_|_|_|_|_|_    _|_|_|1|_|_|_|1|_|_
+_|_|_|_|_|_|_|_|_|_    _|_|_|1|_|_|_|_|_|_
+
+_|_|_|_|_|_|_|_|_|_
+_|_|_|1|_|_|_|_|_|_
+_|_|2|X|3|_|_|_|_|_
+_|_|_|1|_|_|_|_|_|_
+_|_|_|_|_|_|_|_|_|_
+_|_|_|_|_|_|_|_|_|_
+_|_|_|_|_|_|_|_|_|_
+_|_|_|_|_|_|_|_|_|_
