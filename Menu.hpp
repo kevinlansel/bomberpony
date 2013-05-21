@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Mon May 20 17:16:05 2013 florian dewulf
+// Last update Mon May 20 23:46:15 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -43,9 +43,10 @@ public:
   MenuType	getChoice() const;
 
 private:
-  void		move(float &, gdl::GameClock &, gdl::Input &);
+  MenuType	move(float &, gdl::GameClock &, gdl::Input &);
   void		inc_choice();
   void		dec_choice();
+  MenuType	change_option(gdl::Input &);
 
 private:
   Cube		*_background;

@@ -5,19 +5,20 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:56 2013 gery baudry
-// Last update Mon May 20 17:18:52 2013 florian dewulf
+// Last update Mon May 20 21:43:26 2013 florian dewulf
 //
 
 #ifndef		SOUND_HPP__
 # define	SOUND_HPP__
 
-#include	<SFML/Audio.hpp>
 #include	<iostream>
+#include	<string>
+#include	<SFML/Audio.hpp>
 
 class		Sound
 {
 public:
-  Sound();
+  Sound(const std::string &);
   virtual ~Sound();
 
 public:

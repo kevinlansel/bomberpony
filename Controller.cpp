@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Mon May 20 15:45:38 2013 florian dewulf
+// Last update Tue May 21 00:29:37 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
 
-Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_option("15"), _screen(MENU), _ia(0)
+Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_option("15"), _screen(MENU), _ia(0), _offset(0)
 {
   int		menu[] = {5, GAME, OPTION, SCORE, QUIT};
   int		score[] = {2, MENU};
@@ -28,6 +28,8 @@ Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_o
   this->_ptr_func[LOAD] = &Controller::loadGame;
   this->_ptr_func[ONE] = &Controller::launchGame;
   this->_ptr_func[TWO] = &Controller::launchGame;
+  this->_ptr_func[INC_OPTION] = &Controller::incOption;
+  this->_ptr_func[DEC_OPTION] = &Controller::decOption;
 }
 
 Controller::~Controller()
@@ -90,10 +92,12 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
     this->_screen = (this->*(this->_ptr_func[type]))(type);
   else
     {
-      if (type == SOUND || type == MAP_TYPE || type == IA || type == LOAD)
+      std::cout << type << std::endl;
+      if (type == SOUND || type == MAP_TYPE || type == IA || type == LOAD || type == DEC_OPTION || type == INC_OPTION) {
+	std::cout << type << std::endl;
 	this->_screen = (this->*(this->_ptr_func[type]))(type);
+      }
     }
-
   this->setText();
 }
 
@@ -187,4 +191,65 @@ MenuType	Controller::loadGame(const MenuType &type)
 MenuType	Controller::launchGame(const MenuType &type)
 {
   return GAME;
+}
+
+void		Controller::changeMap()
+{
+  if (this->_map.size() == 0)
+    {
+      this->_offset = 0;
+      this->_map_choice = true;
+      this->_map_option = "15";
+    }
+  else
+    {
+      if (this->_offset >= this->_map.size())
+	this->_offset = 0;
+      std::list<std::string>::iterator it = this->_map.begin();
+      for (unsigned int i = 0 ; i < this->_offset && it != this->_map.end() ; ++i, ++it);
+      this->_map_option = *it;
+    }
+}
+
+MenuType	Controller::incOption(const MenuType &type)
+{
+  int			nb;
+  std::stringstream	ss;
+
+  std::cout << "choix = " << this->_map_choice << std::endl;
+  if (this->_map_choice)
+    {
+      nb = Utils::StringToInt(this->_map_option);
+      std::cout << "nb = " << nb << std::endl;
+      nb++;
+      ss.str("");
+      ss << nb;
+      this->_map_option = ss.str();
+    }
+  else
+    {
+      this->_offset++;
+      this->changeMap();
+    }
+  return OPTION;
+}
+
+MenuType	Controller::decOption(const MenuType &type)
+{
+  int			nb;
+  std::stringstream	ss;
+
+  if (this->_map_choice && (nb = Utils::StringToInt(this->_map_option) > 15))
+    {
+      nb--;
+      ss.str("");
+      ss << nb;
+      this->_map_option = ss.str();
+    }
+  else if (this->_map_choice == false)
+    {
+      this->_offset--;
+      this->changeMap();
+    }
+  return OPTION;
 }

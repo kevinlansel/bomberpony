@@ -5,14 +5,14 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:40 2013 gery baudry
-// Last update Mon May 20 17:19:04 2013 florian dewulf
+// Last update Mon May 20 21:43:43 2013 florian dewulf
 //
 
 #include	"Sound.hpp"
 
-Sound::Sound()
+Sound::Sound(const std::string &str)
 {
-  if (!this->_menusound.LoadFromFile("./ressource/fart.wav"))
+  if (!this->_menusound.LoadFromFile(str))
     std::cout << "Erreur chargement fichier audio" << std::endl;
 }
 

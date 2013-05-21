@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 15:47:11 2013 florian dewulf
-// Last update Sat May 18 13:13:21 2013 florian dewulf
+// Last update Tue May 21 00:24:38 2013 florian dewulf
 //
 
 #ifndef		UTILS_HPP__
@@ -19,7 +19,7 @@
 
 #include	"APlayer.hpp"
 #include	"Player.hpp"
-#include	"Bot.hpp"
+//#include	"Bot.hpp"
 
 class		Utils
 {
@@ -27,10 +27,19 @@ public:
   template <typename T>
   static std::string	expandString(const std::string &, T &);
 
-  static int		StringToInt(const std::string &);
-  static bool		ParsePlayer(std::list<std::string>::const_iterator &, std::list<APlayer *> &);
+  static int			StringToInt(const std::string &str)
+  {
+    std::stringstream	ss;
+    int			nb;
+
+    ss.str(str);
+    ss >> nb;
+    return nb;
+  }
+  //static bool		ParsePlayer(std::list<std::string>::const_iterator &, std::list<APlayer *> &);
 };
 
+template <typename T>
 std::string		Utils::expandString(const std::string &str, T &value)
 {
   std::stringstream	ss;
@@ -40,19 +49,10 @@ std::string		Utils::expandString(const std::string &str, T &value)
   return ss.str();
 }
 
-int			Utils::StringToInt(const std::string &str)
-{
-  std::stringstream	ss;
-  int			nb;
-
-  ss.str(str);
-  ss >> nb;
-  return nb;
-}
-
+/*
 bool			Utils::ParsePlayer(std::list<std::string>::const_iterator &it, std::list<APlayer *> &_players)
 {
-  std::vector		vec;
+  //  std::vector		vec;
   int			i;
   Vector3f		pos;
   APlayer		*pl;
@@ -71,7 +71,7 @@ bool			Utils::ParsePlayer(std::list<std::string>::const_iterator &it, std::list<
     i = Utils::StringToInt(it->substr(it->find("joueur:") + 6));
   else
     return (false);
-  ++it
+  ++it;
 
   if (i == -1)
     pl = new Bot(Utils::StringToInt(*it));//et le vector en param non ?
@@ -97,5 +97,6 @@ bool			Utils::ParsePlayer(std::list<std::string>::const_iterator &it, std::list<
   _players.push_back(pl);
   return true;
 }
+*/
 
 #endif
