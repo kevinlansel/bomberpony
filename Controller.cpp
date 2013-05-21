@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Tue May 21 13:54:44 2013 florian dewulf
+// Last update Tue May 21 14:50:37 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -64,7 +64,7 @@ bool		Controller::update(gdl::GameClock &clock, gdl::Input &input)
 {
   MenuType	tmp;
 
-  tmp = this->_scene->update(clock, input);
+  tmp = this->_scene->update(clock, input, this->_sound);
   if (dynamic_cast<Menu *>(this->_scene) && tmp != INC_OPTION && tmp != DEC_OPTION)
     this->_screen = reinterpret_cast<Menu *>(this->_scene)->getChoice();
   else if (dynamic_cast<Menu *>(this->_scene) && (tmp == INC_OPTION || tmp == DEC_OPTION))
@@ -83,7 +83,7 @@ void		Controller::draw()
 
 void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuType type, std::vector<int> &limit)
 {
-  if (this->_scene && (type == MENU || type == GAME || type == SCORE || type == OPTION))//pas pour tout
+  if (this->_scene && (type == MENU || type == GAME || type == SCORE || type == OPTION))
     delete this->_scene;
 
   if (type == MENU || type == GAME || type == SCORE || type == OPTION)
@@ -163,6 +163,10 @@ void		Controller::setText()
 MenuType	Controller::changeSound()
 {
   this->_sound = !this->_sound;
+  if (this->_sound)
+    this->_musique.PlayMusique();
+  else
+    this->_musique.StopMusique();
   return OPTION;
 }
 
