@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Tue May 21 13:37:27 2013 florian dewulf
+// Last update Tue May 21 13:54:44 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -66,12 +66,12 @@ bool		Controller::update(gdl::GameClock &clock, gdl::Input &input)
 
   tmp = this->_scene->update(clock, input);
   if (dynamic_cast<Menu *>(this->_scene) && tmp != INC_OPTION && tmp != DEC_OPTION)
-    this->_screen = reinterpret_cast<Menu *>(this->_scene)->getChoice();//Dans le constructeur faire une map de ptr sur func
+    this->_screen = reinterpret_cast<Menu *>(this->_scene)->getChoice();
   else if (dynamic_cast<Menu *>(this->_scene) && (tmp == INC_OPTION || tmp == DEC_OPTION))
     this->_screen = tmp;
   if (tmp == QUIT)
     return (true);
-  else if (tmp != NOTHING)// != sound, etc
+  else if (tmp != NOTHING)
     this->changeScene(this->_scene->getPoscam(), this->_scene->getTarget(), this->_screen, this->_map_menu[this->_screen]);
   return false;
 }
@@ -93,7 +93,7 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
       this->_scene->setColor(255, 255, 255);
       this->_screen = type;
     }
-  else// if (type == ONE || type == TWO || type == LOAD)
+  else
     this->_screen = (this->*(this->_ptr_func[type]))();
   this->setText();
 }

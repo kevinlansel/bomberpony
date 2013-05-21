@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 19:43:28 2013 florian dewulf
-// Last update Mon May 20 13:22:20 2013 florian dewulf
+// Last update Tue May 21 14:09:15 2013 florian dewulf
 //
 
 #include	"MyGame.hpp"
@@ -72,9 +72,9 @@ void		MyGame::initialize(const std::string &map_type)
     for (unsigned int j = 0 ; j < it->size() ; ++j)
       {
 	if ((*it)[j] == 0)
-	  this->obs.push_back(new Obstacle(/* param obstacle destructible*/));//Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0)
+	  this->obs.push_back(new Obstacle(Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0), BREAKABLE_WALL));
 	else if ((*it)[j] == 1)
-	  this->obs.push_back(new Obstacle(/* param obstacle indestructible*/));//Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0)
+	  this->obs.push_back(new Obstacle(Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0), UNBREAKABLE_WALL));
 	else
 	  this->newPlayer(list_str.size(), i, j, (*it));
       }
