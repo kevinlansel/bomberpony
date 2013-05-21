@@ -4,8 +4,39 @@ void MyGame::initialize(void)
 {
   window_.create();
   camera_.initialize();
-  this->objects_.push_back(new Cube(Vector3f(-2000, 0, -2000), Vector3f(2000, -1, 2000), "./toto.tga"));
-  this->objects_.push_back(new Cube(Vector3f(-500, 300, -500), Vector3f(-200, 0, -200), "./carreaux.tga"));
+  this->objects_.push_back(new Cube(Vector3f(-2100, 0, -2100), Vector3f(2100, -1, 2100), "./toto.tga"));
+  int		a = -2100;
+  int		b = -1800;
+  int		c = -2100;
+  int		d = -1800;
+  while (a < 2100)
+    {
+      this->objects_.push_back(new Cube(Vector3f(-2100, 300, a), Vector3f(-1800, 0, b), "./carreaux.tga"));
+      while (c < 2100)
+	{
+	  this->objects_.push_back(new Cube(Vector3f(c, 300, -2100), Vector3f(d, 0, -1800), "./carreaux.tga"));
+	  c += 300;
+	  d += 300;
+	}
+      a += 300;
+      b += 300;
+    }
+  a = 2100;
+  b = 1800;
+  c = 2100;
+  d = 1800;
+  while (a > -2100)
+    {
+      this->objects_.push_back(new Cube(Vector3f(2100, 300, a), Vector3f(1800, 0, b), "./carreaux.tga"));
+      while (c > -2100)
+	{
+	  this->objects_.push_back(new Cube(Vector3f(c, 300, 2100), Vector3f(d, 0, 1800), "./carreaux.tga"));
+	  c -= 300;
+	  d -= 300;
+	}
+      a -= 300;
+      b -= 300;
+    }
   this->model = gdl::Model::load("./marvin.fbx");
   std::list<AObject*>::iterator itb = this->objects_.begin();
   for (; itb != this->objects_.end(); ++itb)
