@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Mon May 20 23:46:15 2013 florian dewulf
+// Last update Tue May 21 10:38:16 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -56,7 +56,8 @@ private:
   Vector3f	_limit_down;
   Vector3f	_limit_up;
   std::vector<int>	_list;
-  Sound		_snd;
+  Sound		_snd_move;
+  Sound		_snd_enter;
 };
 
 #endif

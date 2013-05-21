@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Tue May 21 10:33:28 2013 gery baudry
+// Last update Tue May 21 10:45:03 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
 
-Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice, const std::vector<int> &limit) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(1), _list(limit), _snd("./ressource/fart.wav")
+Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice, const std::vector<int> &limit) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(1), _list(limit), _snd_move("./ressource/Cursor Move.wav"), _snd_enter("./ressource/menu_click.wav")
 {
 }
 
@@ -48,8 +48,7 @@ MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
     return (tmp);
   else if (tempo + 0.2 < gameClock_.getTotalGameTime() && input.isKeyDown(gdl::Keys::Return))
     {
-      this->_snd.setSound("./ressource/menu_click.wav");
-      this->_snd.PlaySound();
+      this->_snd_enter.PlaySound();
       tempo = gameClock_.getTotalGameTime();
       return this->_list[this->_choice];
     }
@@ -72,16 +71,14 @@ MenuType	Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
     {
       if (input.isKeyDown(gdl::Keys::Down))
 	{
-	  this->_snd.setSound("./ressource/Cursor Move.wav");
-	  this->_snd.PlaySound();
+	  this->_snd_move.PlaySound();
 	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y - 65, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
 	  this->inc_choice();
 	}
       else if (input.isKeyDown(gdl::Keys::Up))
 	{
-	  this->_snd.setSound("./ressource/Cursor Move.wav");
-	  this->_snd.PlaySound();
+	  this->_snd_move.PlaySound();
 	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y + 65, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
 	  this->dec_choice();
