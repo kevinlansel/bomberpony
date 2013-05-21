@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:02 2013 Maxime Wojciak
-// Last update Tue May 21 18:44:30 2013 Maxime Wojciak
+// Last update Tue May 21 20:12:51 2013 Maxime Wojciak
 //
 
 #ifndef		_BOMBE__
