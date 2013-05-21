@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:07 2013 Maxime Wojciak
-// Last update Tue May 21 19:32:44 2013 Maxime Wojciak
+// Last update Tue May 21 20:12:48 2013 Maxime Wojciak
 //
 
 #include	"Bombe.hpp"
@@ -29,14 +29,7 @@ Vector3f	Bombe::getCoord() {
 */
 
 void		Bombe::initialize(void) {
-  //	Elle est la L'erreur !!
-  //	Le Diable !!
-  //	El Diablo !!
-  //	Satan !
-  //	Sheitan !!
-  //	Pute !!
-  //	Negre !
-  //  this->_BombeModel->initialize("./bomb.fbx");
+  this->_BombeModel = gdl::Model::load("./bomb.fbx");
 }
 
 /*
