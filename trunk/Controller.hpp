@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Mon May 20 15:41:14 2013 florian dewulf
+// Last update Tue May 21 00:15:07 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -15,14 +15,15 @@
 #include	<map>
 #include	<string>
 #include	<vector>
+#include	<sstream>
 
 #include	"Bomberman.h"
 #include	"Menu.hpp"
 #include	"Scene.hpp"
-#include	"Scene.hpp"
 #include	"GameClock.hpp"
 #include	"Input.hpp"
 #include	"File.hpp"
+#include	"Utils.hpp"
 
 class		Controller
 {
@@ -54,6 +55,9 @@ private:
   MenuType	changeIA(const MenuType &);
   MenuType	loadGame(const MenuType &);
   MenuType	launchGame(const MenuType &);
+  MenuType	incOption(const MenuType &);
+  MenuType	decOption(const MenuType &);
+  void		changeMap();
 
 private:
   Scene					*_scene;	// Menu or game
@@ -62,6 +66,7 @@ private:
   std::string				_map_option;	// if it's random = the size, else the name of the file
   MenuType				_screen;	// type of scene
   int					_ia;
+  unsigned int				_offset;
   std::list<Score>			_score_list;	// list of the score
   std::list<std::string>		_map;		// list of the map in the folder map
   std::map<MenuType, std::vector<int> >	_map_menu;	// arg to pass to the menu

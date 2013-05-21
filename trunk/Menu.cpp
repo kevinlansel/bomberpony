@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Mon May 20 17:18:10 2013 florian dewulf
+// Last update Tue May 21 00:31:56 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
 
-Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice, const std::vector<int> &limit) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(1), _list(limit)
+Menu::Menu(const Vector3f &vec, const Vector3f &pt, MenuType choice, const std::vector<int> &limit) : Scene(vec, pt), _background(NULL), _cursor(Vector3f(20, -10, 0), Vector3f(40, 0, 0), Vector3f(20, 10, 0), Vector3f(1.0, 1.0, 1.0)), _choice(1), _list(limit), _snd("./ressource/fart.wav")
 {
 }
 
@@ -36,14 +36,17 @@ void		Menu::initialize(const std::string &texture, const Vector3f &limit_up, con
 MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
 {
   static float	tempo = -1;
+  MenuType	tmp;
 
   if (tempo == -1)
     tempo = gameClock_.getTotalGameTime();
   this->_camera.update();
   this->_background->update();
   this->_cursor.update();
-  this->move(tempo, gameClock_, input);
-  if (tempo + 0.2 < gameClock_.getTotalGameTime() && input.isKeyDown(gdl::Keys::Return))
+  tmp = this->move(tempo, gameClock_, input);
+  if (tmp == DEC_OPTION || tmp == INC_OPTION)
+    return (tmp);
+  else if (tempo + 0.2 < gameClock_.getTotalGameTime() && input.isKeyDown(gdl::Keys::Return))
     {
       this->_snd.PlaySound();
       tempo = gameClock_.getTotalGameTime();
@@ -60,7 +63,7 @@ void		Menu::draw()
   this->_txt.draw();
 }
 
-void		Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
+MenuType	Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
 {
   Vector3f	tmp(this->_cursor.getTranslation());
 
@@ -78,7 +81,10 @@ void		Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
 	  tempo = gameClock_.getTotalGameTime();
 	  this->dec_choice();
 	}
+      else
+	return this->change_option(input);
     }
+  return NOTHING;
 }
 
 MenuType	Menu::getChoice() const
@@ -104,4 +110,13 @@ void		Menu::dec_choice()
       this->_choice = this->_list[0] - 1;
       this->_cursor.setTranslation(this->_limit_down);
     }
+}
+
+MenuType	Menu::change_option(gdl::Input &input)
+{
+  if (input.isKeyDown(gdl::Keys::Left) && this->_list[this->_choice] == MAP_OPTION)
+    return (DEC_OPTION);
+  else if (input.isKeyDown(gdl::Keys::Right) && this->_list[this->_choice] == MAP_OPTION)
+    return (INC_OPTION);
+  return NOTHING;
 }
