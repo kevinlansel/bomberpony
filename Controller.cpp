@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Tue May 21 11:31:15 2013 gery baudry
+// Last update Tue May 21 13:12:42 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -63,8 +63,10 @@ bool		Controller::update(gdl::GameClock &clock, gdl::Input &input)
   MenuType	tmp;
 
   tmp = this->_scene->update(clock, input);
-  if (dynamic_cast<Menu *>(this->_scene))
+  if (dynamic_cast<Menu *>(this->_scene) && tmp != INC_OPTION && tmp != DEC_OPTION)
     this->_screen = reinterpret_cast<Menu *>(this->_scene)->getChoice();//Dans le constructeur faire une map de ptr sur func
+  else if (dynamic_cast<Menu *>(this->_scene) && (tmp == INC_OPTION || tmp == DEC_OPTION))
+    this->_screen = tmp;
   if (tmp == QUIT)
     return (true);
   else if (tmp != NOTHING)// != sound, etc
@@ -90,14 +92,11 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
       this->_screen = type;
     }
   else if (type == ONE || type == TWO || type == LOAD)
-    this->_screen = (this->*(this->_ptr_func[type]))(type);
+    this->_screen = (this->*(this->_ptr_func[type]))();
   else
     {
-      std::cout << type << std::endl;
-      if (type == SOUND || type == MAP_TYPE || type == IA || type == LOAD || type == DEC_OPTION || type == INC_OPTION) {
-	std::cout << type << std::endl;
-	this->_screen = (this->*(this->_ptr_func[type]))(type);
-      }
+      if (type == SOUND || type == MAP_TYPE || type == IA || type == LOAD || type == DEC_OPTION || type == INC_OPTION)
+	this->_screen = (this->*(this->_ptr_func[type]))();
     }
   this->setText();
 }
@@ -164,19 +163,19 @@ void		Controller::setText()
   this->_scene->setTxt(str, 500, 200);
 }
 
-MenuType	Controller::changeSound(const MenuType &type)
+MenuType	Controller::changeSound()
 {
   this->_sound = !this->_sound;
   return OPTION;
 }
 
-MenuType	Controller::changeTypeMap(const MenuType &type)
+MenuType	Controller::changeTypeMap()
 {
   this->_map_choice = !this->_map_choice;
   return OPTION;
 }
 
-MenuType	Controller::changeIA(const MenuType &type)
+MenuType	Controller::changeIA()
 {
   this->_ia++;
   if (this->_ia == HARD + 1)
@@ -184,12 +183,12 @@ MenuType	Controller::changeIA(const MenuType &type)
   return OPTION;
 }
 
-MenuType	Controller::loadGame(const MenuType &type)
+MenuType	Controller::loadGame()
 {
   return GAME;
 }
 
-MenuType	Controller::launchGame(const MenuType &type)
+MenuType	Controller::launchGame()
 {
   return GAME;
 }
@@ -212,16 +211,14 @@ void		Controller::changeMap()
     }
 }
 
-MenuType	Controller::incOption(const MenuType &type)
+MenuType	Controller::incOption()
 {
   int			nb;
   std::stringstream	ss;
 
-  std::cout << "choix = " << this->_map_choice << std::endl;
   if (this->_map_choice)
     {
       nb = Utils::StringToInt(this->_map_option);
-      std::cout << "nb = " << nb << std::endl;
       nb++;
       ss.str("");
       ss << nb;
@@ -235,12 +232,12 @@ MenuType	Controller::incOption(const MenuType &type)
   return OPTION;
 }
 
-MenuType	Controller::decOption(const MenuType &type)
+MenuType	Controller::decOption()
 {
   int			nb;
   std::stringstream	ss;
 
-  if (this->_map_choice && (nb = Utils::StringToInt(this->_map_option) > 15))
+  if (this->_map_choice && (nb = Utils::StringToInt(this->_map_option)) > 15)
     {
       nb--;
       ss.str("");

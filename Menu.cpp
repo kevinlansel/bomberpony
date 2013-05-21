@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Tue May 21 10:45:03 2013 florian dewulf
+// Last update Tue May 21 13:16:39 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
@@ -84,7 +84,7 @@ MenuType	Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
 	  this->dec_choice();
 	}
       else
-	return this->change_option(input);
+	return this->change_option(input, tempo, gameClock_);
     }
   return NOTHING;
 }
@@ -114,11 +114,17 @@ void		Menu::dec_choice()
     }
 }
 
-MenuType	Menu::change_option(gdl::Input &input)
+MenuType	Menu::change_option(gdl::Input &input, float &tempo, gdl::GameClock &gameClock_)
 {
   if (input.isKeyDown(gdl::Keys::Left) && this->_list[this->_choice] == MAP_OPTION)
-    return (DEC_OPTION);
+    {
+      tempo = gameClock_.getTotalGameTime();
+      return (DEC_OPTION);
+    }
   else if (input.isKeyDown(gdl::Keys::Right) && this->_list[this->_choice] == MAP_OPTION)
-    return (INC_OPTION);
+    {
+      tempo = gameClock_.getTotalGameTime();
+      return (INC_OPTION);
+    }
   return NOTHING;
 }
