@@ -3,7 +3,7 @@
 
 #include	"AObject.hpp"
 
-class		Obstacle
+class		Obstacle : public AObject
 {
 public:
   Obstacle();
