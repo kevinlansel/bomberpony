@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:40 2013 gery baudry
-// Last update Tue May 21 10:27:46 2013 florian dewulf
+// Last update Tue May 21 10:35:09 2013 gery baudry
 //
 
 #include	"Sound.hpp"
@@ -14,6 +14,7 @@ Sound::Sound(const std::string &str)
 {
   if (!this->_menusound.LoadFromFile(str))
     std::cout << "Erreur chargement fichier audio" << std::endl;
+  this->_snd = str;
 }
 
 Sound::~Sound()
@@ -33,6 +34,8 @@ sf::SoundBuffer		Sound::getSound()
 
 void			Sound::setSound(const std::string &sound)
 {
-  if (this->_menusound.LoadFromFile(sound))
+  std::cout << sound << std::endl << this->_snd << std::endl;
+  if (this->_snd != sound && !this->_menusound.LoadFromFile(sound))
     std::cout << "Erreur chargement fichier audio" << std::endl;
+  this->_snd = sound;
 }
