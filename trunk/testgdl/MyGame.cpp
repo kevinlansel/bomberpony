@@ -37,7 +37,8 @@ void MyGame::initialize(void)
       a -= 300;
       b -= 300;
     }
-  this->model = gdl::Model::load("./marvin.fbx");
+  this->model = new Bombe();
+  this->model->initialize();
   std::list<AObject*>::iterator itb = this->objects_.begin();
   for (; itb != this->objects_.end(); ++itb)
     (*itb)->initialize();
@@ -49,8 +50,7 @@ void MyGame::update(void)
   for (; itb != this->objects_.end(); ++itb)
     (*itb)->update();
   camera_.update(gameClock_, input_);
-  this->model.play("Take 001");
-  this->model.update(gameClock_);
+  this->model->update(gameClock_, input_);
 }
 
 void MyGame::draw(void)
@@ -61,7 +61,7 @@ void MyGame::draw(void)
   std::list<AObject*>::iterator itb = this->objects_.begin();
   for (; itb != this->objects_.end(); ++itb)
     (*itb)->draw();
-  this->model.draw();
+  this->model->draw();
 }
 
 void MyGame::unload(void)

@@ -9,6 +9,7 @@
 #include "Forme.hpp"
 #include "Game.hpp"
 #include "Model.hpp"
+#include "Bombe.hpp"
 
 class MyGame : public gdl::Game
 {
@@ -21,5 +22,6 @@ public:
 private:
   Camera camera_;
   std::list<AObject*>  objects_;
-  gdl::Model		model;
+  Bombe		*model;
+  Vector3f	_translation;
 };
