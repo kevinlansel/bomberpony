@@ -1,8 +1,9 @@
 #include	"Obstacle.hpp"
 
-Obstacle::Obstacle()
+Obstacle::Obstacle(const Vector3f &v, Obstacle::typeObs obs):
+  _v(v), _type(obs)
 {
-  // generation du positionnement en x et y ainsi que le type d'obstacle
+  
 }
 
 Obstacle::~Obstacle()
@@ -29,32 +30,17 @@ Obstacle::typeObs	Obstacle::getType() const
   return (this->_type);
 }
 
-int		Obstacle::getX() const
+void	Obstacle::setType(Obstacle::typeObs obs)
 {
-  return (this->_v.x);
+  this->_type = obs;
 }
 
-int		Obstacle::getY() const
+Vector3f	Obstacle::getPosition() const
 {
-  return (this->_v.y);
+  return (this->_v);
 }
 
-int		Obstacle::getZ() const
+void		Obstacle::setPosition(const Vector3f &v)
 {
-  return (this->_v.z);
-}
-
-void		Obstacle::setX(int x)
-{
-  this->_v.x = x;
-}
-
-void		Obstacle::setY(int y)
-{
-  this->_v.y = y;
-}
-
-void		Obstacle::setZ(int z)
-{
-  this->_v.z = z;
+  this->_v = v;
 }

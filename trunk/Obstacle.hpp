@@ -6,25 +6,22 @@
 class		Obstacle : public AObject
 {
 public:
-  Obstacle();
-  virtual ~Obstacle();
-
   enum		typeObs
     {
-      WALL,
+      UNBREAKABLE_WALL,
       BREAKABLE_WALL
     };
-
+  
+  Obstacle(const Vector3f &, typeObs);
+  virtual ~Obstacle();
+  
   void		initialize();
   void		update();
   void		draw();
   typeObs	getType() const;
-  int		getX() const;
-  int		getY() const;
-  int		getZ() const;
-  void		setX(int);
-  void		setY(int);
-  void		setZ(int);
+  void		setType(typeObs);
+  Vector3f	getPosition() const;
+  void		setPosition(const Vector3f &);
 
 private:
   typeObs	_type;
