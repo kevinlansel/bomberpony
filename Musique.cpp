@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:40 2013 gery baudry
-// Last update Tue May 21 11:12:17 2013 gery baudry
+// Last update Tue May 21 11:37:58 2013 gery baudry
 //
 
 #include	"Musique.hpp"
@@ -24,11 +24,6 @@ Musique::~Musique()
 void			Musique::PlayMusique()
 {
   this->_music.Play();
-}
-
-sf::Music		Musique::getMusique()
-{
-  return (this->_music);
 }
 
 void			Musique::setMusique(const std::string &music)

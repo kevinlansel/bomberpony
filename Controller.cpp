@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Tue May 21 00:29:37 2013 florian dewulf
+// Last update Tue May 21 11:31:15 2013 gery baudry
 //
 
 #include	"Controller.hpp"
 
-Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_option("15"), _screen(MENU), _ia(0), _offset(0)
+Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_option("15"), _screen(MENU), _ia(0), _offset(0), _musique("./ressource/contact.wav")
 {
   int		menu[] = {5, GAME, OPTION, SCORE, QUIT};
   int		score[] = {2, MENU};
@@ -43,6 +43,7 @@ void		Controller::initialize()
   this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, 52 - ((this->_map_menu[MENU][0] - 2) * 65), 0));
   this->_scene->setColor(255, 255, 255);
   this->setText();
+  this->_musique.PlayMusique();
 }
 
 void		Controller::Majmap()
