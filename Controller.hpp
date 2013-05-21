@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Tue May 21 13:12:10 2013 florian dewulf
+// Last update Tue May 21 13:35:35 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -54,10 +54,10 @@ private:
   MenuType	changeSound();
   MenuType	changeTypeMap();
   MenuType	changeIA();
-  MenuType	loadGame();
-  MenuType	launchGame();
+  MenuType	returnGame();
   MenuType	incOption();
   MenuType	decOption();
+  MenuType	returnOption();
   void		changeMap();
 
 private:

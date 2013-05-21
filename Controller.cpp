@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Tue May 21 13:12:42 2013 florian dewulf
+// Last update Tue May 21 13:37:27 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -22,12 +22,14 @@ Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_o
   this->_map_menu[SCORE] = std::vector<int>(score, score + sizeof(score) / sizeof(int));
   this->_map_menu[OPTION] = std::vector<int>(option, option + sizeof(option) / sizeof(int));
 
+  this->_ptr_func[MAP_OPTION] = &Controller::returnOption;
+  this->_ptr_func[MAP_TYPE] = &Controller::returnOption;
   this->_ptr_func[SOUND] = &Controller::changeSound;
   this->_ptr_func[MAP_TYPE] = &Controller::changeTypeMap;
   this->_ptr_func[IA] = &Controller::changeIA;
-  this->_ptr_func[LOAD] = &Controller::loadGame;
-  this->_ptr_func[ONE] = &Controller::launchGame;
-  this->_ptr_func[TWO] = &Controller::launchGame;
+  this->_ptr_func[LOAD] = &Controller::returnGame;
+  this->_ptr_func[ONE] = &Controller::returnGame;
+  this->_ptr_func[TWO] = &Controller::returnGame;
   this->_ptr_func[INC_OPTION] = &Controller::incOption;
   this->_ptr_func[DEC_OPTION] = &Controller::decOption;
 }
@@ -91,13 +93,8 @@ void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuT
       this->_scene->setColor(255, 255, 255);
       this->_screen = type;
     }
-  else if (type == ONE || type == TWO || type == LOAD)
+  else// if (type == ONE || type == TWO || type == LOAD)
     this->_screen = (this->*(this->_ptr_func[type]))();
-  else
-    {
-      if (type == SOUND || type == MAP_TYPE || type == IA || type == LOAD || type == DEC_OPTION || type == INC_OPTION)
-	this->_screen = (this->*(this->_ptr_func[type]))();
-    }
   this->setText();
 }
 
@@ -183,14 +180,14 @@ MenuType	Controller::changeIA()
   return OPTION;
 }
 
-MenuType	Controller::loadGame()
+MenuType	Controller::returnGame()
 {
   return GAME;
 }
 
-MenuType	Controller::launchGame()
+MenuType	Controller::returnOption()
 {
-  return GAME;
+  return OPTION;
 }
 
 void		Controller::changeMap()
