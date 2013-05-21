@@ -1,6 +1,8 @@
 #ifndef		__OBSTACLE_HPP__
 # define	__OBSTACLE_HPP__
 
+#include	"AObject.hpp"
+
 class		Obstacle
 {
 public:
@@ -13,16 +15,20 @@ public:
       BREAKABLE_WALL
     };
 
+  void		initialize();
+  void		update();
+  void		draw();
   typeObs	getType() const;
   int		getX() const;
   int		getY() const;
+  int		getZ() const;
   void		setX(int);
   void		setY(int);
+  void		setZ(int);
 
 private:
   typeObs	_type;
-  int		_x;
-  int		_y;
+  Vector3f	_v;
 };
 
 #endif
