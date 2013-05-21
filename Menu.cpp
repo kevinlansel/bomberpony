@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Tue May 21 00:31:56 2013 florian dewulf
+// Last update Tue May 21 10:27:23 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
@@ -71,12 +71,16 @@ MenuType	Menu::move(float &tempo, gdl::GameClock &gameClock_, gdl::Input &input)
     {
       if (input.isKeyDown(gdl::Keys::Down))
 	{
+	  this->_snd.setSound("./ressource/Cursor Move.wav");
+	  this->_snd.PlaySound();
 	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y - 65, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
 	  this->inc_choice();
 	}
       else if (input.isKeyDown(gdl::Keys::Up))
 	{
+	  this->_snd.setSound("./ressource/Cursor Move.wav");
+	  this->_snd.PlaySound();
 	  this->_cursor.setTranslation(Vector3f(tmp.x, tmp.y + 65, tmp.z));
 	  tempo = gameClock_.getTotalGameTime();
 	  this->dec_choice();
