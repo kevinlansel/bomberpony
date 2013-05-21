@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Tue May 21 14:50:37 2013 florian dewulf
+// Last update Tue May 21 15:37:28 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -41,6 +41,7 @@ Controller::~Controller()
 
 void		Controller::initialize()
 {
+  this->Majmap();
   this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), MENU, this->_map_menu[MENU]);
   this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, 52 - ((this->_map_menu[MENU][0] - 2) * 65), 0));
   this->_scene->setColor(255, 255, 255);
@@ -172,7 +173,14 @@ MenuType	Controller::changeSound()
 
 MenuType	Controller::changeTypeMap()
 {
-  this->_map_choice = !this->_map_choice;
+  if (this->_map.size() > 0)
+    {
+      this->_map_choice = !this->_map_choice;
+      if (!this->_map_choice)
+	this->changeMap();
+      else
+	this->_map_option = "15";
+    }
   return OPTION;
 }
 
