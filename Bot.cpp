@@ -5,12 +5,10 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:07:06 2013 kevin lansel
-// Last update Mon May 20 16:58:43 2013 kevin lansel
+// Last update Tue May 21 16:56:33 2013 florian dewulf
 //
 
 
-#include	<stdlib.h>
-#include	<time.h>
 #include	<sstream>
 #include	"Bot.hpp"
 
@@ -27,7 +25,6 @@ static std::string	giveName()
 
 Bot::Bot(unsigned int x, unsigned int y, unsigned int size, eMode m) : Player(-1, giveName()), _x(x), _y(y), _size(size), _mode(m)
 {
-  srand(time(NULL));
 }
 
 Bot::~Bot()
