@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Tue May 21 00:15:07 2013 florian dewulf
+// Last update Tue May 21 11:31:14 2013 gery baudry
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -24,6 +24,7 @@
 #include	"Input.hpp"
 #include	"File.hpp"
 #include	"Utils.hpp"
+#include	"Musique.hpp"
 
 class		Controller
 {
@@ -67,6 +68,7 @@ private:
   MenuType				_screen;	// type of scene
   int					_ia;
   unsigned int				_offset;
+  Musique				_musique;
   std::list<Score>			_score_list;	// list of the score
   std::list<std::string>		_map;		// list of the map in the folder map
   std::map<MenuType, std::vector<int> >	_map_menu;	// arg to pass to the menu

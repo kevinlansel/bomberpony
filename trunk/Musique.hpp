@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:56 2013 gery baudry
-// Last update Tue May 21 11:11:20 2013 gery baudry
+// Last update Tue May 21 11:37:57 2013 gery baudry
 //
 
 #ifndef		MUSIQUE_HPP__
@@ -25,7 +25,6 @@ public:
   void			PlayMusique();
 
 public:
-  sf::Music		getMusique();
   void			setMusique(const std::string &music);
 
 private:
