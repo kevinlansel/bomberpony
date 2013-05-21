@@ -90,3 +90,12 @@ HARD :
 ~OFFENSIF~ :
 		Si il n'est pas en danger, target une cible et détruit les blocks qui le génes pour allez jusqu'à ce point
 		      - Une partie ~DEFENSIF~ est intégré pour ne pas se coincé, faire un TRY_PUT_BOMB et passé la vérification defensive
+
+
+
+Defensif :
+
+-Créer une map (vector) de bombes et explosions
+-Pondère les directions où aller
+-check si c'est possible suivant les obstacles et bombes
+-move
