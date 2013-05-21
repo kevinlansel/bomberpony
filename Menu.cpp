@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Tue May 21 10:27:23 2013 florian dewulf
+// Last update Tue May 21 10:33:28 2013 gery baudry
 //
 
 #include	"Menu.hpp"
@@ -48,6 +48,7 @@ MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input)
     return (tmp);
   else if (tempo + 0.2 < gameClock_.getTotalGameTime() && input.isKeyDown(gdl::Keys::Return))
     {
+      this->_snd.setSound("./ressource/menu_click.wav");
       this->_snd.PlaySound();
       tempo = gameClock_.getTotalGameTime();
       return this->_list[this->_choice];
