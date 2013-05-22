@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:05:47 2013 kevin lansel
-// Last update Mon May 20 17:16:12 2013 kevin lansel
+// Last update Wed May 22 10:50:39 2013 kevin lansel
 //
 
 #ifndef		BOT_HPP_
@@ -14,6 +14,15 @@
 #include	<string>
 #include	"APlayer.hpp"
 #include	"Bomberman.h"
+
+enum		eDir
+  {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+    DEFAULT
+  };
 
 class Bot : public APlayer
 {
