@@ -1,0 +1,6 @@
+Creation d'une Classe Explosion.
+Creation de list pour les explosions.
+	--> On va push back les model 3D afin de faire une croix comme le vrai
+bomberman.
+
+
