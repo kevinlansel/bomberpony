@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Wed May 22 12:45:08 2013 Maxime Wojciak
-// Last update Wed May 22 12:48:12 2013 Maxime Wojciak
+// Last update Wed May 22 13:19:08 2013 Maxime Wojciak
 //
 
 #ifndef		_EXPLOSION__
@@ -17,9 +17,10 @@ class Explosion {
     ~Explosion();
 
   public:
-
-    /*getter & setter*/
-
+    void	initialize(void);
+    void	update(void);
+    void	draw(void);
+    void	unload(void);
   private:
     std::list<Explosion>	_explosion;
 };

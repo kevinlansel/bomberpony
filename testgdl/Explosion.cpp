@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Wed May 22 12:44:23 2013 Maxime Wojciak
-// Last update Wed May 22 13:07:59 2013 Maxime Wojciak
+// Last update Wed May 22 13:23:46 2013 Maxime Wojciak
 //
 
 #include	"Explosion.hpp"
@@ -18,10 +18,18 @@ Explosion::~Explosion() {
 
 }
 
-void		setExplosion(std::list<Explosion> boum) {
-  this->_explosion = boum;
+void		Explosion::initialize(void) {
+
 }
 
-std::list<Explosion>	getExplosion() {
+void		Explosion::update(void) {
+
+}
+
+void		Explosion::draw(void) {
+
+}
+
+void		Explosion::unload(void) {
 
 }
