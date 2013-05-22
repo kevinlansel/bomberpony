@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 19:43:28 2013 florian dewulf
-// Last update Tue May 21 14:09:15 2013 florian dewulf
+// Last update Wed May 22 19:13:13 2013 florian dewulf
 //
 
 #include	"MyGame.hpp"
 
-MyGame::MyGame(bool sound, bool map_choice, bool nb_j) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false), _nb_j(nb_j), _sound(sound), _map_choice(map_choice)
+MyGame::MyGame(bool sound, bool map_choice, bool nb_j, eMode ia) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false), _nb_j(nb_j), _sound(sound), _map_choice(map_choice), _ia(ia)
 {
 }
 
@@ -103,5 +103,5 @@ void		MyGame::newPlayer(unsigned int size_list, unsigned int x, unsigned int y)
   else if (this->_players.size() == 1)
     this->_players.push_back(new Player(/*param j2*/));//Vector3f(y * 300 - (size_list * 300) / 2, 0, x * 300 - (size_list * 300) / 2, 0)
   else
-    this->_players.push_back(new Bot(x, y, /*mode*/, size_list));
+    this->_players.push_back(new Bot(x, y, this->_ia, size_list));
 }
