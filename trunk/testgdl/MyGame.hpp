@@ -20,8 +20,8 @@ public:
   void unload(void);
 
 private:
-  Camera camera_;
-  std::list<AObject*>  objects_;
-  Bombe		*model;
-  Vector3f	_translation;
+  Camera		camera_;
+  std::list<AObject*>	objects_;
+  Bombe			*_bombe;
+  Vector3f		_translation;
 };

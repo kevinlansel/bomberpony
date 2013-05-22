@@ -37,8 +37,8 @@ void MyGame::initialize(void)
       a -= 300;
       b -= 300;
     }
-  this->model = new Bombe();
-  this->model->initialize();
+  this->_bombe = new Bombe();
+  this->_bombe->initialize();
   std::list<AObject*>::iterator itb = this->objects_.begin();
   for (; itb != this->objects_.end(); ++itb)
     (*itb)->initialize();
@@ -50,7 +50,7 @@ void MyGame::update(void)
   for (; itb != this->objects_.end(); ++itb)
     (*itb)->update();
   camera_.update(gameClock_, input_);
-  this->model->update(gameClock_, input_);
+  this->_bombe->update(gameClock_, input_);
 }
 
 void MyGame::draw(void)
@@ -61,7 +61,7 @@ void MyGame::draw(void)
   std::list<AObject*>::iterator itb = this->objects_.begin();
   for (; itb != this->objects_.end(); ++itb)
     (*itb)->draw();
-  this->model->draw();
+  this->_bombe->draw();
 }
 
 void MyGame::unload(void)

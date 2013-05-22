@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:02 2013 Maxime Wojciak
-// Last update Tue May 21 20:12:51 2013 Maxime Wojciak
+// Last update Wed May 22 12:30:09 2013 Maxime Wojciak
 //
 
 #ifndef		_BOMBE__
@@ -17,6 +17,8 @@
 #include	<list>
 #include	<iostream>
 #include	<string>
+#include	<cstring>
+#include	<unistd.h>
 #include	"Vector3f.hpp"
 #include	"GameClock.hpp"
 #include	"Model.hpp"
@@ -38,6 +40,7 @@ public:
 private:
   Vector3f	_translation;
   gdl::Model	_BombeModel;
+  gdl::Model	_ExplosionModel;
 };
 
 #endif /* !_BOMBE__ */

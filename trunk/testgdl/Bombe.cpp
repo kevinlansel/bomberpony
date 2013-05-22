@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:07 2013 Maxime Wojciak
-// Last update Tue May 21 20:12:48 2013 Maxime Wojciak
+// Last update Wed May 22 12:35:38 2013 Maxime Wojciak
 //
 
 #include	"Bombe.hpp"
@@ -44,13 +44,13 @@ void		Bombe::update(gdl::GameClock &_clock, gdl::Input &input) {
   if (input.isKeyDown(gdl::Keys::Right) == true)
   {
     glTranslatef(-this->_translation.x, -this->_translation.y, -this->_translation.z);
-    this->_translation.x = (_translation.x + 0.2);
+    this->_translation.x = (_translation.x + 1);
     glTranslatef(this->_translation.x, this->_translation.y, this->_translation.z);
   }
   if (input.isKeyDown(gdl::Keys::Left) == true)
   {
     glTranslatef(-this->_translation.x, -this->_translation.y, -this->_translation.z);
-    this->_translation.x = (_translation.x - 0.2);
+    this->_translation.x = (_translation.x - 1);
     glTranslatef(this->_translation.x, this->_translation.y, this->_translation.z);
   }
 }
@@ -61,6 +61,8 @@ void		Bombe::update(gdl::GameClock &_clock, gdl::Input &input) {
 
 void		Bombe::draw() {
   this->_BombeModel.draw();
+//  sleep(4);
+  std::cout << "Bouuuum La bombe explose !! " << std::endl;
 }
 
 void		Bombe::unload() {
