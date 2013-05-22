@@ -30,3 +30,37 @@ void			save_game(std::list<APlayer *> aplayer, std::list<Obstacle *> obs)//LISTE
     }
   return (list);
 }
+
+void				Bot::putExplosion(std::vector<std::string> &tab, const int &x, const int &y, const unsigned int &size)
+{
+  int				xtmp = x - 2;
+  int				xtmp = y - 2;
+
+  for (; xtmp < x + 2 ; ++xtmp)
+    if (xtmp != x && xtmp >= 0 && xtmp < size && tab[y][xtmp] != '2')
+      tab[y][xtmp] = '1';
+  for (; ytmp < y + 2 ; ++ytmp)
+    if (ytmp != y && ytmp >= 0 && ytmp < size && tab[ytmp][x] != '2')
+      tab[ytmp][x] = '1';
+}
+
+std::vector<std::string>	Bot::BombMapGenerator(const std::list<Bombe *> &list, unsigned int size)
+{
+  int				x;
+  int				y;
+  std::string			model;
+  std::vector<std::string>	tab;
+
+  for (unsigned int i = 0 ; i < size ; ++i)
+    model += '0';
+  for (unsigned int i = 0 ; i < size ; ++i)//loop push back des string de size char
+    tab.push_back(std::string(model));
+  for (std::list<Bombe *>::const_iterator it = list.begin() ; it != list.end() ; ++it)
+    {
+      x = (int)(((*it)->getCoord().x + (size * 150)) / 300);
+      y = (int)(((*it)->getCoord().z + (size * 150)) / 300);
+      tab[y][x] = '2';
+      this->putExplosion(tab, x, y, size);
+    }
+  return tab;
+}
