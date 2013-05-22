@@ -64,3 +64,24 @@ std::vector<std::string>	Bot::BombMapGenerator(const std::list<Bombe *> &list, u
     }
   return tab;
 }
+
+void				Bot::MoveBot(eDir direction)
+{
+  switch (direction)
+    {
+    case UP:
+      this->destination.z -= 300;
+      break;
+    case DOWN:
+      this->destination.z += 300;
+      break;
+    case LEFT:
+      this->destination.x -= 300;
+      break;
+    case RIGHT:
+      this->destination.x += 300;
+      break;
+    default:
+      break;
+    }
+}
