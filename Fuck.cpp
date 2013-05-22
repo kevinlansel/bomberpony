@@ -53,7 +53,7 @@ std::vector<std::string>	Bot::BombMapGenerator(const std::list<Bombe *> &list, u
 
   for (unsigned int i = 0 ; i < size ; ++i)
     model += '0';
-  for (unsigned int i = 0 ; i < size ; ++i)//loop push back des string de size char
+  for (unsigned int i = 0 ; i < size ; ++i)
     tab.push_back(std::string(model));
   for (std::list<Bombe *>::const_iterator it = list.begin() ; it != list.end() ; ++it)
     {
