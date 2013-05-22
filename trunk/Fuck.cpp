@@ -70,16 +70,16 @@ void				Bot::MoveBot(eDir direction)
   switch (direction)
     {
     case UP:
-      this->destination.z -= 300;
+      this->_destination.z -= 300;
       break;
     case DOWN:
-      this->destination.z += 300;
+      this->_destination.z += 300;
       break;
     case LEFT:
-      this->destination.x -= 300;
+      this->_destination.x -= 300;
       break;
     case RIGHT:
-      this->destination.x += 300;
+      this->_destination.x += 300;
       break;
     default:
       break;
