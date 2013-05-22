@@ -59,10 +59,34 @@ std::vector<std::string>	Bot::BombMapGenerator(const std::list<Bombe *> &list, u
     {
       x = (int)(((*it)->getCoord().x + (size * 150)) / 300);
       y = (int)(((*it)->getCoord().z + (size * 150)) / 300);
-      tab[y][x] = '2';
+      tab[y][x] = '*';
       this->putExplosion(tab, x, y, size);
     }
   return tab;
+}
+
+void				Bot::checkCase(const std::vector<std::string> &mapBomb, std::vector<std::string> &map, int x, int y)
+{
+  if (!(x < 0 || x > mapBomb.size() || y < 0 || y > mapBomb.size()))
+    {
+      char	c = mapBomb[y][x];
+      mapBomb[y][x] = c + 1;
+    }
+}
+
+std::vector<std::string>	Bot::PondDir(const std::vector<std::string> &mapBomb)
+{
+  std::vector<std::string>	map(mapBomb);
+
+  for (std::vector<std::string>::iterator it = map.begin ; it != map.end() ; ++it)
+    for (unsigned int i = 0 ; i < it->size() ; ++i)
+      (*it)[i] = '0';
+  //check si sur une  ligne ou colonne pour déjà faire +1 à gauche et droite ou haut et bas
+  this->checkCase(mapBomb, map, this->x, this->y);
+  this->checkCase(mapBomb, map, this->x - 1, this->y);
+  this->checkCase(mapBomb, map, this->x + 1, this->y);
+  this->checkCase(mapBomb, map, this->x, this->y - 1);
+  this->checkCase(mapBomb, map, this->x, this->y + 1);
 }
 
 void				Bot::MoveBot(eDir direction)
