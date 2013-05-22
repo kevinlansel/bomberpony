@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 17:03:33 2013 florian dewulf
-// Last update Mon May 20 13:02:49 2013 florian dewulf
+// Last update Wed May 22 21:52:54 2013 florian dewulf
 //
 
 #ifndef		GAMEPLAY_HPP__
@@ -25,7 +25,7 @@
 class		Gameplay : public Scene
 {
 public:
-  Gameplay(bool, bool);
+  Gameplay(bool, bool, bool, eMode);
   Gameplay(bool, const std::list<std::string> &);
   virtual	~Gameplay();
 
@@ -42,6 +42,7 @@ private:
   bool				_nb_j;
   bool				_sound;
   bool				_map_choice;
+  eMode				_ia;
   std::list<APlayer *>		_players;
   std::list<Obstacle *>		_obs;
   std::list<Bonus *>		_bonus;

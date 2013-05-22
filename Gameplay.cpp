@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 19:43:28 2013 florian dewulf
-// Last update Mon May 20 13:03:49 2013 florian dewulf
+// Last update Wed May 22 21:51:59 2013 florian dewulf
 //
 
 #include	"Gameplay.hpp"
 
-Gameplay::Gameplay(bool sound, bool map_choice, bool nb_j) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false), _nb_j(nb_j), _sound(sound), _map_choice(map_choice)
+Gameplay::Gameplay(bool sound, bool map_choice, bool nb_j, eMode ia) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false), _nb_j(nb_j), _sound(sound), _map_choice(map_choice), _ia(ia)
 {
 }
 
@@ -33,7 +33,21 @@ Gameplay::Gameplay(bool sound, const std::list<std::string> &toload) : Scene(Vec
       ++it;
       for ( ; it != toload.end() ; ++it)
 	{
-	  
+	  if (it->find("TYPE:APLAYER") == 0 && Utils::ParsePlayer(it, this->_players) == false)
+	    {
+	      this->_error = true;
+	      return;
+	    }
+	  else if (it->find("TYPE:OBSTACLE") == 0 && Utils::ParseObstacle(it, this->_obs) == false)
+	    {
+	      this->_error = true;
+	      return;
+	    }
+	  else if (it->find("TYPE:BONUS") == 0 && Utils::ParseBonus(it, this->_bonus) == false)
+	    {
+	      this->_error = true;
+	      return;
+	    }
 	}
     }
 }
@@ -58,9 +72,9 @@ void		Gameplay::initialize(const std::string &map_type)
     for (unsigned int j = 0 ; j < it->size() ; ++j)
       {
 	if ((*it)[j] == 0)
-	  this->obs.push_back(new Obstacle(/* param obstacle destructible*/));//Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0)
+	  this->obs.push_back(new Obstacle(Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0), BREAKABLE_WALL));
 	else if ((*it)[j] == 1)
-	  this->obs.push_back(new Obstacle(/* param obstacle indestructible*/));//Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0)
+	  this->obs.push_back(new Obstacle(Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0), UNBREAKABLE_WALL));
 	else
 	  this->newPlayer(list_str.size(), i, j, (*it));
       }
@@ -89,5 +103,5 @@ void		Gameplay::newPlayer(unsigned int size_list, unsigned int x, unsigned int y
   else if (this->_players.size() == 1)
     this->_players.push_back(new Player(/*param j2*/));//Vector3f(y * 300 - (size_list * 300) / 2, 0, x * 300 - (size_list * 300) / 2, 0)
   else
-    this->_players.push_back(new Bot(/*param*/));//Vector3f(y * 300 - (size_list * 300) / 2, 0, x * 300 - (size_list * 300) / 2, 0)
+    this->_players.push_back(new Bot(x, y, this->_ia, size_list));
 }
