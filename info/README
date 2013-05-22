@@ -98,7 +98,7 @@ Defensif :
 X-Créer une map (vector) de bombes et explosions => prend la liste de bombe et retourn la map de bombe
 -Pondère les directions où aller => prend la map de bombe et retourne la map de pondération de direction
 -check si c'est possible suivant les obstacles et bombes => prend la liste d'obstacle et la map de pondération de direction et retourne la direction où aller (enum)
--move prend la direction où aller (enum)
+X-move prend la direction où aller (enum)
 
 avec la map :
 
