@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May 18 21:49:08 2013 florian dewulf
-// Last update Thu May 23 16:37:47 2013 guillaume duez
+// Last update Thu May 23 16:42:05 2013 florian dewulf
 //
 
 #include	"Map.hpp"
@@ -20,7 +20,7 @@ bool		Map::initialize(int size_random,  std::list<std::string> &liste,
   return true;
 }
 
-bool		Map::initialize(const std::string &str, std::list<std::string> &list, 
+bool		Map::initialize(const std::string &str, std::list<std::string> &list,
 				unsigned int nb_joueur)
 {
   std::string                           tmp;
@@ -29,11 +29,11 @@ bool		Map::initialize(const std::string &str, std::list<std::string> &list,
   std::list<std::string>		liste;
   liste = file.getFileContent("map/" + str);
   std::list<std::string>::iterator      it = liste.begin();
-  
+
   this->_player = 0;
   if (it == liste.end())
     return false;
-  this->_size = Utils::StringToInt(*it);                                                              
+  this->_size = Utils::StringToInt(*it);
   it++;
   if (it != liste.end())
     {
@@ -42,7 +42,7 @@ bool		Map::initialize(const std::string &str, std::list<std::string> &list,
     }
   if (liste.size() != this->_size + 1 || this->_size < 10)
     {
-      std::cout << "incorect size map, expected "  << this->_size + 1 
+      std::cout << "incorect size map, expected "  << this->_size + 1
 		<< " line(s)"<< std::endl;
       return false;
     }
