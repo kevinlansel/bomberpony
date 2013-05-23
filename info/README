@@ -119,3 +119,7 @@ _|_|_|_|_|_|_|_|_|_
 _|_|_|_|_|_|_|_|_|_
 _|_|_|_|_|_|_|_|_|_
 _|_|_|_|_|_|_|_|_|_
+
+
+IDEE D'OPTIMISATION :
+Liste de bombe toujours push_back. Donc si la première ne passe ni rouge, ni n'explose, alors ça sert à rien de check les suivantes. De même, si à partir de la 4eme il n'y a rien de spé, arret du parcours de liste
