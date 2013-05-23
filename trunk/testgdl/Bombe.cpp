@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:07 2013 Maxime Wojciak
-// Last update Thu May 23 16:15:34 2013 Maxime Wojciak
+// Last update Thu May 23 17:05:05 2013 florian dewulf
 //
 
 #include	"Bombe.hpp"
@@ -65,19 +65,19 @@ void		Bombe::draw() {
   static int	prout = 1;
 
   glTranslatef(this->_translation.x, this->_translation.y, this->_translation.z);
-  if (this->_clignote && prout == 100)
+  if (this->_clignote && prout == 60)
   {
     std::cout << "if" << std::endl;
     prout = 0;
   }
-  else if (this->_clignote && prout > 70)
+  else if (this->_clignote && prout > 30)
   {
     std::cout << "else if" << std::endl;
     prout++;
   }
   else
   {
-    if (this->_clignote && prout <= 70)
+    if (this->_clignote && prout <= 30)
       prout++;
     std::cout << "else" << std::endl;
     this->_BombeModel.draw();
