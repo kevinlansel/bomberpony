@@ -2,6 +2,7 @@
 
 void MyGame::initialize(void)
 {
+  this->_explosion = NULL;
   window_.create();
   camera_.initialize();
   this->objects_.push_back(new Cube(Vector3f(-2100, 0, -2100), Vector3f(2100, -1, 2100), "./textures/panda.png"));
@@ -37,8 +38,8 @@ void MyGame::initialize(void)
       a -= 300;
       b -= 300;
     }
-  this->_bombe = new Bombe();
-  this->_bombe->initialize();
+  this->_bombe = new Bombe(Vector3f(-200,0,-200));
+  this->_bombe->initialize(this->gameClock_);
   std::list<AObject*>::iterator itb = this->objects_.begin();
   for (; itb != this->objects_.end(); ++itb)
     (*itb)->initialize();
@@ -46,11 +47,19 @@ void MyGame::initialize(void)
 
 void MyGame::update(void)
 {
+  this->gameClock_.update();
   std::list<AObject*>::iterator itb = this->objects_.begin();
   for (; itb != this->objects_.end(); ++itb)
     (*itb)->update();
   camera_.update(gameClock_, input_);
-  this->_bombe->update(gameClock_, input_);
+  if (this->_explosion == NULL && this->_bombe->update(gameClock_) == true)
+  {
+    this->_explosion = new Explosion(Vector3f(-200,0,-200), 2);
+    this->_explosion->initialize();
+    this->_explosion->update(this->gameClock_);
+  }
+  else if (this->_explosion)
+    this->_explosion->update(gameClock_);
 }
 
 void MyGame::draw(void)
@@ -61,7 +70,10 @@ void MyGame::draw(void)
   std::list<AObject*>::iterator itb = this->objects_.begin();
   for (; itb != this->objects_.end(); ++itb)
     (*itb)->draw();
-  this->_bombe->draw();
+  if (this->_explosion == NULL)
+    this->_bombe->draw();
+  else
+    this->_explosion->draw();
 }
 
 void MyGame::unload(void)
