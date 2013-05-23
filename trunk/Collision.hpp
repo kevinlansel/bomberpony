@@ -11,8 +11,11 @@
 #ifndef		__COLLISION_HPP__
 # define	__COLLISION_HPP__
 
+#include	<list>
+
 #include	"Player.hpp"
 #include	"Obstacle.hpp"
+#include	"Bombe.hpp"
 
 class		Collision
 {
@@ -20,14 +23,14 @@ public:
   Collision();
   virtual ~Collision();
   bool	checkCollisionWall();
-  bool	checkCollisionPlayer();
+  bool	checkCollisionBomb();
   bool	getCollision() const;
 
 private:
-  Player	*p1;
-  Player	*p2;
-  Obstacle	*obs;
-  bool		collision;
+  std::list<Bombe *>	*_bomb;
+  std::list<Player *>	*_play;
+  std::list<Obstacle *>	*_obs;
+  bool			_collision;
 };
 
 #endif

@@ -8,11 +8,12 @@ Obstacle::Obstacle(const Vector3f &v, Obstacle::typeObs obs):
 
 Obstacle::~Obstacle()
 {
+  delete _cube;
 }
 
 void		Obstacle::initialize()
 {
-
+  this->_cube = new Cube(Vector3f(this->_v.x, 300, this->_v.z + 300), Vector3f(this->_v.x + 300, 0, this->_v.z), "./toto.tga");
 }
 
 void		Obstacle::update()
@@ -22,7 +23,7 @@ void		Obstacle::update()
 
 void		Obstacle::draw()
 {
-
+  this->_cube->draw();
 }
 
 Obstacle::typeObs	Obstacle::getType() const
