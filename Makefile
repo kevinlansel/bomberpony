@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Sun May  5 14:07:28 2013 florian dewulf
-## Last update Tue May 21 11:31:54 2013 gery baudry
+## Last update Tue May 21 15:59:17 2013 guillaume duez
 ##
 
 NAME=		Bomberman
@@ -24,6 +24,7 @@ SRC=		APlayer.cpp		\
 		Musique.cpp		\
 		Obstacle.cpp		\
 		Scene.cpp		\
+		Map.cpp			\
 		Sound.cpp		\
 		Vector3f.cpp
 
