@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:07:06 2013 kevin lansel
-// Last update Wed May 22 13:22:58 2013 kevin lansel
+// Last update Thu May 23 12:54:03 2013 kevin lansel
 //
 
 #include	<sstream>
@@ -195,7 +195,7 @@ unsigned int	Bot::checkUp(unsigned int x, unsigned int y, std::vector<std::strin
   std::string	save;
 
   save = mapv[y + 1];
-  pond = save.substr(x, x);
+  pond = Utils::StringToInt(save.substr(x, x));
   return (pond);
 }
 
@@ -205,7 +205,7 @@ unsigned int	Bot::checkDown(unsigned int x, unsigned int y, std::vector<std::str
   std::string	save;
 
   save = mapv[y - 1];
-  pond = save.substr(x, x);
+  pond = Utils::StringToInt(save.substr(x, x));
   return (pond);
 }
 
@@ -215,7 +215,7 @@ unsigned int	Bot::checkRight(unsigned int x, unsigned int y, std::vector<std::st
   std::string	save;
 
   save = mapv[y];
-  pond = save.substr(x + 1 ,x+ 1);
+  pond = Utils::StringToInt(save.substr(x + 1 ,x + 1));
   return (pond);
 }
 
@@ -225,16 +225,21 @@ unsigned int	Bot::checkLeft(unsigned int x, unsigned int y, std::vector<std::str
   std::string	save;
 
   save = mapv[y];
-  pond = Utils::StringToInt((save.substr(x - 1, x - 1)));
+  pond = Utils::StringToInt(save.substr(x - 1, x - 1));
   return (pond);
 }
 
-eDir		Bot::checkobs(const std::list<Obstacle> &obs, std::vector<std::string> mapmv)
+eDir			Bot::checkobs(const std::list<Obstacle> &obs, std::vector<std::string> mapmv)
 {
-  eDir		save;
-  Vector3f	vec((this->_x * 300 - (this->_size * 300) / 2), 0, (this->y * 300 - (this->_size) / 2));
+  eDir			save;
+  Vector3f		vec((this->_x * 300 - (this->_size * 300) / 2), 0, (this->y * 300 - (this->_size) / 2));
+  std::Map<eDir, int>	pond;
 
   save = DEFAULT;
+  pond[UP] = checkUp(this->_x, this->_y, mapv);
+  pond[DOWN] = checkDown(this->_x, this->_y, mapv);
+  pond[RIGHT] = checkRight(this->_x, this->_y, mapv);
+  pond[LEFT] = checkLeft(this->_x, this->_y, mapv);
   for (std::list<Obstacle>::iterator it = obs.begin() ; it != obs.end() ; ++it)
     {
 
