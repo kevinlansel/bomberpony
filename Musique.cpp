@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 20 15:33:40 2013 gery baudry
-// Last update Tue May 21 15:10:55 2013 florian dewulf
+// Last update Tue May 21 15:43:11 2013 gery baudry
 //
 
 #include	"Musique.hpp"
@@ -29,7 +29,7 @@ void			Musique::PlayMusique()
 void			Musique::StopMusique()
 {
   if (this->_music.GetStatus() == sf::Music::Playing)
-    this->_music.Stop();
+    this->_music.Pause();
 }
 
 void			Musique::setMusique(const std::string &music)

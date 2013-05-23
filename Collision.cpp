@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon May 13 10:49:32 2013 gery baudry
-// Last update Mon May 13 13:51:34 2013 gery baudry
+// Last update Thu May 23 16:38:41 2013 gery baudry
 //
 
 #include	"Collision.hpp"
@@ -41,7 +41,6 @@ bool		Collision::checkCollisionWall()
 	    }
 	}
     }
-  
   return (this->_collision);
 }
 
