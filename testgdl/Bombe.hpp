@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:02 2013 Maxime Wojciak
-// Last update Wed May 22 12:30:09 2013 Maxime Wojciak
+// Last update Thu May 23 15:46:05 2013 Maxime Wojciak
 //
 
 #ifndef		_BOMBE__
@@ -23,24 +23,26 @@
 #include	"GameClock.hpp"
 #include	"Model.hpp"
 #include	"Input.hpp"
+#include	"Color.hpp"
 
 class		Bombe {
 public:
-  Bombe();
+  Bombe(const Vector3f &);
   virtual	~Bombe();
 
 public:
-  void		initialize();
-  void		update(gdl::GameClock &, gdl::Input &);
+  void		initialize(gdl::GameClock &);
+  bool		update(gdl::GameClock &);
   void		draw();
   void		unload();
   void		setCoord(Vector3f);
   Vector3f	getCoord();
 
 private:
+  float		BombeTempo;
   Vector3f	_translation;
   gdl::Model	_BombeModel;
-  gdl::Model	_ExplosionModel;
+  bool		_clignote;
 };
 
 #endif /* !_BOMBE__ */

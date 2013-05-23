@@ -3,4 +3,8 @@ Creation de list pour les explosions.
 	--> On va push back les model 3D afin de faire une croix comme le vrai
 bomberman.
 
+Case 300 x 300.
+Un model 3D simulant une explosion.
+du meme style que la bombe
 
+Sol : Floor.png

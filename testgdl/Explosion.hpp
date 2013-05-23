@@ -5,24 +5,38 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Wed May 22 12:45:08 2013 Maxime Wojciak
-// Last update Thu May 23 12:54:07 2013 Maxime Wojciak
+// Last update Thu May 23 15:48:21 2013 Maxime Wojciak
 //
 
 #ifndef		_EXPLOSION__
 #define		_EXPLOSION__
 
+#include	<GL/glu.h>
+#include	<GL/glut.h>
+
+#include	<list>
+#include	<iostream>
+#include	<string>
+#include	<cstring>
+#include	<unistd.h>
+#include	"Vector3f.hpp"
+#include	"GameClock.hpp"
+#include	"Model.hpp"
+
 class Explosion {
   public:
-    Explosion();
+    Explosion(const Vector3f &, unsigned int);
     ~Explosion();
 
   public:
     void	initialize(void);
-    void	update(void);
+    void	update(gdl::GameClock &);
     void	draw(void);
     void	unload(void);
   private:
-    std::list<Explosion>	_explosion;
+    std::list<gdl::Model>	_explosion;
+    Vector3f			_coord;
+    unsigned int		_Xplosize;
 };
 
 #endif		/* !_EXPLOSION__ */

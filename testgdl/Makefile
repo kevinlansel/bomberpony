@@ -5,13 +5,14 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Sun May  5 14:07:28 2013 florian dewulf
-## Last update Tue May 21 17:26:16 2013 Maxime Wojciak
+## Last update Thu May 23 15:44:29 2013 Maxime Wojciak
 ##
 
 NAME=		Bomberman
 
 SRC=		AObject.cpp		\
 		MyGame.cpp		\
+		Explosion.cpp		\
 		Camera.cpp		\
 		Forme.cpp		\
 		main.cpp		\
