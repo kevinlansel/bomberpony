@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May 18 21:49:18 2013 florian dewulf
-// Last update Wed May 22 19:17:33 2013 guillaume duez
+// Last update Thu May 23 18:03:05 2013 florian dewulf
 //
 
 #ifndef		MAP_HPP__
@@ -19,9 +19,10 @@
 
 enum            e_map
   {
-    OBSTACLE,
-    VIDE,
-    PLAYER
+    OBSTACLE_INCASSABLE,
+    OBSTACLE_CASSABLE,
+    PLAYER,
+    VIDE
   };
 
 class           Map
