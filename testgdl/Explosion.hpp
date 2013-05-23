@@ -34,9 +34,10 @@ class Explosion {
     void	draw(void);
     void	unload(void);
   private:
-    std::list<gdl::Model>	_explosion;
     Vector3f			_coord;
     unsigned int		_Xplosize;
+    std::list<gdl::Model>	_explosion;
+    std::list<bool>		_tempo;
 };
 
 #endif		/* !_EXPLOSION__ */
