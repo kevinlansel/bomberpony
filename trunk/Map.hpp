@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May 18 21:49:18 2013 florian dewulf
-// Last update Sat May 18 22:54:06 2013 florian dewulf
+// Last update Wed May 22 19:17:33 2013 guillaume duez
 //
 
 #ifndef		MAP_HPP__
@@ -13,20 +13,32 @@
 
 #include	<list>
 #include	<string>
+#include        <iostream>
+#include        "Utils.hpp"
+#include	"File.hpp"
 
-class		Map
+enum            e_map
+  {
+    OBSTACLE,
+    VIDE,
+    PLAYER
+  };
+
+class           Map
 {
 public:
-  bool		initialize(int, const std::list<std::string> &, int);
-  bool		initialize(const std::string &, std::list<std::string> &, int);
+  bool          initialize(int, std::list<std::string> &, int);
+  bool          initialize(const std::string &, std::list<std::string> &, unsigned int);
 
 private:
-  std::list<std::string>	randomize();
+  std::list<std::string>        randomize(unsigned int, std::list<std::string> &);
 
 private:
-  std::string			_filename;
-  std::list<std::string>	_list_str;
-  unsigned int			_size;
+  std::string                   _filename;
+  std::list<std::string>        _list_str;
+  unsigned int                  _size;
+  unsigned int                  _large;
+  unsigned int                  _player;
 };
 
 #endif
