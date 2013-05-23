@@ -24,20 +24,20 @@
 #include	"Model.hpp"
 
 class Explosion {
-  public:
-    Explosion(const Vector3f &, unsigned int);
-    ~Explosion();
+public:
+  Explosion(const Vector3f &, unsigned int);
+  ~Explosion();
 
-  public:
-    void	initialize(void);
-    void	update(gdl::GameClock &);
-    void	draw(void);
-    void	unload(void);
-  private:
-    Vector3f			_coord;
-    unsigned int		_Xplosize;
-    std::list<gdl::Model>	_explosion;
-    std::list<bool>		_tempo;
+public:
+  void	initialize(void);
+  void	update(gdl::GameClock &);
+  void	draw(void);
+  void	unload(void);
+
+private:
+  unsigned int		_Xplosize;
+  std::list<gdl::Model>	_explosion;
+  std::list<Vector3f>  	_coord;
 };
 
 #endif		/* !_EXPLOSION__ */
