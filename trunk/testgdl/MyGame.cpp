@@ -4,17 +4,17 @@ void MyGame::initialize(void)
 {
   window_.create();
   camera_.initialize();
-  this->objects_.push_back(new Cube(Vector3f(-2100, 0, -2100), Vector3f(2100, -1, 2100), "./toto.tga"));
+  this->objects_.push_back(new Cube(Vector3f(-2100, 0, -2100), Vector3f(2100, -1, 2100), "./textures/panda.png"));
   int		a = -2100;
   int		b = -1800;
   int		c = -2100;
   int		d = -1800;
   while (a < 2100)
     {
-      this->objects_.push_back(new Cube(Vector3f(-2100, 300, a), Vector3f(-1800, 0, b), "./carreaux.tga"));
+      this->objects_.push_back(new Cube(Vector3f(-2100, 300, a), Vector3f(-1800, 0, b), "./textures/box.png"));
       while (c < 2100)
 	{
-	  this->objects_.push_back(new Cube(Vector3f(c, 300, -2100), Vector3f(d, 0, -1800), "./carreaux.tga"));
+	  this->objects_.push_back(new Cube(Vector3f(c, 300, -2100), Vector3f(d, 0, -1800), "./textures/box.png"));
 	  c += 300;
 	  d += 300;
 	}
@@ -27,10 +27,10 @@ void MyGame::initialize(void)
   d = 1800;
   while (a > -2100)
     {
-      this->objects_.push_back(new Cube(Vector3f(2100, 300, a), Vector3f(1800, 0, b), "./carreaux.tga"));
+      this->objects_.push_back(new Cube(Vector3f(2100, 300, a), Vector3f(1800, 0, b), "./textures/box.png"));
       while (c > -2100)
 	{
-	  this->objects_.push_back(new Cube(Vector3f(c, 300, 2100), Vector3f(d, 0, 1800), "./carreaux.tga"));
+	  this->objects_.push_back(new Cube(Vector3f(c, 300, 2100), Vector3f(d, 0, 1800), "./textures/box.png"));
 	  c -= 300;
 	  d -= 300;
 	}
