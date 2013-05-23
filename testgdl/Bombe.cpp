@@ -66,20 +66,13 @@ void		Bombe::draw() {
 
   glTranslatef(this->_translation.x, this->_translation.y, this->_translation.z);
   if (this->_clignote && prout == 60)
-  {
-    std::cout << "if" << std::endl;
     prout = 0;
-  }
   else if (this->_clignote && prout > 30)
-  {
-    std::cout << "else if" << std::endl;
     prout++;
-  }
   else
   {
     if (this->_clignote && prout <= 30)
       prout++;
-    std::cout << "else" << std::endl;
     this->_BombeModel.draw();
   }
   //  sleep(4);
