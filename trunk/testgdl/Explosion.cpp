@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Wed May 22 12:44:23 2013 Maxime Wojciak
-// Last update Thu May 23 16:29:19 2013 Maxime Wojciak
+// Last update Thu May 23 17:15:54 2013 Maxime Wojciak
 //
 
 #include	"Explosion.hpp"
@@ -20,7 +20,12 @@ Explosion::~Explosion() {
 
 void		Explosion::initialize() {
   for (int tmp = 4 * this->_Xplosize + 1; tmp > 0; tmp--)
-    this->_explosion.push_back(gdl::Model::load("./marvin.fbx"));
+    {
+      gdl::Model toto = gdl::Model::load("./marvin.fbx");
+      this->_explosion.push_back(toto);
+    }
+  for (int tmp = 4 * this->_Xplosize + 1 ; tmp > 0 ; tmp--)
+    this->_tempo.push_back(bool(false));
 }
 
 void		Explosion::update(gdl::GameClock &_clock) {
@@ -31,11 +36,19 @@ void		Explosion::update(gdl::GameClock &_clock) {
 }
 
 void		Explosion::draw() {
+  std::list<bool>::iterator it_bool = this->_tempo.begin();
   std::list<gdl::Model>::iterator it = this->_explosion.begin();
-  for (; it != this->_explosion.end(); ++it) {
-    std::cout << "cocu" << std::endl;
-    //glTranslatef(this->_coord.x, this->_coord.y, this->_coord.z);
+  for (; it != this->_explosion.end(); ++it, ++it_bool) {
+    glPushMatrix();
+    glLoadIdentity();
+    if ((*it_bool) == false)
+    {
+      glTranslatef(this->_coord.x, this->_coord.y, this->_coord.z);
+      std::cout << "x = " << this->_coord.x << "y = " << this->_coord.y << "z = " << this->_coord.z << std::endl;
+      (*it_bool) = true;
+    }
     it->draw();
+    glPopMatrix();
   }
 }
 
