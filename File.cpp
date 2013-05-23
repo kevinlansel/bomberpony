@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May 11 16:25:00 2013 florian dewulf
-// Last update Thu May 23 10:52:07 2013 florian dewulf
+// Last update Thu May 23 16:51:02 2013 florian dewulf
 //
 
 #include	"File.hpp"
@@ -58,7 +58,8 @@ std::list<std::string>	File::getFileContent(const std::string &filename) const
       while (file.good())
 	{
 	  getline(file, str);
-	  list.push_back(str);
+	  if (str != "")
+	    list.push_back(str);
 	}
       file.close();
     }
