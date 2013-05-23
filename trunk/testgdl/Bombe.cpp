@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:07 2013 Maxime Wojciak
-// Last update Wed May 22 12:35:38 2013 Maxime Wojciak
+// Last update Wed May 22 13:30:59 2013 Maxime Wojciak
 //
 
 #include	"Bombe.hpp"
@@ -62,7 +62,6 @@ void		Bombe::update(gdl::GameClock &_clock, gdl::Input &input) {
 void		Bombe::draw() {
   this->_BombeModel.draw();
 //  sleep(4);
-  std::cout << "Bouuuum La bombe explose !! " << std::endl;
 }
 
 void		Bombe::unload() {

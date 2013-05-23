@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Wed May 22 12:45:08 2013 Maxime Wojciak
-// Last update Wed May 22 13:19:08 2013 Maxime Wojciak
+// Last update Thu May 23 12:54:07 2013 Maxime Wojciak
 //
 
 #ifndef		_EXPLOSION__

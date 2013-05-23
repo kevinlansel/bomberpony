@@ -460,7 +460,6 @@ draw_rect	Forme.hpp	/^  static void	draw_rect(const Vector3f &, const Vector3f &
 e	libgdl_gl-2012.4/include/GlError.hpp	/^		size_t				e;$/;"	m	struct:__anon1	access:public
 elapsedTime_	libgdl_gl-2012.4/include/Clock.hpp	/^		float			elapsedTime_;$/;"	m	class:gdl::Clock	access:private
 elapsedTime_	libgdl_gl-2012.4/include/GameClock.hpp	/^		float			elapsedTime_;$/;"	m	class:gdl::GameClock	access:private
-endl	Bombe.cpp	/^  std::cout << "Bouuuum La bombe explose !! " << std::endl;$/;"	m	class:std	file:
 errs	libgdl_gl-2012.4/include/GlError.hpp	/^	} errs[] = {$/;"	l
 fill_animation_names	libgdl_gl-2012.4/include/Model.hpp	/^		int			fill_animation_names(std::vector<std::string>& vector) const;$/;"	p	class:gdl::Model	access:public	signature:(std::vector<std::string>& vector) const
 friends	libgdl_gl-2012.4/doc/doxygen_html/classgdl_1_1_game_clock.html	/^<tr><td colspan="2"><h2><a name="friends"><\/a>$/;"	a
@@ -1619,7 +1618,6 @@ set_anim_speed	libgdl_gl-2012.4/include/Model.hpp	/^		void		set_anim_speed(std::
 set_anim_state	libgdl_gl-2012.4/include/Model.hpp	/^		void		set_anim_state(std::string const & name, char state);$/;"	p	class:gdl::Model	access:public	signature:(std::string const & name, char state)
 set_default_model_color	libgdl_gl-2012.4/include/Model.hpp	/^		void		set_default_model_color(Color const & color);$/;"	p	class:gdl::Model	access:public	signature:(Color const & color)
 showCursor	libgdl_gl-2012.4/include/Window.hpp	/^		void		showCursor(bool const status);$/;"	p	class:gdl::Window	access:public	signature:(bool const status)
-std::endl	Bombe.cpp	/^  std::cout << "Bouuuum La bombe explose !! " << std::endl;$/;"	m	class:std	file:
 stop_animation	libgdl_gl-2012.4/include/Model.hpp	/^		void	stop_animation(std::string const & name);$/;"	p	class:gdl::Model	access:public	signature:(std::string const & name)
 str	libgdl_gl-2012.4/include/GlError.hpp	/^		char const * const	str;$/;"	m	struct:__anon1	access:public
 totalClock_	libgdl_gl-2012.4/include/Clock.hpp	/^		float			totalClock_;$/;"	m	class:gdl::Clock	access:private
