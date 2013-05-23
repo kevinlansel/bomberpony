@@ -2,6 +2,7 @@
 # define	__OBSTACLE_HPP__
 
 #include	"AObject.hpp"
+#include	"Forme.hpp"
 
 class		Obstacle : public AObject
 {
@@ -26,6 +27,7 @@ public:
 private:
   typeObs	_type;
   Vector3f	_v;
+  Cube		*_cube;
 };
 
 #endif
