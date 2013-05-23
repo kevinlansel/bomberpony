@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May 18 21:49:08 2013 florian dewulf
-// Last update Thu May 23 16:42:05 2013 florian dewulf
+// Last update Thu May 23 18:11:04 2013 florian dewulf
 //
 
 #include	"Map.hpp"
@@ -26,8 +26,7 @@ bool		Map::initialize(const std::string &str, std::list<std::string> &list,
   std::string                           tmp;
   unsigned int                          i;
   File					file;
-  std::list<std::string>		liste;
-  liste = file.getFileContent("map/" + str);
+  std::list<std::string>		liste = file.getFileContent("map/" + str);
   std::list<std::string>::iterator      it = liste.begin();
 
   this->_player = 0;
@@ -40,7 +39,7 @@ bool		Map::initialize(const std::string &str, std::list<std::string> &list,
       tmp = *it;
       this->_large = tmp.length();
     }
-  if (liste.size() != this->_size + 1 || this->_size < 10)
+  if (this->_size != this->_large || liste.size() != this->_size + 1 || this->_size < 10)
     {
       std::cout << "incorect size map, expected "  << this->_size + 1
 		<< " line(s)"<< std::endl;
@@ -61,7 +60,7 @@ bool		Map::initialize(const std::string &str, std::list<std::string> &list,
       list.push_back(tmp);
       it++;
     }
-  if (this->_player != nb_joueur)
+  if (this->_player < nb_joueur)
     {
       std::cout << "incorect number of player in this map " << this->_player
 		<< " ,the correct number is " << nb_joueur  << std::endl;
@@ -77,13 +76,14 @@ std::list<std::string>		Map::randomize(unsigned int size, std::list<std::string>
   unsigned int				j = 1;
   unsigned int				k = 0;
   std::list<std::string>		list;
+  std::list<std::string>::iterator      it = list.begin();
+  std::string				pattern;
+
   list.push_back("10001");
   list.push_back("01010");
   list.push_back("00200");
   list.push_back("10001");
   list.push_back("01010");
-  std::list<std::string>::iterator      it = list.begin();
-  std::string				pattern;
   while (i != size)
     {
       j = 1;
