@@ -57,8 +57,8 @@ std::vector<std::string>	Bot::BombMapGenerator(const std::list<Bombe *> &list, u
     tab.push_back(std::string(model));
   for (std::list<Bombe *>::const_iterator it = list.begin() ; it != list.end() ; ++it)
     {
-      x = (int)(((*it)->getCoord().x + (size * 150)) / 300);
-      y = (int)(((*it)->getCoord().z + (size * 150)) / 300);
+      x = Utils::VecToCoord((*it)->getCoord().x, size);
+      y = Utils::VecToCoord((*it)->getCoord().z, size);
       tab[y][x] = '*';
       this->putExplosion(tab, x, y, size);
     }

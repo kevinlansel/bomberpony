@@ -12,10 +12,10 @@ public:
       UNBREAKABLE_WALL,
       BREAKABLE_WALL
     };
-  
+
   Obstacle(const Vector3f &, typeObs);
   virtual ~Obstacle();
-  
+
   void		initialize();
   void		update();
   void		draw();
