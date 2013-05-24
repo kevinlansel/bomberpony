@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:07:06 2013 kevin lansel
-// Last update Thu May 23 16:38:59 2013 kevin lansel
+// Last update Fri May 24 15:03:09 2013 kevin lansel
 //
 
 #include	<sstream>
@@ -72,7 +72,7 @@ unsigned int	Bot::getSize() const
   return (this->_size);
 }
 
-void		Bot::update(gld::GameClock &clock, gdl::Input &in, const std::list<Obstacle> &obs)
+void		Bot::update(gld::GameClock &clock, gdl::Input &in, const std::list<Obstacle *> &obs)
 {
   (void)in;
   if (this->_mode == EASY)
@@ -83,72 +83,76 @@ void		Bot::update(gld::GameClock &clock, gdl::Input &in, const std::list<Obstacl
     hard();
 }
 
-void		Bot::easy()
+void		Bot::easy(const std::list<Obstacle *> &obs, const std::list<Bombe *> &bombe)
 {
   unsigned int		rd;
 
   rd = rand() % 2;
   if (rd == 1)
-    rdoff();
+    rdoff(bombe);
   else
-    rddef();
+    rddef(obs, bombe);
 }
 
-void		Bot::medium()
+void		Bot::medium(const std::list<Obstacle *> &obs, const std::list<Bombe *> &bombe)
 {
-  if (secure())
-    rdoff();
+  std::vector<std::string>	mapmv;
+
+  mapmv = this->BombMapGenerator(bombe);
+  if (secure(mapv))
+    rdoff(bombe);
   else
-    defensif();
+    defensif(obs, bombe, mapv);
 }
 
-void		Bot::hard()
+void		Bot::hard(const std::list<Obstacle *> &obs, const std::list<Bombe *> &bombe)
 {
-  if (secure())
+  std::vector<std::string>	mapmv;
+
+  mapmv = this->BombMapGenerator(bombe);
+  if (secure(mapv))
     offensif();
   else
-    deffensif();
+    deffensif(obs, bombe, mapv);
 }
 
-void		Bot::rdoff(const std::list<Bombe> &bombe)
+void		Bot::rdoff(const std::list<Bombe *> &bombe)
 {
   unsigned int		rd;
-  Bombe			bim;
 
   rd = rand() % 7;
   if (rd == 0)
-    {
-      bim.setX(this->_x);
-      bim.setY(this->_y);
-      bombe.push_back();
-    }
+    bombe.push_back(new Bombe(Utils::CoordToVec(this->_x, this->_size), 0, Utils::CoordToVec(this->_y, this->_size)));
 }
 
-void		Bot::rddef()
+void		Bot::rddef(const std::list<Obstacle *> &obs, const std::list<Bombe *> &bombe)
 {
   unsigned int		rd;
 
-  rd = rand() % 4;
-  switch (rd)
+  for (unsigned int i = 0; i < 4 ; i++)
     {
-    case 0: /* left */
-      if (trymove(obs, this->_x - 1, this->_y))
-	this->_x -= 1;
-      break;
-    case 1: /* right */
-      if (trymove(obs, this->_x + 1, this->_y))
-	this->_x += 1;
-      break;
-    case 2: /* up */
-      if (trymove(obs, this->_x, this->_y + 1))
-	this->_y += 1;
-      break;
-    case 3: /* down */
-      if (trymove(obs, this->_x, this->_y - 1))
-	this->_y -= 1;
-      break;
-    default:
-      break;
+      rd = rand() % 4;
+      switch (rd)
+	{
+	case 0: /* left */
+	  if (trymove(bombe, obs, this->_x - 1, this->_y))
+	    this->_destination.x -= 300;
+	  break;
+	case 1: /* right */
+	  if (trymove(bombe, obs, this->_x + 1, this->_y))
+	    this->_destination.x += 300;
+	  break;
+	case 2: /* up */
+	  if (trymove(bombe, obs, this->_x, this->_y + 1))
+	    this->_destination.z -= 300;
+	  break;
+	case 3: /* down */
+	  if (trymove(bombe, obs, this->_x, this->_y - 1))
+	    this->_destination.z += 300;
+	  break;
+	default:
+	  break;
+	}
     }
 }
 
@@ -157,39 +161,42 @@ void		Bot::offensif(const std::list<Bombe> &bombe)
 
 }
 
-void		Bot::defensif(const std::list<Bombe> &bombe)
+void		Bot::defensif(const std::list<Obstacle *> &obs, const std::list<Bombe *> &bombe, const std::vector<std::string> &mapbombe)
 {
+  std::vector<std::string>		mappond;
+  eDir					dir;
 
+  mappond = this->PondDir(mapbombe);
+  dir = this->giveMove(obs, mappond);
+  this->MoveBot(dir);
 }
 
-bool		Bot::secure(const std::list<Bombe> &bombe)
+bool		Bot::secure(const std::vector<std::string> &mapmv)
 {
-  for (std::list<Bombe>::iterator it = obs.begin() ; it != obs.end() ; ++it)
-    {
-      if (x == it.getX() && y == it.getY())
-	return (false);
-    }
-  return (true);
+  if (mapmv[this->_y][this->_x] == '0')
+    return (true);
+  else
+    return (false);
 }
 
-bool		Bot::trymove(const std::list<Bombe> &bombe, const std::list<Obstacle> &obs, unsigned int x, unsigned int y)
+bool		Bot::trymove(const std::list<Bombe *> &bombe, const std::list<Obstacle *> &obs, unsigned int x, unsigned int y)
 {
   if (x == 0 || x == this->_size || y == 0 || y == this->_size)
     return (false);
-  for (std::list<Obstacle>::iterator it = obs.begin() ; it != obs.end() ; ++it)
+  for (std::list<Obstacle *>::iterator it = obs.begin() ; it != obs.end() ; ++it)
     {
-      if (x == it.getX() && y == it.getY())
+      if (x == Utils::VecToCoord((*it)->getPosition().x, this->_size) && y == Utils::VecToCoord((*it)->getPosition().z, this->_size))
 	return (false);
     }
-  for (std::list<Bombe>::iterator it = bombe.begin() ; it != bombe.end() ; ++it)
+  for (std::list<Bombe *>::iterator it = bombe.begin() ; it != bombe.end() ; ++it)
     {
-      if (x == it.getX() && y == it.getY())
+      if (x == Utils::VecToCoord((*it)->getPosition().x, this->_size) && y == Utils::VecToCoord((*it)->getPosition().z, this->_size))
 	return (false);
     }
   return (true);
 }
 
-unsigned int	Bot::checkUp(unsigned int x, unsigned int y, std::vector<std::string> mapmv)
+unsigned int	Bot::giveUp(unsigned int x, unsigned int y, std::vector<std::string> mapmv)
 {
   int		pond;
   std::string	save;
@@ -199,7 +206,7 @@ unsigned int	Bot::checkUp(unsigned int x, unsigned int y, std::vector<std::strin
   return (pond);
 }
 
-unsigned int	Bot::checkDown(unsigned int x, unsigned int y, std::vector<std::string> mapmv)
+unsigned int	Bot::giveDown(unsigned int x, unsigned int y, std::vector<std::string> mapmv)
 {
   int		pond;
   std::string	save;
@@ -209,7 +216,7 @@ unsigned int	Bot::checkDown(unsigned int x, unsigned int y, std::vector<std::str
   return (pond);
 }
 
-unsigned int	Bot::checkRight(unsigned int x, unsigned int y, std::vector<std::string> mapmv)
+unsigned int	Bot::giveRight(unsigned int x, unsigned int y, std::vector<std::string> mapmv)
 {
   int		pond;
   std::string	save;
@@ -219,7 +226,7 @@ unsigned int	Bot::checkRight(unsigned int x, unsigned int y, std::vector<std::st
   return (pond);
 }
 
-unsigned int	Bot::checkLeft(unsigned int x, unsigned int y, std::vector<std::string> mapmv)
+unsigned int	Bot::giveLeft(unsigned int x, unsigned int y, std::vector<std::string> mapmv)
 {
   int		pond;
   std::string	save;
@@ -235,42 +242,49 @@ static eDir	where(std::Map<eDir, int> pond)
   eDir		dir;
 
   save = 0;
+  dir = DEFAULT;
   for (std::Map<eDir, int>::iterator it = pond.begin() ; it != pond.end() ; ++it)
     {
-      if (it > save)
-	save = it;
+      if (*it > save)
+	save = *it;
     }
   for (std::Map<eDir, int>::iterator it = pond.begin() ; it != pond.end() ; ++it)
     {
-      if (it == save)
+      if (*it == save)
+	dir = it->first;
     }
-  dir = pond.find(save);
   return (dir);
 }
 
-eDir			Bot::checkobs(const std::list<Obstacle> &obs, std::vector<std::string> mapmv)
+eDir			Bot::giveMove(const std::list<Obstacle> &obs, std::vector<std::string> &mapmv)
 {
   int			i;
-  eDir			save;
   eDir			trys;
   Vector3f		vec((this->_x * 300 - (this->_size * 300) / 2), 0, (this->y * 300 - (this->_size) / 2));
   std::Map<eDir, int>	pond;
 
   i = 0;
-  save = DEFAULT;
   trys = DEFAULT;
-  pond[UP] = checkUp(this->_x, this->_y, mapv);
-  pond[DOWN] = checkDown(this->_x, this->_y, mapv);
-  pond[RIGHT] = checkRight(this->_x, this->_y, mapv);
-  pond[LEFT] = checkLeft(this->_x, this->_y, mapv);
+  pond[UP] = giveUp(this->_x, this->_y, mapv);
+  pond[DOWN] = giveDown(this->_x, this->_y, mapv);
+  pond[RIGHT] = giveRight(this->_x, this->_y, mapv);
+  pond[LEFT] = giveLeft(this->_x, this->_y, mapv);
   while (i < 4)
     {
       trys = where(pond);
       for (std::list<Obstacle>::iterator it = obs.begin() ; it != obs.end() ; ++it)
 	{
-	  
+	  int		x;
+	  int		y;
+
+	  x = Utils::VecToCoord(it->getPosition().x, this->_size);
+	  y = Utils::VecToCoord(it->getPosition().z, this->_size);
+	  if (this->_x == x && this->_y == y)
+	    mapmv[y][x] = '0';
+	  else
+	    return (trys);
 	}
       i++;
     }
-  return (save);
+  return (trys);
 }
