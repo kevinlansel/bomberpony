@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May 18 21:49:08 2013 florian dewulf
-// Last update Thu May 23 18:11:04 2013 florian dewulf
+// Last update Fri May 24 17:12:16 2013 guillaume duez
 //
 
 #include	"Map.hpp"
@@ -79,17 +79,26 @@ std::list<std::string>		Map::randomize(unsigned int size, std::list<std::string>
   std::list<std::string>::iterator      it = list.begin();
   std::string				pattern;
 
-  list.push_back("10001");
-  list.push_back("01010");
-  list.push_back("00200");
-  list.push_back("10001");
-  list.push_back("01010");
+  list.push_back("13331");
+  list.push_back("31313");
+  list.push_back("33233");
+  list.push_back("13331");
+  list.push_back("31313");
+  std::string		str;
+  
+  while (i != size)
+    {
+    str += OBSTACLE_INCASSABLE + '0';
+    i++;
+    }
+  i = 0;
+  liste.push_back(str);
   while (i != size)
     {
       j = 1;
       std::string	tmp = "";
-      tmp[0] = '1';
-      while (j != size)
+      tmp += OBSTACLE_INCASSABLE + '0';
+      while (j != size - 1)
 	{
 	  k = 0;
 	  if (it == list.end())
@@ -102,9 +111,11 @@ std::list<std::string>		Map::randomize(unsigned int size, std::list<std::string>
 	      k++;
 	    }
 	}
+      tmp += OBSTACLE_INCASSABLE + '0';
       it++;
       liste.push_back(tmp);
       i++;
     }
+  liste.push_back(str);
   return liste;
 }
