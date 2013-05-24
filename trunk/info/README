@@ -123,3 +123,11 @@ _|_|_|_|_|_|_|_|_|_
 
 IDEE D'OPTIMISATION :
 Liste de bombe toujours push_back. Donc si la première ne passe ni rouge, ni n'explose, alors ça sert à rien de check les suivantes. De même, si à partir de la 4eme il n'y a rien de spé, arret du parcours de liste
+
+
+Offensif (case / case)
+-> Prends une cible
+-> S'aligne à lui (x ou y à définir en dur ou à calculer genre le plus petit) -> S'il y a une explosion devant lui, il attend
+-> Pose une bombe si le chemin est bloqué
+-> Se casse (défensif)
+-> reprend son chemin (boucle étape 1)

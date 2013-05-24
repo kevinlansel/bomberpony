@@ -44,23 +44,23 @@ void				Bot::putExplosion(std::vector<std::string> &tab, const int &x, const int
       tab[ytmp][x] += 1;
 }
 
-std::vector<std::string>	Bot::BombMapGenerator(const std::list<Bombe *> &list, unsigned int size)
+std::vector<std::string>	Bot::BombMapGenerator(const std::list<Bombe *> &list)
 {
   int				x;
   int				y;
   std::string			model;
   std::vector<std::string>	tab;
 
-  for (unsigned int i = 0 ; i < size ; ++i)
+  for (unsigned int i = 0 ; i < this->_size ; ++i)
     model += '0';
-  for (unsigned int i = 0 ; i < size ; ++i)
+  for (unsigned int i = 0 ; i < this->_size ; ++i)
     tab.push_back(std::string(model));
   for (std::list<Bombe *>::const_iterator it = list.begin() ; it != list.end() ; ++it)
     {
-      x = Utils::VecToCoord((*it)->getCoord().x, size);
-      y = Utils::VecToCoord((*it)->getCoord().z, size);
+      x = Utils::VecToCoord((*it)->getCoord().x, this->_size);
+      y = Utils::VecToCoord((*it)->getCoord().z, this->_size);
       tab[y][x] = '*';
-      this->putExplosion(tab, x, y, size);
+      this->putExplosion(tab, x, y, this->_size);
     }
   return tab;
 }
