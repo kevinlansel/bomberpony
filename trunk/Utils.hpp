@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 15:47:11 2013 florian dewulf
-// Last update Tue May 21 00:24:38 2013 florian dewulf
+// Last update Fri May 24 14:38:51 2013 florian dewulf
 //
 
 #ifndef		UTILS_HPP__
@@ -36,6 +36,17 @@ public:
     ss >> nb;
     return nb;
   }
+
+  static int		VecToCoord(int value, int size)
+  {
+    return ((value + (size * 150)) / 300);
+  }
+
+  static int		CoordToVec(float value, int size)
+  {
+    return ((value * 300) - (size * 150));
+  }
+
   //static bool		ParsePlayer(std::list<std::string>::const_iterator &, std::list<APlayer *> &);
 };
 
