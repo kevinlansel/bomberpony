@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:52:14 2013 florian dewulf
-// Last update Fri May 17 15:37:25 2013 florian dewulf
+// Last update Fri May 24 11:21:09 2013 florian dewulf
 //
 
 #include	"Forme.hpp"
@@ -173,7 +173,10 @@ void Cube::draw(void)
   // La face du dessus
   Rectangle::draw_plan(Vector3f(this->_origin.x, this->_origin.y, this->_origin.z), Vector3f(this->_opposite.x, this->_origin.y, this->_opposite.z), this->_texture);
   // La face du dessous. Qui est blanche car sinon il y a un bug de couleur du cube. Et comme on voit pas le dessous...
-  Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), this->_texture);
+
+  // Optimisation : face du dessous useless
+
+  //Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), this->_texture);
   //Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), 1.0, 1.0, 1.0);
 
   glPopMatrix();

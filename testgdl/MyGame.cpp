@@ -6,7 +6,12 @@ void MyGame::initialize(void)
   window_.create();
   camera_.initialize();
   this->objects_.push_back(new Cube(Vector3f(-2100, 0, -2100), Vector3f(2100, -1, 2100), "./textures/panda.png"));
-  int		a = -2100;
+
+  this->objects_.push_back(new Cube(Vector3f(-1800, 300, -2100), Vector3f(1800, 0, -1800), "./texture.tga"));
+  this->objects_.push_back(new Cube(Vector3f(-1800, 300, 1800), Vector3f(1800, 0, 2100), "./texture.tga"));
+  this->objects_.push_back(new Cube(Vector3f(-2100, 300, -1800), Vector3f(-1800, 0, 1800), "./texture.tga"));
+  this->objects_.push_back(new Cube(Vector3f(1800, 300, -1800), Vector3f(2100, 0, 1800), "./texture.tga"));
+  /*  int		a = -2100;
   int		b = -1800;
   int		c = -2100;
   int		d = -1800;
@@ -37,7 +42,7 @@ void MyGame::initialize(void)
 	}
       a -= 300;
       b -= 300;
-    }
+      }*/
   this->_bombe = new Bombe(Vector3f(-200,0,-200));
   this->_bombe->initialize(this->gameClock_);
   std::list<AObject*>::iterator itb = this->objects_.begin();
