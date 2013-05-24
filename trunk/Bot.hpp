@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:05:47 2013 kevin lansel
-// Last update Wed May 22 14:57:37 2013 florian dewulf
+// Last update Fri May 24 15:32:20 2013 kevin lansel
 //
 
 #ifndef		BOT_HPP_
@@ -41,20 +41,34 @@ public:
   Vector3f	getPos() const;
   Vector3f	getDest() const;
 
-  void		update(gld::GameClock &, gdl::Input &, const std::list<Obstacle> &);
+  void		update(gld::GameClock &, gdl::Input &, const std::list<Obstacle> &, const std::list<Bombe *> &bombe);
 
 private:
-  void		easy();
-  void		medium();
-  void		hard();
+  void		easy(const std::list<Obstacle *> &, const std::list<Bombe *> &);
+  void		medium(const std::list<Obstacle *> &, const std::list<Bombe *> &);
+  void		hard(const std::list<Obstacle *> &, const std::list<Bombe *> &);
 
-  void		rdoff(const std::list<Bombe> &);
-  void		rddef();
-  void		offensif(const std::list<Bombe> &bombe);
-  void		defensif(const std::list<Bombe> &bombe);
+  void		rdoff(const std::list<Bombe *> &);
+  void		rddef(const std::list<Obstacle *> &, const std::list<Bombe *> &);
+  void		offensif(const std::list<Bombe> &);
+  void		defensif(const std::list<Obstacle *> &, const std::list<Bombe *> &, const std::vector<std::string> &);
 
-  bool		secure();
-  bool		trymove(const std::list<Bombe> &, const std::list<Obstacle> &, unsigned int, unsigned int);
+  bool		secure(const std::vector<std::string>);
+  bool		trymove(const std::list<Bombe *> &, const std::list<Obstacle *> &, unsigned int, unsigned int);
+  unsigned int	giveUp(unsigned int, unsigned int, std::vector<std::string>);
+  unsigned int	giveDown(unsigned int, unsigned int, std::vector<std::string>);
+  unsigned int	giveRight(unsigned int, unsigned int, std::vector<std::string>);
+  unsigned int	giveLeft(unsigned int, unsigned int, std::vector<std::string>);
+
+  eDir                    giveMove(const std::list<Obstacle> &, std::vector<std::string> &);
+  void                    putExplosion(std::vector<std::string> &, const int &, const int &, const unsigned int &);
+  std::vector<std::string>        BombMapGenerator(const std::list<Bombe *> &);
+  void                            PondCase(const std::vector<std::string> &, int, int);
+  bool                            checkCase(const std::vector<std::string> &, const int, const int);
+  bool                            checkLine(const std::vector<std::string> &, int *, int *);
+  void                            PondLine(bool, bool, std::vector<std::string> &);
+  std::vector<std::string>        PondDir(const std::vector<std::string> &);
+  void                            Bot::MoveBot(eDir);
 
 private:
   unsigned int	_x;

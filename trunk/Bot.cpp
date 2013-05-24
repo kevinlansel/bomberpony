@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:07:06 2013 kevin lansel
-// Last update Fri May 24 15:03:09 2013 kevin lansel
+// Last update Fri May 24 15:24:05 2013 kevin lansel
 //
 
 #include	<sstream>
@@ -72,15 +72,25 @@ unsigned int	Bot::getSize() const
   return (this->_size);
 }
 
-void		Bot::update(gld::GameClock &clock, gdl::Input &in, const std::list<Obstacle *> &obs)
+Vector3f      getPos() const
+{
+  return (this->_posActu);
+}
+
+Vector3f      getDest() const
+{
+  return (this->_destination);
+}
+
+void		Bot::update(gld::GameClock &clock, gdl::Input &in, const std::list<Obstacle *> &obs, const std::list<Bombe *> &bombe)
 {
   (void)in;
   if (this->_mode == EASY)
-    easy();
+    easy(obs, bombe);
   else if (this->_mode == MEDIUM)
-    medium();
+    medium(obs, bombe);
   else
-    hard();
+    hard(obs, bombe);
 }
 
 void		Bot::easy(const std::list<Obstacle *> &obs, const std::list<Bombe *> &bombe)
@@ -287,4 +297,114 @@ eDir			Bot::giveMove(const std::list<Obstacle> &obs, std::vector<std::string> &m
       i++;
     }
   return (trys);
+}
+
+void				Bot::putExplosion(std::vector<std::string> &tab, const int &x, const int &y, const unsigned int &size)
+{
+  int				xtmp = x - 2;
+  int				xtmp = y - 2;
+
+  for (; xtmp < x + 2 ; ++xtmp)
+    if (xtmp != x && xtmp >= 0 && xtmp < size && tab[y][xtmp] != '2')
+      tab[y][xtmp] += 1;
+  for (; ytmp < y + 2 ; ++ytmp)
+    if (ytmp != y && ytmp >= 0 && ytmp < size && tab[ytmp][x] != '2')
+      tab[ytmp][x] += 1;
+}
+
+std::vector<std::string>	Bot::BombMapGenerator(const std::list<Bombe *> &list)
+{
+  int				x;
+  int				y;
+  std::string			model;
+  std::vector<std::string>	tab;
+
+  for (unsigned int i = 0 ; i < this->_size ; ++i)
+    model += '0';
+  for (unsigned int i = 0 ; i < this->_size ; ++i)
+    tab.push_back(std::string(model));
+  for (std::list<Bombe *>::const_iterator it = list.begin() ; it != list.end() ; ++it)
+    {
+      x = Utils::VecToCoord((*it)->getCoord().x, this->_size);
+      y = Utils::VecToCoord((*it)->getCoord().z, this->_size);
+      tab[y][x] = '*';
+      this->putExplosion(tab, x, y, this->_size);
+    }
+  return tab;
+}
+
+void				Bot::PondCase(const std::vector<std::string> &map, int x, int y)
+{
+  if (!(x < 0 || x > map.size() || y < 0 || y > map.size()))
+    map[y][x] += 1;
+}
+
+bool				Bot::checkCase(const std::vector<std::string> &mapBomb, const int x, const int y)
+{
+  if ((!(x < 0 || x > mapBomb.size() || y < 0 || y > mapBomb.size()) && mapBomb[y][x] != '0') || (x < 0 || x > mapBomb.size() || y < 0 || y > mapBomb.size()))
+    return true;
+  return false;
+}
+
+bool				Bot::checkLine(const std::vector<std::string> &mapBomb, int x[3], int y[3])
+{
+  if ((this->checkCase(mapBomb, x[0], y[0]) && this->checkCase(mapBomb, x[1], y[1])) || (this->checkCase(mapBomb, x[1], y[1]) && this->checkCase(mapBomb, x[2], y[2])))
+    return false;
+  return true;
+}
+
+void				Bot::PondLine(bool hor, bool vert, std::vector<std::string> &map)
+{
+  if (hor)
+    {
+      this->PondCase(map, this->x - 1, this->y);
+      this->PondCase(map, this->x + 1, this->y);
+    }
+  else if (vert)
+    {
+      this->PondCase(map, this->x, this->y - 1);
+      this->PondCase(map, this->x, this->y + 1);
+}
+
+std::vector<std::string>	Bot::PondDir(const std::vector<std::string> &mapBomb)
+{
+  bool				horizontal = true;
+  bool				vertical = true;
+  std::vector<std::string>	map(mapBomb);
+
+  for (std::vector<std::string>::const_iterator it = mapBomb.begin ; it != mapBomb.end() ; ++it)
+    for (unsigned int i = 0 ; i < it->size() ; ++i)
+      (*it)[i] = '0';
+  horizontal = this->checkLine(mapBomb, {this->x - 1, this->x, this->x + 1}, {this->y, this->y, this->y});
+  vertical = this->checkLine(mapBomb, {this->x, this->x, this->x}, {this->y - 1, this->y, this->y + 1});
+  if (mapBomb[this->y][this->x] == '0')
+    map[this->y][this->x] = '1';
+  this->pondLine(horizontal, vertical, map);
+  this->checkCase(map, this->x, this->y);
+  this->checkCase(map, this->x - 1, this->y);
+  this->checkCase(map, this->x + 1, this->y);
+  this->checkCase(map, this->x, this->y - 1);
+  this->checkCase(map, this->x, this->y + 1);
+  return map;
+}
+
+void				Bot::MoveBot(eDir direction)
+{
+  switch (direction)
+    {
+    case UP:
+      this->_destination.z -= 300;
+      break;
+    case DOWN:
+      this->_destination.z += 300;
+      break;
+    case LEFT:
+      this->_destination.x -= 300;
+      break;
+    case RIGHT:
+      this->_destination.x += 300;
+      break;
+    default:
+      break;
+    }
 }
