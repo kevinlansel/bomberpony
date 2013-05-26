@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Wed May 22 12:44:23 2013 Maxime Wojciak
-// Last update Sun May 26 02:25:52 2013 florian dewulf
+// Last update Sun May 26 02:28:56 2013 florian dewulf
 //
 
 #include	"Explosion.hpp"
@@ -19,22 +19,16 @@ Explosion::~Explosion() {
 }
 
 void		Explosion::initialize() {
-  Vector3f	pos = this->_BombPos;
+  Vector3f	posx(this->_BombPos.x - this->_Xplosize * 300, 300, this->_BombPos.z);
+  Vector3f	posz(this->_BombPos.x, 300, this->_BombPos.z - this->_Xplosize * 300);
 
-  pos.x = pos.x - this->_Xplosize * 300;
-  pos.y = 300;
-  for (unsigned int tmp = this->_Xplosize * 2 + 1 ; tmp > 0; tmp--)
-    {
-      this->_explosion.push_back(new Rectangle(pos, Vector3f(pos.x + 300, 0, pos.z + 300), "./explosion.png"));
-      pos.x += 300;
-    }
-  pos.x = this->_BombPos.x;
-  pos.z = this->_BombPos.z - this->_Xplosize * 300;
   for (unsigned int tmp = this->_Xplosize * 2 + 1 ; tmp > 0; tmp--)
     {
       if (tmp != this->_Xplosize + 1)
-	this->_explosion.push_back(new Rectangle(pos, Vector3f(pos.x + 300, 0, pos.z + 300), "./explosion.png"));
-      pos.z += 300;
+	this->_explosion.push_back(new Rectangle(posz, Vector3f(posz.x + 300, 0, posz.z + 300), "./ressource/explosion.png"));
+      this->_explosion.push_back(new Rectangle(posx, Vector3f(posx.x + 300, 0, posx.z + 300), "./ressource/explosion.png"));
+      posz.z += 300;
+      posx.x += 300;
     }
 }
 

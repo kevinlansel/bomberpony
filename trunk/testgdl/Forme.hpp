@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:50:30 2013 florian dewulf
-// Last update Fri May 17 15:37:16 2013 florian dewulf
+// Last update Sun May 26 01:49:33 2013 florian dewulf
 //
 
 #ifndef		FORME_HPP__
@@ -26,9 +26,9 @@ class		Triangle : public AObject
 {
 public:
   Triangle(const Vector3f &, const Vector3f &, const Vector3f &, const Vector3f &);
-  void		initialize();
-  void		update();
-  void		draw();
+  virtual void		initialize();
+  virtual void		update();
+  virtual void		draw();
   void		setTranslation(const Vector3f &);
   Vector3f	getTranslation() const;
 
@@ -46,19 +46,24 @@ private:
 class		Rectangle : public AObject
 {
 public:
-  Rectangle();
+  Rectangle(const Vector3f &, const Vector3f &, const std::string &);
   virtual	~Rectangle();
 
-  /*public:
-  void		initialize();
-  void		update(gdl::GameClock const &, gdl::Input &);
-  void		draw(void);*/
+public:
+  virtual void		initialize();
+  virtual void		update();
+  virtual void		draw(void);
+
 public:
   static void	draw_rect(const Vector3f &, const Vector3f &, float, float, float);
   static void	draw_rect(const Vector3f &, const Vector3f &, gdl::Image &);
   static void	draw_plan(const Vector3f &, const Vector3f &, float, float, float);
   static void	draw_plan(const Vector3f &, const Vector3f &, gdl::Image &);
 
+private:
+  Vector3f	_origin;
+  Vector3f	_opposite;
+  gdl::Image	_texture;
 };
 
 /* ------------ */
@@ -70,9 +75,9 @@ public:
   virtual	~Cube();
 
 public:
-  void		initialize();
-  void		update();
-  void		draw(void);
+  virtual void		initialize();
+  virtual void		update();
+  virtual void		draw(void);
 
 private:
   Vector3f	_origin;

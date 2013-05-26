@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May 11 16:25:00 2013 florian dewulf
-// Last update Thu May 23 16:51:02 2013 florian dewulf
+// Last update Sun May 26 02:02:18 2013 florian dewulf
 //
 
 #include	"File.hpp"
@@ -34,7 +34,7 @@ std::list<std::string>	File::ls()
       while ((st = readdir(dir)))
 	{
 	  std::string	str(st->d_name);
-	  if (str[0] != '.')
+	  if (str[0] != '.' && str[str.size() - 1] != '~')
 	    list.push_back(str);
 	}
       closedir(dir);
