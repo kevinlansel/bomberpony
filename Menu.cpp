@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:58:43 2013 florian dewulf
-// Last update Tue May 21 14:47:10 2013 florian dewulf
+// Last update Sun May 26 01:57:43 2013 florian dewulf
 //
 
 #include	"Menu.hpp"
@@ -23,7 +23,7 @@ void		Menu::initialize(const std::string &texture, const Vector3f &limit_up, con
 {
   //if option => check map list
   //if score => check score file
-  this->_background = new Cube(Vector3f(-400, 300, -10), Vector3f(400, -300, -11), texture);
+  this->_background = new Rectangle(Vector3f(-400, 300, -10), Vector3f(400, -300, -10), texture);
   this->_camera.initialize(1024, 768, this->getPoscam(), this->getTarget(), 0);
   this->_cursor.initialize();
   this->_txt.setSize(65);
@@ -41,7 +41,6 @@ MenuType	Menu::update(gdl::GameClock &gameClock_, gdl::Input &input, bool sound)
   if (tempo == -1)
     tempo = gameClock_.getTotalGameTime();
   this->_camera.update();
-  this->_background->update();
   this->_cursor.update();
   tmp = this->move(tempo, gameClock_, input, sound);
   if (tmp == DEC_OPTION || tmp == INC_OPTION)

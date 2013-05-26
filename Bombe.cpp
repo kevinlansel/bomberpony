@@ -5,39 +5,79 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon May 13 10:55:07 2013 Maxime Wojciak
-// Last update Wed May 15 15:42:32 2013 Maxime Wojciak
+// Last update Fri May 24 23:56:33 2013 florian dewulf
 //
 
 #include	"Bombe.hpp"
 
-Bombe::Bombe() {
-
+Bombe::Bombe(const Vector3f &coord) : _translation(coord) {
+  this->_clignote = false;
 }
 
 Bombe::~Bombe() {
 }
 
 void		Bombe::setCoord(Vector3f coord) {
-  this->_coord = coord;
+  this->_translation = coord;
 }
 
 Vector3f	Bombe::getCoord() {
-  return this->_coord;
+  return this->_translation;
 }
 
 /*
-** Affiche une bombe au X et Y
-** puis après le temps (a definir)
-** affiche explosion de la bombe
+** Init du model 3D.
 */
 
-void		Bombe::Draw() {
+void		Bombe::initialize(gdl::GameClock &_clock) {
+  this->_BombeModel = gdl::Model::load("./bomb.fbx");
+  this->BombeTempo = _clock.getTotalGameTime();
 }
 
-void		Bombe::DropBombe(Vector3f coord, const gdl::GameClock &gameClock) {
-  std::cout << this->_coord.x << std::endl;
-  std::cout << this->_coord.y << std::endl;
-  std::cout << this->_coord.z << std::endl;
+/*
+** Place la bombe en x et y.
+** Update de la bombe.
+*/
 
-  //affiche une bombe au X et Y, puis après le temps affiche explosion de la bombe
+bool		Bombe::update(gdl::GameClock &_clock) {
+  this->_BombeModel.update(_clock);
+  this->_BombeModel.play("Take 001");
+  this->_BombeModel.update(_clock);
+  glTranslatef(-this->_translation.x, -this->_translation.y, -this->_translation.z);
+  //glTranslatef(this->_translation.x, this->_translation.y, this->_translation.z);
+  //glTranslatef(-this->_translation.x, -this->_translation.y, -this->_translation.z);
+  //glTranslatef(this->_translation.x, this->_translation.y, this->_translation.z);
+  if (this->_clignote == false && _clock.getTotalGameTime() - this->BombeTempo > 2 && _clock.getTotalGameTime() - this->BombeTempo < 4)
+    this->_clignote = true;
+  if (_clock.getTotalGameTime() - this->BombeTempo >= 4)
+  {
+    this->_clignote = false;
+    return true;
+  }
+  return false;
+}
+
+/*
+** Affiche LA bombe au X et Y
+*/
+
+void		Bombe::draw() {
+  static int	prout = 1;
+
+  glTranslatef(this->_translation.x, this->_translation.y, this->_translation.z);
+  if (this->_clignote && prout == 240)
+    prout = 0;
+  else if (this->_clignote && prout > 120)
+    prout++;
+  else
+  {
+    if (this->_clignote && prout <= 120)
+      prout++;
+    this->_BombeModel.draw();
+  }
+  //  sleep(4);
+}
+
+void		Bombe::unload() {
+
 }

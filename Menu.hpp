@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Wed May  8 17:57:34 2013 florian dewulf
-// Last update Tue May 21 14:47:52 2013 florian dewulf
+// Last update Sun May 26 01:46:12 2013 florian dewulf
 //
 
 #ifndef		MENU_HPP__
@@ -49,7 +49,7 @@ private:
   MenuType	change_option(gdl::Input &, float &, gdl::GameClock &);
 
 private:
-  Cube		*_background;
+  Rectangle	*_background;
   Camera	_camera;
   Triangle	_cursor;
   int		_choice;

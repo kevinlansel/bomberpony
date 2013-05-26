@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 19:52:14 2013 florian dewulf
-// Last update Fri May 17 15:37:25 2013 florian dewulf
+// Last update Sun May 26 02:23:23 2013 florian dewulf
 //
 
 #include	"Forme.hpp"
@@ -54,12 +54,38 @@ Vector3f	Triangle::getTranslation() const
 
 /* Rectangle */
 
-Rectangle::Rectangle()
+Rectangle::Rectangle(const Vector3f &ori, const Vector3f &end, const std::string &texture) : _origin(ori), _opposite(end)
 {
+  this->_texture = gdl::Image::load(texture);
 }
 
 Rectangle::~Rectangle()
 {
+}
+
+void		Rectangle::initialize()
+{
+}
+
+void		Rectangle::update()
+{
+}
+
+void		Rectangle::draw()
+{
+  this->_texture.bind();
+  glEnable(GL_TEXTURE_2D);
+  glBegin(GL_QUADS);
+  glTexCoord2f(0.0, 0.0);
+  glVertex3f(this->_origin.x, this->_origin.y, this->_origin.z);
+  glTexCoord2f(1.0, 0.0);
+  glVertex3f(this->_opposite.x, this->_origin.y, this->_origin.z);
+  glTexCoord2f(1.0, 1.0);
+  glVertex3f(this->_opposite.x, this->_opposite.y, this->_opposite.z);
+  glTexCoord2f(0.0, 1.0);
+  glVertex3f(this->_origin.x, this->_opposite.y, this->_opposite.z);
+  glEnd();
+  glDisable(GL_TEXTURE_2D);
 }
 
 /*
@@ -173,7 +199,10 @@ void Cube::draw(void)
   // La face du dessus
   Rectangle::draw_plan(Vector3f(this->_origin.x, this->_origin.y, this->_origin.z), Vector3f(this->_opposite.x, this->_origin.y, this->_opposite.z), this->_texture);
   // La face du dessous. Qui est blanche car sinon il y a un bug de couleur du cube. Et comme on voit pas le dessous...
-  Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), this->_texture);
+
+  // Optimisation : face du dessous useless
+
+  //Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), this->_texture);
   //Rectangle::draw_plan(Vector3f(this->_origin.x, this->_opposite.y, this->_origin.z), Vector3f(this->_opposite.x, this->_opposite.y, this->_opposite.z), 1.0, 1.0, 1.0);
 
   glPopMatrix();
