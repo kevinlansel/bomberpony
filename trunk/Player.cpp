@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:21:55 2013 gery baudry
-// Last update Tue May 14 15:56:03 2013 gery baudry
+// Last update Sun May 26 15:25:45 2013 florian dewulf
 //
 
 #include	"Player.hpp"
@@ -18,16 +18,16 @@ Player::~Player()
 {
 }
 
-void		Player::update(gdl::Input &input)
+void		Player::update(gdl::Input &input, gdl::GameClock &clock, const std::list<Obstacle *> &obs, const std::list<Bombe *> &bomb)
 {
   if (this->_joueur == 1)
     move_player_one(input);
   else if (this->_joueur == 2)
     move_player_two(input);
   if (input.isKeyDown(gdl::Keys::F1) == true)
-    //save les infos
-    if (input.isKeyDown(gdl::Keys::P) == true)
-      //image pose +menu
+    ;//save les infos
+  if (input.isKeyDown(gdl::Keys::P) == true)
+    ;//image pose +menu
 }
 
 void		Player::move_player_one(gdl::Input &input)

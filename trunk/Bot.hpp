@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon May 13 17:05:47 2013 kevin lansel
-// Last update Fri May 24 15:32:20 2013 kevin lansel
+// Last update Sun May 26 15:25:42 2013 florian dewulf
 //
 
 #ifndef		BOT_HPP_
@@ -41,7 +41,7 @@ public:
   Vector3f	getPos() const;
   Vector3f	getDest() const;
 
-  void		update(gld::GameClock &, gdl::Input &, const std::list<Obstacle> &, const std::list<Bombe *> &bombe);
+  virtual void		update(gld::GameClock &, gdl::Input &, const std::list<Obstacle *> &, const std::list<Bombe *> &);
 
 private:
   void		easy(const std::list<Obstacle *> &, const std::list<Bombe *> &);

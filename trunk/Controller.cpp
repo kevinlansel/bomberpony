@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:40 2013 florian dewulf
-// Last update Sun May 26 02:01:25 2013 florian dewulf
+// Last update Mon May 27 09:18:52 2013 florian dewulf
 //
 
 #include	"Controller.hpp"
@@ -22,16 +22,21 @@ Controller::Controller() : _scene(NULL), _sound(true), _map_choice(true), _map_o
   this->_map_menu[SCORE] = std::vector<int>(score, score + sizeof(score) / sizeof(int));
   this->_map_menu[OPTION] = std::vector<int>(option, option + sizeof(option) / sizeof(int));
 
+  this->_ptr_func[MENU] = &Controller::putMenu;
+  this->_ptr_func[GAME] = &Controller::putMenu;
+  this->_ptr_func[SCORE] = &Controller::putMenu;
+  this->_ptr_func[OPTION] = &Controller::putMenu;
+  this->_ptr_func[ONE] = &Controller::launchInput;
+  this->_ptr_func[TWO] = &Controller::launchInput;
   this->_ptr_func[MAP_OPTION] = &Controller::returnOption;
   this->_ptr_func[MAP_TYPE] = &Controller::returnOption;
   this->_ptr_func[SOUND] = &Controller::changeSound;
   this->_ptr_func[MAP_TYPE] = &Controller::changeTypeMap;
   this->_ptr_func[IA] = &Controller::changeIA;
   this->_ptr_func[LOAD] = &Controller::returnGame;
-  this->_ptr_func[ONE] = &Controller::returnGame;
-  this->_ptr_func[TWO] = &Controller::returnGame;
   this->_ptr_func[INC_OPTION] = &Controller::incOption;
   this->_ptr_func[DEC_OPTION] = &Controller::decOption;
+  this->_ptr_func[END_INPUT] = &Controller::launchGame;
 }
 
 Controller::~Controller()
@@ -73,7 +78,7 @@ bool		Controller::update(gdl::GameClock &clock, gdl::Input &input)
   if (tmp == QUIT)
     return (true);
   else if (tmp != NOTHING)
-    this->changeScene(this->_scene->getPoscam(), this->_scene->getTarget(), this->_screen, this->_map_menu[this->_screen]);
+    this->changeScene();
   return false;
 }
 
@@ -82,20 +87,9 @@ void		Controller::draw()
   this->_scene->draw();
 }
 
-void		Controller::changeScene(const Vector3f &pos, const Vector3f &target, MenuType type, std::vector<int> &limit)
+void		Controller::changeScene()
 {
-  if (this->_scene && (type == MENU || type == GAME || type == SCORE || type == OPTION))
-    delete this->_scene;
-
-  if (type == MENU || type == GAME || type == SCORE || type == OPTION)
-    {
-      this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), type, limit);
-      this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, 52 - ((limit[0] - 2) * 65), 0));
-      this->_scene->setColor(255, 255, 255);
-      this->_screen = type;
-    }
-  else
-    this->_screen = (this->*(this->_ptr_func[type]))();
+  this->_screen = (this->*(this->_ptr_func[this->_screen]))();
   this->setText();
 }
 
@@ -259,4 +253,27 @@ MenuType	Controller::decOption()
       this->changeMap();
     }
   return OPTION;
+}
+
+MenuType	Controller::launchInput()
+{
+  delete this->_scene;
+  this->_scene = new InputBox(this->_screen);
+  this->_scene->initialize("", Vector3f(0, 0, 0), Vector3f(0, 0, 0));
+  return (this->_screen);
+}
+
+MenuType	Controller::putMenu()
+{
+  delete this->_scene;
+  this->_scene = new Menu(Vector3f(0, 0, 5000), Vector3f(0, 0, 0), this->_screen, this->_map_menu[this->_screen]);
+  this->_scene->initialize("./ressource/background.png", Vector3f(40, 52, 0), Vector3f(40, 52 - ((this->_map_menu[this->_screen][0] - 2) * 65), 0));
+  this->_scene->setColor(255, 255, 255);
+  return this->_screen;
+}
+
+MenuType	Controller::launchGame()
+{
+  //delete this->_scene;
+  //this->_scene = new Gameplay();
 }

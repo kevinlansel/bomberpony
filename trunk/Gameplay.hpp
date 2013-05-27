@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 17:03:33 2013 florian dewulf
-// Last update Wed May 22 21:52:54 2013 florian dewulf
+// Last update Sun May 26 23:03:11 2013 florian dewulf
 //
 
 #ifndef		GAMEPLAY_HPP__
@@ -43,9 +43,12 @@ private:
   bool				_sound;
   bool				_map_choice;
   eMode				_ia;
+  Cube				*_plateau;
   std::list<APlayer *>		_players;
   std::list<Obstacle *>		_obs;
   std::list<Bonus *>		_bonus;
+  std::list<Bombe *>		_bombe;
+  std::list<Explosion *>	_explosion;
 };
 
 #endif

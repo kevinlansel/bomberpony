@@ -5,12 +5,12 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 19:43:28 2013 florian dewulf
-// Last update Wed May 22 21:51:59 2013 florian dewulf
+// Last update Mon May 27 00:05:36 2013 florian dewulf
 //
 
 #include	"Gameplay.hpp"
 
-Gameplay::Gameplay(bool sound, bool map_choice, bool nb_j, eMode ia) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false), _nb_j(nb_j), _sound(sound), _map_choice(map_choice), _ia(ia)
+Gameplay::Gameplay(bool sound, bool map_choice, bool nb_j, eMode ia) : Scene(Vector3f(0, 0, 0), Vector3f(0, 0, 0)), _error(false), _nb_j(nb_j), _sound(sound), _map_choice(map_choice), _ia(ia), _plateau(NULL)
 {
 }
 
@@ -54,6 +54,8 @@ Gameplay::Gameplay(bool sound, const std::list<std::string> &toload) : Scene(Vec
 
 Gameplay::~Gameplay()
 {
+  if (this->_plateau)
+    delete this->_plateau;
 }
 
 void		Gameplay::initialize(const std::string &map_type)
@@ -67,13 +69,14 @@ void		Gameplay::initialize(const std::string &map_type)
     this->_error = map.initialize(map_type, list_str, this->_nb_j);//list_str en référence
   if (this->_error)
     return;
+  this->_plateau = new Cube (Vector3f(- list_str.size() * 150, 0, - list_str.size() * 150), Vector3f(list_str.size() * 150, -1, list_str.size() * 150), "./ressource/carreaux.tga");
   this->setPoscam(Vector3f(0, list_str.size() * 300 / 0.8, list_str.size() * 150));//300 is the size of a block. 150 = 300 / 2.
   for (std::list<std::string>::iterator it = list_str.begin(), unsigned int i = 0 ; it != list_str.end() ; ++it, ++i)
     for (unsigned int j = 0 ; j < it->size() ; ++j)
       {
-	if ((*it)[j] == 0)
+	if ((*it)[j] == '0')
 	  this->obs.push_back(new Obstacle(Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0), BREAKABLE_WALL));
-	else if ((*it)[j] == 1)
+	else if ((*it)[j] == '1')
 	  this->obs.push_back(new Obstacle(Vector3f(j * 300 - (list_str.size() * 300) / 2, 0, i * 300 - (list_str.size() * 300) / 2, 0), UNBREAKABLE_WALL));
 	else
 	  this->newPlayer(list_str.size(), i, j, (*it));

@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu May  9 11:21:55 2013 gery baudry
-// Last update Mon May 20 12:59:23 2013 gery baudry
+// Last update Sun May 26 15:43:50 2013 florian dewulf
 //
 
 #include	"APlayer.hpp"
@@ -57,11 +57,6 @@ bool			APlayer::getAlive() const
   return (this->_alive);
 }
 
-Vector3f		APlayer::getTranslation() const
-{
-  return (this->_translation);
-}
-
 //
 //		Setter
 //
@@ -91,9 +86,3 @@ void			APlayer::setAlive(bool alive)
   this->_alive = alive;
 }
 
-void			APlayer::setTranslation(Vector3f trans)
-{
-  this->_translation.x = trans.x;
-  this->_translation.y = trans.y;
-  this->_translation.z = trans.z;
-}
