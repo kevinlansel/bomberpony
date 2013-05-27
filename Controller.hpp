@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sat May  4 15:52:26 2013 florian dewulf
-// Last update Tue May 21 13:35:35 2013 florian dewulf
+// Last update Sun May 26 19:04:13 2013 florian dewulf
 //
 
 #ifndef		CONTROLLER_HPP__
@@ -18,8 +18,9 @@
 #include	<sstream>
 
 #include	"Bomberman.h"
-#include	"Menu.hpp"
 #include	"Scene.hpp"
+#include	"Menu.hpp"
+#include	"InputBox.hpp"
 #include	"GameClock.hpp"
 #include	"Input.hpp"
 #include	"File.hpp"
@@ -45,7 +46,7 @@ public:
   void		Majscore();		// modif the _score_list
   bool		update(gdl::GameClock &, gdl::Input &);
   void		draw();
-  void		changeScene(const Vector3f &, const Vector3f &, MenuType, std::vector<int> &);
+  void		changeScene();
 
 private:
   void		setText();
@@ -58,6 +59,9 @@ private:
   MenuType	incOption();
   MenuType	decOption();
   MenuType	returnOption();
+  MenuType	launchInput();
+  MenuType	launchGame();
+  MenuType	putMenu();
   void		changeMap();
 
 private:

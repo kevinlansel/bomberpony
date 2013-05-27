@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Sun May  5 14:07:28 2013 florian dewulf
-## Last update Tue May 21 15:59:17 2013 guillaume duez
+## Last update Sun May 26 02:36:43 2013 florian dewulf
 ##
 
 NAME=		Bomberman
@@ -19,6 +19,7 @@ SRC=		APlayer.cpp		\
 		Controller.cpp		\
 		File.cpp		\
 		Forme.cpp		\
+		InputBox.cpp		\
 		main.cpp		\
 		Menu.cpp		\
 		Musique.cpp		\

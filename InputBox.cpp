@@ -5,14 +5,13 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 24 23:21:07 2013 florian dewulf
-// Last update Sat May 25 01:40:20 2013 florian dewulf
+// Last update Sun May 26 18:45:40 2013 florian dewulf
 //
 
 #include	"InputBox.hpp"
 
-InputBox::InputBox(MenuType joueur) : _player((joueur == ONE) ? 1 : 2), _strJ1(""), _strJ2(""), _state(true), _count(0), _last_time(0), _curs(0)
+InputBox::InputBox(MenuType joueur) : Scene(Vector3f(0, 0, 500), Vector3f(0, 0, 0)), _player((joueur == ONE) ? 1 : 2), _strJ1(""), _strJ2(""), _state(true), _count(0), _last_time(0), _curs(0)
 {
-  this->_model = gdl::Model::load("./ressource/marvin.fbx");
 }
 
 InputBox::~InputBox()
@@ -21,8 +20,11 @@ InputBox::~InputBox()
 
 void		InputBox::initialize(const std::string &str, const Vector3f &position, const Vector3f &color_default)
 {
+  (void)(str);
+  (void)(position);
   this->_colorJ1 = color_default;
   this->_colorJ2 = color_default;
+  this->setColorRed();
 }
 
 void		InputBox::addChar(char c)
@@ -55,19 +57,19 @@ void		InputBox::UpColor()
 {
   if (this->_count == 0 && this->_state == false)
     {
-      switch (1)
+      switch (this->_curs)
 	{
-	case (int)(this->_curs == 0):
+	case 0:
 	  this->_colorJ1.x++;
 	  if (this->_colorJ1.x == 256)
 	    this->_colorJ1.x = 0;
 	  break;
-	case (int)(this->_curs == 1):
+	case 1:
 	  this->_colorJ1.y++;
 	  if (this->_colorJ1.y == 256)
 	    this->_colorJ1.y = 0;
 	  break;
-	case (int)(this->_curs == 2):
+	case 2:
 	  this->_colorJ1.z++;
 	  if (this->_colorJ1.z == 256)
 	    this->_colorJ1.z = 0;
@@ -78,21 +80,21 @@ void		InputBox::UpColor()
     }
   else if (this->_count == 1 && this->_state == false)
     {
-      switch (1)
+      switch (this->_curs)
 	{
-	case (int)(this->_curs == 0):
+	case 0:
 	  this->_colorJ2.x++;
-	  if (this->_colorJ1.x == 256)
+	  if (this->_colorJ2.x == 256)
 	    this->_colorJ2.x = 0;
 	  break;
-	case (int)(this->_curs == 1):
+	case 1:
 	  this->_colorJ2.y++;
-	  if (this->_colorJ1.y == 256)
+	  if (this->_colorJ2.y == 256)
 	    this->_colorJ2.y = 0;
 	  break;
-	case (int)(this->_curs == 2):
+	case 2:
 	  this->_colorJ2.z++;
-	  if (this->_colorJ1.z == 256)
+	  if (this->_colorJ2.z == 256)
 	    this->_colorJ2.z = 0;
 	  break;
 	default:
@@ -105,19 +107,19 @@ void		InputBox::DownColor()
 {
   if (this->_count == 0 && this->_state == false)
     {
-      switch (1)
+      switch (this->_curs)
 	{
-	case (int)(this->_curs == 0):
+	case 0:
 	  this->_colorJ1.x--;
 	  if (this->_colorJ1.x == -1)
 	    this->_colorJ1.x = 255;
 	  break;
-	case (int)(this->_curs == 1):
+	case 1:
 	  this->_colorJ1.y--;
 	  if (this->_colorJ1.y == -1)
 	    this->_colorJ1.y = 255;
 	  break;
-	case (int)(this->_curs == 2):
+	case 2:
 	  this->_colorJ1.z--;
 	  if (this->_colorJ1.z == -1)
 	    this->_colorJ1.z = 255;
@@ -128,21 +130,21 @@ void		InputBox::DownColor()
     }
   else if (this->_count == 1 && this->_state == false)
     {
-      switch (1)
+      switch (this->_curs)
 	{
-	case (int)(this->_curs == 0):
+	case 0:
 	  this->_colorJ2.x--;
-	  if (this->_colorJ1.x == -1)
+	  if (this->_colorJ2.x == -1)
 	    this->_colorJ2.x = 255;
 	  break;
-	case (int)(this->_curs == 1):
+	case 1:
 	  this->_colorJ2.y--;
-	  if (this->_colorJ1.y == -1)
+	  if (this->_colorJ2.y == -1)
 	    this->_colorJ2.y = 255;
 	  break;
-	case (int)(this->_curs == 2):
+	case 2:
 	  this->_colorJ2.z--;
-	  if (this->_colorJ1.z == -1)
+	  if (this->_colorJ2.z == -1)
 	    this->_colorJ2.z = 255;
 	  break;
 	default:
@@ -151,135 +153,92 @@ void		InputBox::DownColor()
     }
 }
 
+void		InputBox::mouv_vertical(gdl::Input &input)
+{
+  if (input.isKeyDown(gdl::Keys::Up)) {
+    this->UpColor();
+  }
+  else if (input.isKeyDown(gdl::Keys::Down)) {
+    this->DownColor();
+  }
+}
+
+void		InputBox::mouv_lateral(gdl::Input &input)
+{
+  if (input.isKeyDown(gdl::Keys::Left)) {
+    this->_curs--;
+    if (this->_curs == -1)
+      this->_curs = 2;
+  }
+  else if (input.isKeyDown(gdl::Keys::Right)) {
+    this->_curs++;
+    if (this->_curs == 3)
+      this->_curs = 0;
+  }
+}
+
+void		InputBox::mouvement(gdl::Input &input)
+{
+  if (this->_state == false) {
+    this->mouv_lateral(input);
+    this->mouv_vertical(input);
+  }
+}
+
 MenuType	InputBox::update(gdl::GameClock &clock, gdl::Input &input, bool useless)
 {
+  gdl::Keys::Key	tabKey[] = {gdl::Keys::A, gdl::Keys::B, gdl::Keys::C, gdl::Keys::D, gdl::Keys::E, gdl::Keys::F, gdl::Keys::G, gdl::Keys::H, gdl::Keys::I, gdl::Keys::J, gdl::Keys::K, gdl::Keys::L, gdl::Keys::M, gdl::Keys::N, gdl::Keys::O, gdl::Keys::P, gdl::Keys::Q, gdl::Keys::R, gdl::Keys::S, gdl::Keys::T, gdl::Keys::U, gdl::Keys::V, gdl::Keys::W, gdl::Keys::X, gdl::Keys::Y, gdl::Keys::Z};
+  std::string	tabChar = "abcdefghijklmnopqrstuvwxyz";
+  bool		indice = true;
+
   (void)(useless);
-  if (this->_last_time + 0.2 < clock.getTotalGameTime())
+  if (this->_last_time == 0)
+    this->_last_time = clock.getTotalGameTime();
+  if (this->_last_time + 0.07 < clock.getTotalGameTime())
     {
-      switch (1)
+      for (unsigned int i = 0 ; i < 26 && indice && this->_state; ++i)
+	if (input.isKeyDown(tabKey[i]))
+	  {
+	    indice = false;
+	    this->addChar(tabChar[i]);
+	  }
+
+      if (input.isKeyDown(gdl::Keys::Return) && ((this->_count == 0 && this->_strJ1 != "") || (this->_count == 1 && this->_strJ2 != "")))
 	{
-	case (int)(input.isKeyDown(gdl::Keys::A) && this->_state == true):
-	  this->addChar('a');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::B) && this->_state == true):
-	  this->addChar('b');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::C) && this->_state == true):
-	  this->addChar('c');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::D) && this->_state == true):
-	  this->addChar('d');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::E) && this->_state == true):
-	  this->addChar('e');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::F) && this->_state == true):
-	  this->addChar('f');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::G) && this->_state == true):
-	  this->addChar('g');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::H) && this->_state == true):
-	  this->addChar('h');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::I) && this->_state == true):
-	  this->addChar('i');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::J) && this->_state == true):
-	  this->addChar('j');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::K) && this->_state == true):
-	  this->addChar('k');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::L) && this->_state == true):
-	  this->addChar('l');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::M) && this->_state == true):
-	  this->addChar('m');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::N) && this->_state == true):
-	  this->addChar('n');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::O) && this->_state == true):
-	  this->addChar('o');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::P) && this->_state == true):
-	  this->addChar('p');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::Q) && this->_state == true):
-	  this->addChar('q');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::R) && this->_state == true):
-	  this->addChar('r');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::S) && this->_state == true):
-	  this->addChar('s');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::T) && this->_state == true):
-	  this->addChar('t');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::U) && this->_state == true):
-	  this->addChar('u');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::V) && this->_state == true):
-	  this->addChar('v');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::W) && this->_state == true):
-	  this->addChar('w');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::X) && this->_state == true):
-	  this->addChar('x');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::Y) && this->_state == true):
-	  this->addChar('y');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::Z) && this->_state == true):
-	  this->addChar('z');
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::Return)):
-	  this->_state = (this->_state) ? false : true;
+	  this->_state = (this->_state) ? false  : true;
 	  if (this->_state)
 	    {
 	      this->_count++;
 	      this->_curs = 0;
 	    }
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::Back) && this->_state == true):
-	  this->reduceStr();
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::Left) && this->_state == false):
-	  this->_curs--;
-	  if (this->curs == -1)
-	    this->_curs = 2;
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::Right)):
-	  this->_curs++;
-	  if (this->curs == 3)
-	    this->_curs = 0;
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::Up)):
-	  this->UpColor();
-	  break;
-	case (int)(input.isKeyDown(gdl::Keys::Down)):
-	  this->DownColor();
-	  break;
-	default:
-	  break;
 	}
+      else if (input.isKeyDown(gdl::Keys::Back) && this->_state == true)
+	this->reduceStr();
+      else
+	this->mouvement(input);
+
       this->_last_time = clock.getTotalGameTime();
     }
-  this->_model.play("Take 001");
-  this->_model.update();
-  if (this->_count == 2)
+
+  if (this->_player == 1)
+    this->setTxt((this->_strJ1 + "\n" + Utils::IntToString(this->_colorJ1.x) + " " + Utils::IntToString(this->_colorJ1.y) + " " + Utils::IntToString(this->_colorJ1.z)), 100, 100);
+  else
+    this->setTxt((this->_strJ1 + "\n" + Utils::IntToString(this->_colorJ1.x) + " " + Utils::IntToString(this->_colorJ1.y) + " " + Utils::IntToString(this->_colorJ1.z) + "\n" + this->_strJ2 + "\n" + Utils::IntToString(this->_colorJ2.x) + " " + Utils::IntToString(this->_colorJ2.y) + " " + Utils::IntToString(this->_colorJ2.z)), 100, 100);
+  if (this->_count == this->_player)
     return END_INPUT;
   return NOTHING;
 }
 
 void		InputBox::draw()
 {
+  gdl::Text	echantillon;
+
+  echantillon.setText("Color !");
+  echantillon.setPosition(400, 400);
   if (this->_count == 0)
-    this->_model.set_default_model_color(gdl::Color(this->_colorJ1.x, this->_colorJ1.y, this->_colorJ1.z));
+    echantillon.setColor(gdl::Color(this->_colorJ1.x, this->_colorJ1.y, this->_colorJ1.z));
   else
-    this->_model.set_default_model_color(gdl::Color(this->_colorJ2.x, this->_colorJ2.y, this->_colorJ2.z));
-  this->_model.draw();
+    echantillon.setColor(gdl::Color(this->_colorJ2.x, this->_colorJ2.y, this->_colorJ2.z));
+  this->_txt.draw();
+  echantillon.draw();
 }

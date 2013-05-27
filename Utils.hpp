@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 17 15:47:11 2013 florian dewulf
-// Last update Fri May 24 14:38:51 2013 florian dewulf
+// Last update Sun May 26 18:18:39 2013 florian dewulf
 //
 
 #ifndef		UTILS_HPP__
@@ -35,6 +35,14 @@ public:
     ss.str(str);
     ss >> nb;
     return nb;
+  }
+
+  static std::string		IntToString(int i)
+  {
+    std::stringstream	ss;
+
+    ss << i;
+    return (ss.str());
   }
 
   static int		VecToCoord(int value, int size)

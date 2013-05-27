@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Sun May  5 14:03:36 2013 florian dewulf
-// Last update Mon May 20 15:05:33 2013 florian dewulf
+// Last update Sun May 26 03:47:19 2013 florian dewulf
 //
 
 #include	"Bomberman.hpp"

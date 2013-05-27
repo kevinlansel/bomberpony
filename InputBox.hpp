@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Fri May 24 21:06:32 2013 florian dewulf
-// Last update Sat May 25 01:41:52 2013 florian dewulf
+// Last update Sun May 26 18:41:41 2013 florian dewulf
 //
 
 #ifndef		INPUTBOX_HPP__
@@ -17,6 +17,8 @@
 #include	"Input.hpp"
 #include	"Model.hpp"
 
+#include	"Utils.hpp"
+#include	"Forme.hpp"
 #include	"Bomberman.h"
 #include	"Scene.hpp"
 #include	"Vector3f.hpp"
@@ -36,6 +38,9 @@ private:
   void			DownColor();
   void			addChar(char);
   void			reduceStr();
+  void			mouvement(gdl::Input &);
+  void			mouv_lateral(gdl::Input &);
+  void			mouv_vertical(gdl::Input &);
 
 private:
   int		_player;
@@ -47,7 +52,6 @@ private:
   int		_curs;
 
 private:
-  gdl::Model	_model;
   Vector3f	_colorJ1;
   Vector3f	_colorJ2;
 };
